@@ -1,0 +1,328 @@
+<app-mast-head>
+
+</app-mast-head>
+
+
+
+
+<!-- About Us -->
+<div class="container-fluid padding" style="background-color:#e0dddf">
+		
+		
+  <div class="row">
+  <h2 class="theme-color text-center bold"> PETLOVE</h2>
+  </div>
+  
+  <div class="row more-padding " >
+  
+      
+      <div class="row " style="padding:20px;">
+      
+      <div class="input-group">
+         <input type="text" class="form-control" style="line-height: 2;height:auto;">
+         <span class="input-group-btn">
+          <button class="btn btn-default filter" type="button"  (click)="showHideFilter()" >FILTER</button>
+         </span>
+      </div>
+      </div>
+      
+      <div class="row filtercolor " *ngIf="hideShowFilter">
+      
+      <div class="col-md-3">
+        
+        <div class="block"> 
+        
+        <h5>PET TYPE</h5>
+        <p><label class="checkbox-inline"><input type="checkbox" value="">Dog </label></p>
+        <p><label class="checkbox-inline"><input type="checkbox" value="">Cat </label></p>
+        <p><label class="checkbox-inline"><input type="checkbox" value="">Bird </label></p>
+        <p><label class="checkbox-inline"><input type="checkbox" value="">Fish </label></p>
+        
+        </div>
+        
+        
+        <div class="block"> 
+        
+        <h5>GENDER</h5>
+        <p><label class="checkbox-inline"><input type="checkbox" value="">Male </label></p>
+        <p><label class="checkbox-inline"><input type="checkbox" value="">Female </label></p>
+                  
+        </div>
+        
+        <div class="block" > 
+        
+        <h5>Location</h5>
+        <div class="sub-location">
+        <p><input type="text" class="location form-control" value="" placeholder="City"> </p>
+        <p><input type="text" class="location form-control" value="" placeholder="Area"> </p>
+        </div>
+                  
+        </div>
+        
+        <div class="block"> 
+        
+        <h5>GENERIC</h5>
+        <p><label class="checkbox-inline"><input type="checkbox" value="">KYC </label></p>
+        </div>
+        
+        <div class="block"> 
+        
+        <h5>AGE</h5>
+        <p><label class="checkbox-inline"><input type="checkbox" value=""><1 Month </label></p>
+        <p><label class="checkbox-inline"><input type="checkbox" value=""><3 Months </label></p>
+        <p><label class="checkbox-inline"><input type="checkbox" value=""><6 Months </label></p>
+        <p><label class="checkbox-inline"><input type="checkbox" value="">> Year </label></p>
+        </div>
+      
+      </div>
+      <div class="col-md-9">
+      
+      <div class="block"> 
+        
+        <h5>BREED</h5>
+        
+        <hr>
+        
+        <div class="col-md-4">
+        <p><label class="checkbox-inline"><input type="checkbox" value="">	Abdroid dog	</label></p>
+        <p><label class="checkbox-inline"><input type="checkbox" value="">	African Fischer	</label></p>
+        <p><label class="checkbox-inline"><input type="checkbox" value="">	African Love Birds	</label></p>
+        <p><label class="checkbox-inline"><input type="checkbox" value="">	Akita	</label></p>
+        <p><label class="checkbox-inline"><input type="checkbox" value="">	All Breed	</label></p>
+        <p><label class="checkbox-inline"><input type="checkbox" value="">	American Pitbull	</label></p>
+        <p><label class="checkbox-inline"><input type="checkbox" value="">	American Wire Hair And Bengal Breed	</label></p>
+        <p><label class="checkbox-inline"><input type="checkbox" value="">	Aseel	</label></p>
+        <p><label class="checkbox-inline"><input type="checkbox" value="">	Ball Python	</label></p>
+        <p><label class="checkbox-inline"><input type="checkbox" value="">	Beagle	</label></p>
+        <p><label class="checkbox-inline"><input type="checkbox" value="">	Betta	</label></p>
+        <p><label class="checkbox-inline"><input type="checkbox" value="">	Boxer	</label></p>
+        <p><label class="checkbox-inline"><input type="checkbox" value="">	Budgies	</label></p>
+        <p><label class="checkbox-inline"><input type="checkbox" value="">	Bull Terrier	</label></p>
+        <p><label class="checkbox-inline"><input type="checkbox" value="">	Bulldog	</label></p>
+        <p><label class="checkbox-inline"><input type="checkbox" value="">	Chihuahua	</label></p>
+        <p><label class="checkbox-inline"><input type="checkbox" value="">	Chow Chow	</label></p>
+        <p><label class="checkbox-inline"><input type="checkbox" value="">	Cichlids	</label></p>
+        <p><label class="checkbox-inline"><input type="checkbox" value="">	Cocktiels	</label></p>
+        <p><label class="checkbox-inline"><input type="checkbox" value="">	Cocker Spaniel	</label></p>
+        <p><label class="checkbox-inline"><input type="checkbox" value="">	Cockerspaniel Mix Retriever	</label></p>
+        <p><label class="checkbox-inline"><input type="checkbox" value="">	Cunnur	</label></p>
+        <p><label class="checkbox-inline"><input type="checkbox" value="">	Dachshud 	</label></p>
+        <p><label class="checkbox-inline"><input type="checkbox" value="">	Dalmador	</label></p>
+
+        </div>
+        
+        <div class="col-md-4">
+        <p><label class="checkbox-inline"><input type="checkbox" value="">	Dalmatian	</label></p>
+        <p><label class="checkbox-inline"><input type="checkbox" value="">	Doberman	</label></p>
+        <p><label class="checkbox-inline"><input type="checkbox" value="">	Dog	</label></p>
+        <p><label class="checkbox-inline"><input type="checkbox" value="">	Fischer	</label></p>
+        <p><label class="checkbox-inline"><input type="checkbox" value="">	Fleuron	</label></p>
+        <p><label class="checkbox-inline"><input type="checkbox" value="">	French Bulldog	</label></p>
+        <p><label class="checkbox-inline"><input type="checkbox" value="">	German Shepherd	</label></p>
+        <p><label class="checkbox-inline"><input type="checkbox" value="">	Golden Angles	</label></p>
+        <p><label class="checkbox-inline"><input type="checkbox" value="">	Great Dane	</label></p>
+        <p><label class="checkbox-inline"><input type="checkbox" value="">	Guinea Pig	</label></p>
+        <p><label class="checkbox-inline"><input type="checkbox" value="">	Hamster	</label></p>
+        <p><label class="checkbox-inline"><input type="checkbox" value="">	Husky	</label></p>
+        <p><label class="checkbox-inline"><input type="checkbox" value="">	Indian Billi bread	</label></p>
+        <p><label class="checkbox-inline"><input type="checkbox" value="">	Indian Cat	</label></p>
+        <p><label class="checkbox-inline"><input type="checkbox" value="">	Indian Pariah	</label></p>
+        <p><label class="checkbox-inline"><input type="checkbox" value="">	Indian Spitz	</label></p>
+        <p><label class="checkbox-inline"><input type="checkbox" value="">	Indie	</label></p>
+        <p><label class="checkbox-inline"><input type="checkbox" value="">	Irish Setter & Labra dog Mix	</label></p>
+        <p><label class="checkbox-inline"><input type="checkbox" value="">	Jack Russell Terrier	</label></p>
+        <p><label class="checkbox-inline"><input type="checkbox" value="">	Labra doodle	</label></p>
+        <p><label class="checkbox-inline"><input type="checkbox" value="">	Labrador	</label></p>
+        <p><label class="checkbox-inline"><input type="checkbox" value="">	Labrador retriever	</label></p>
+        <p><label class="checkbox-inline"><input type="checkbox" value="">	Lahsapo	</label></p>
+        <p><label class="checkbox-inline"><input type="checkbox" value="">	Love Birds	</label></p>
+        </div>
+        
+        <div class="col-md-4">
+        <p><label class="checkbox-inline"><input type="checkbox" value="">	Manquean	</label></p>
+        <p><label class="checkbox-inline"><input type="checkbox" value="">	Pakistani Bully	</label></p>
+        <p><label class="checkbox-inline"><input type="checkbox" value="">	Partian Bully	</label></p>
+        <p><label class="checkbox-inline"><input type="checkbox" value="">	Persian\Persian Mix	</label></p>
+        <p><label class="checkbox-inline"><input type="checkbox" value="">	Pet Rabbits	</label></p>
+        <p><label class="checkbox-inline"><input type="checkbox" value="">	Pitbull	</label></p>
+        <p><label class="checkbox-inline"><input type="checkbox" value="">	Palmerian	</label></p>
+        <p><label class="checkbox-inline"><input type="checkbox" value="">	Poodle	</label></p>
+        <p><label class="checkbox-inline"><input type="checkbox" value="">	Pug	</label></p>
+        <p><label class="checkbox-inline"><input type="checkbox" value="">	Rabbit	</label></p>
+        <p><label class="checkbox-inline"><input type="checkbox" value="">	Red Eared Slider	</label></p>
+        <p><label class="checkbox-inline"><input type="checkbox" value="">	Red Eared Turtle	</label></p>
+        <p><label class="checkbox-inline"><input type="checkbox" value="">	Roller Pigeon	</label></p>
+        <p><label class="checkbox-inline"><input type="checkbox" value="">	Rottweiler	</label></p>
+        <p><label class="checkbox-inline"><input type="checkbox" value="">	Saint Bernard	</label></p>
+        <p><label class="checkbox-inline"><input type="checkbox" value="">	Shark	</label></p>
+        <p><label class="checkbox-inline"><input type="checkbox" value="">	Shih Tzu	</label></p>
+        <p><label class="checkbox-inline"><input type="checkbox" value="">	Shitzu	</label></p>
+        <p><label class="checkbox-inline"><input type="checkbox" value="">	Silver Arowana	</label></p>
+        <p><label class="checkbox-inline"><input type="checkbox" value="">	South America Arowana	</label></p>
+        <p><label class="checkbox-inline"><input type="checkbox" value="">	Speech	</label></p>
+        <p><label class="checkbox-inline"><input type="checkbox" value="">	Stray	</label></p>
+        <p><label class="checkbox-inline"><input type="checkbox" value="">	Syrian	</label></p>
+        <p><label class="checkbox-inline"><input type="checkbox" value="">	Yorkshire Terrier	</label></p>
+        </div>
+
+
+        
+        
+      </div>
+      
+      
+      </div>
+      
+      <div class="col-md-12 filter-bottom">
+      
+      <button type="button" class="btn btn-default pull-left"  (click)="showHideFilter()">CLOSE</button>
+      <button type="button" class="btn btn-default pull-right">SUBMIT</button>
+
+      
+      </div>
+      
+      
+      
+      </div>
+      
+      
+      
+      
+  
+    
+      
+
+  </div>
+  </div>
+
+  <!-- end of about us -->
+  
+  <!-- listings -->
+  <div class="container-fluid " style="background-color:#e0dddf">
+  
+    <div class="row more-padding " >
+    
+    
+      
+      
+      <!-- Listing Start -->
+      
+      <div class="col-md-12 " >
+          <div class="row listing">
+          <div class="col-md-4 col-xs-12 ">
+          <center>
+          <img src="../assets/images/balck-dog.png" class="img-responsive img-rounded listing-mobile" />						
+                      
+                      
+          </center>
+          </div>
+  
+      
+          <div class="col-md-8 col-xs-12">						
+          <div class="row">
+          <div class="col-xs-12"><h3 class="theme-color listname">Oreo</h3></div>						
+          </div>
+          <div class="row">
+          <div class="col-xs-5">Pet Type</div>						
+          <div class="col-xs-7 l-text">Dog</div>
+          </div>
+          <div class="row">
+          <div class="col-xs-5">Description</div>
+          <div class="col-xs-7 l-text">A Little, Fluffy, Cute and</div>
+          </div>
+          <div class="row">
+          <div class="col-xs-5">Breed</div>
+          <div class="col-xs-7 l-text">Poodle</div>
+          </div>
+          
+          <div class="row">
+          <div class="col-xs-5">Date of Birth</div>
+          <div class="col-xs-7 l-text">AUG 02, 2015</div>
+          </div>
+          <div class="row">
+          <div class="col-xs-5">Gender</div>
+          <div class="col-xs-7 l-text">M</div>
+          </div>
+          <div class="row">
+          <div class="col-xs-5">Color</div>
+          <div class="col-xs-7 l-text">Black adn White</div>
+          </div>
+          <div class="row">
+          <div class="col-xs-5">City</div>
+          <div class="col-xs-7 l-text">Hyderabad</div>
+          </div>
+          <div class="row">
+          <div class="col-xs-5">Area Name</div>
+          <div class="col-xs-7 l-text">Manikonda</div>
+          </div>	
+          <div class="row">
+          <div class="col-md-4 col-xs-6">
+          <center>
+          <a class="btn btn-danger contact-button"><i class="fa fa-address-book" aria-hidden="true"></i> &nbsp;contact </a>
+          </center>
+          </div>
+          </div>						
+          </div>
+          
+          </div>
+      
+      
+      
+      </div>
+      
+      <!-- Listing End -->
+      
+      
+      
+      
+    </div>
+    
+    <!-- Service Desription -->
+    <div class="row more-padding " >
+    
+          
+      
+      
+      <div class="col-md-12 " >
+          <div class="row listing">
+          
+          <div class="col-md-3">
+          <img src="../assets/images/balck-dog.png" class="img-responsive img-rounded" />
+          </div>
+          
+          <div class="col-md-9">
+                                            
+            <h3 class="theme-color">Find Pet Love</h3>
+            <p>Mating is a natural process for most pets. But when they are enclosed as part of the family, they need help. Health, timing &amp; environmental considerations are important aspects for successful breeding. However, many pet parents are also turning to artificial insemination these days for diversifying the gene poll and for health &amp; safety reasons.</p>
+            <h3 class="theme-color">Health &amp; Safety of Your Pet</h3>
+            <p>	It is recommended that male dogs should not be bread until they are 18 months of age &amp; the female canines should not mate until they are on their second or third heat cycle. Normally, natural mating is conducted at the male dog’s residence. This is because the male outside the normal environment may feel insecure. Pets should be given a private enclosed area with good footing where they can mate without distraction. Both the pet parents should be present at the site. Dogs may take hours or days to feel comfortable with each other based upon their disposition, experience &amp; timing of the breeding. Pets should be supervised at all times so as to ensure their safety. Pet parents can softly talk to pets in order to encourage them and help them feel secure &amp; comfortable. Never holler at them out of frustration. Following copulation, the female should not be allowed to urinate for 15 minutes in order to help her conceive. </p>
+            <br>
+            <h3 class="theme-color">Every Pet Needs a Mate</h3>
+            <p >	PetPals app is very useful for finding a suitable partner for your pet. This is a one stop destination for all pet parents out there who will like to manage their pets’ day-to-day needs efficiently. Apart from helping you find a suitable pet mate, it also helps you find the best pet spa, pet boarding services, pet products &amp; accessories, pet friendly restaurants, the best pet food, grooming, vets &amp; everything your pet would need throughout the journey with you. While you are always there with the pet, they still need some stimulating company now &amp; then. PetPals app will let you sift through numerous other pet profiles till you find the right match for your pet. Eventually, you can exchange pictures of your pet &amp; probably set up a date for them. Just in case you are unable to find the right match, fill up the form &amp; we will get back to you sooner or later.	</p><br>
+            <h3 class="theme-color">Another Aspect to Finding Pet Love</h3>
+            <p>	Studies have found that pets also raise your chances of finding love. Pets are considered as conversation starters &amp; they make people more desirable. It is a fact that we all tend to coo over cute pets when we come across them anywhere. Pets attract attention &amp; give us something to talk about. Pets are one of the best ways to someone’s heart. Pet parents find it difficult to date someone who could not get along with their pets. Most pet parents see pets as a symbol of something greater. It is also true that pet parents are more family oriented than people without pets.	</p>
+
+
+
+
+
+                   
+            </div>
+          </div>
+          </div>
+      </div>
+      
+      <!-- End Service Desription -->
+    </div>
+    
+    
+    
+  
+
+  
+  <!-- end of listings -->
+
+  
+  <app-mast-footer>
+
+  </app-mast-footer>
