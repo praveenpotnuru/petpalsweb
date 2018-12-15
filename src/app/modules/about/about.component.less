@@ -1,25 +1,56 @@
-::ng-deep .mat-tab-labels{
+.mat-tab-labels{
     justify-content: center; /* align items in Main Axis */
 }
 
-::ng-deep .mat-tab-label {
-    background-color: transparent;
-    color: #171dda;// #337ab7;
+.mat-tab-labels{
+    justify-content: center; /* align items in Main Axis */
+    min-width: 50px;
+    height: 35px;
+}
+
+.mat-tab-label {
+    color: #fff;// #337ab7;
     margin-right: 2px;
+    border: 1px solid #A50F2D !important;
+    background-color: #A50F2D !important;
+    min-width: 50px !important;
+    height: 35px !important;
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
     line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    opacity: 1 !important;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
     border: 1px solid transparent;
-    border-radius: 4px 4px 0 0;
+    border-radius: 4px;
+
 }
 
 /* Styles for the active tab label */
-::ng-deep .mat-tab-label.mat-tab-label-active {
-    color: #a50f2d;
+.mat-tab-label.mat-tab-label-active {
+    color: #fff;
+    opacity: 1 !important;
     cursor: pointer;
-    border: 1px solid #ddd;
-    border-bottom-color: transparent;
-    text-decoration: underline;
-	    background-color: transparent;
+    border: 1px solid #d43f3a !important;
+    background-color: #d9534f !important;
+    min-width: 50px;
+    height: 35px;
 }
-::ng-deep .mat-tab-label:not(.mat-tab-label-active):hover {
-    background-color: white;
+.mat-tab-label:not(.mat-tab-label-active):hover {
+    opacity: 1 !important;
+    border: 1px solid #d43f3a !important;
+    background-color: #d9534f !important;
   }
+
