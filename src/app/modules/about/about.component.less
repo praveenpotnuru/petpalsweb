@@ -1,0 +1,25 @@
+::ng-deep .mat-tab-labels{
+    justify-content: center; /* align items in Main Axis */
+}
+
+::ng-deep .mat-tab-label {
+    background-color: transparent;
+    color: #171dda;// #337ab7;
+    margin-right: 2px;
+    line-height: 1.42857143;
+    border: 1px solid transparent;
+    border-radius: 4px 4px 0 0;
+}
+
+/* Styles for the active tab label */
+::ng-deep .mat-tab-label.mat-tab-label-active {
+    color: #a50f2d;
+    cursor: pointer;
+    border: 1px solid #ddd;
+    border-bottom-color: transparent;
+    text-decoration: underline;
+	    background-color: transparent;
+}
+::ng-deep .mat-tab-label:not(.mat-tab-label-active):hover {
+    background-color: white;
+  }

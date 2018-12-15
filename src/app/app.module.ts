@@ -14,7 +14,8 @@ import { ServicesComponent } from './modules/services/services.component';
 import { GalleryComponent } from './modules/gallery/gallery.component';
 import { EventsComponent } from './modules/events/events.component';
 import { RegisterComponent } from './modules/register/register.component';
-
+import {MatTabsModule} from '@angular/material/tabs';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +33,9 @@ import { RegisterComponent } from './modules/register/register.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatTabsModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent],
