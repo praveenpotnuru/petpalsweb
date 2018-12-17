@@ -16,6 +16,7 @@ import { EventsComponent } from './modules/events/events.component';
 import { RegisterComponent } from './modules/register/register.component';
 import {MatTabsModule} from '@angular/material/tabs';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { httpInterceptorProviders } from './http-interceptors';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,7 +38,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     MatTabsModule,
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [httpInterceptorProviders],
   bootstrap: [AppComponent],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA,
