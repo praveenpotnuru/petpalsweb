@@ -4,11 +4,12 @@ import {
 } from '@angular/common/http';
 
 import { AuthService } from '../services/auth.service';
+import { environment } from 'src/environments/environment.prod';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
-  constructor(private auth: AuthService) {}
+  constructor(private auth: AuthService) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
     // Get the auth token from the service.
@@ -23,7 +24,20 @@ export class AuthInterceptor implements HttpInterceptor {
     });
     */
     // Clone the request and set the new header in one step.
-    const authReq = req.clone({ setHeaders: { Authorization: authToken } });
+    if (req.url.indexOf(environment.apiEndPoints.signin) > 0) {
+      const authReq = req.clone({
+        setHeaders: {
+          "Content-Type": "application/json"
+        }
+      });
+      return next.handle(authReq); // do nothing
+    }
+    const authReq = req.clone({
+      setHeaders: {
+        Authorization: authToken,
+        "Content-Type": "application/json"
+      }
+    });
 
     // send cloned request with header to the next handler.
     return next.handle(authReq);
