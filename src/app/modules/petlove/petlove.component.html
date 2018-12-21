@@ -5,7 +5,7 @@
 		
 		
 		<div class="row">
-		<h2 class="theme-color text-center bold"> SERVICE NAME</h2>
+		<h2 class="theme-color text-center bold">PETLOVE</h2>
 		</div>
 		
 		<div class="row more-padding " >
@@ -200,53 +200,53 @@
       
       <!-- Listing Start -->
       
-      <div class="col-md-6 " >
+      <div class="col-md-6 "  *ngFor= "let pet of petData" >
           <div class="row listing">
           <div class="col-md-4 col-xs-12 ">
           <center>
-          <img src="assets/images/balck-dog.png" class="img-responsive img-rounded listing-mobile" />						
+          <img src={{pet.PictrueName}}  style="height: 110px; width: 120px;" class="img-responsive img-rounded listing-mobile" />						
                       
-          <a  [routerLink]="['/singlepet']" class="btn btn-danger contact-button"><i class="fa fa-address-book" aria-hidden="true"></i> &nbsp;contact </a>						
+          <a  [routerLink]="['/singlepet',pet.PetId]" class="btn btn-danger contact-button"><i class="fa fa-address-book" aria-hidden="true"></i> &nbsp;contact </a>						
           </center>
           </div>
   
       
           <div class="col-md-8 col-xs-12">
           <div class="row">
-          <div class="col-xs-12"><h3 class="theme-color listname">Oreo</h3></div>						
+          <div class="col-xs-12"><h3 class="theme-color listname">{{pet.PetType}}</h3></div>						
           </div>
           <div class="row">
           <div class="col-xs-5">Pet Type</div>						
-          <div class="col-xs-7 l-text">Dog</div>
+          <div class="col-xs-7 l-text">{{pet.PetType}}</div>
           </div>
           <div class="row">
           <div class="col-xs-5">Description</div>
-          <div class="col-xs-7 l-text">A Little, Fluffy, Cute and</div>
+          <div class="col-xs-7 l-text">{{pet.Description}}</div>
           </div>
           <div class="row">
           <div class="col-xs-5">Breed</div>
-          <div class="col-xs-7 l-text">Poodle</div>
+          <div class="col-xs-7 l-text">{{pet.BreedName}}</div>
           </div>
           
           <div class="row">
           <div class="col-xs-5">Date of Birth</div>
-          <div class="col-xs-7 l-text">AUG 02, 2015</div>
+          <div class="col-xs-7 l-text">{{pet.PetDob}}</div>
           </div>
           <div class="row">
           <div class="col-xs-5">Gender</div>
-          <div class="col-xs-7 l-text">M</div>
+          <div class="col-xs-7 l-text">{{pet.PetGender}}</div>
           </div>
           <div class="row">
           <div class="col-xs-5">Color</div>
-          <div class="col-xs-7 l-text">Black adn White</div>
+          <div class="col-xs-7 l-text">{{pet.Colors}}</div>
           </div>
           <div class="row">
           <div class="col-xs-5">City</div>
-          <div class="col-xs-7 l-text">Hyderabad</div>
+          <div class="col-xs-7 l-text">{{pet.CityName}}</div>
           </div>
           <div class="row">
           <div class="col-xs-5">Area Name</div>
-          <div class="col-xs-7 l-text">Manikonda</div>
+          <div class="col-xs-7 l-text">{{pet.AreaName}}</div>
           </div>						
           </div>
           </div>
@@ -260,62 +260,14 @@
       
       
       
+    
+      <!-- Listing End -->
+      
+      
+      
       <!-- Listing Start -->
       
-      <div class="col-md-6 " >
-          <div class="row listing">
-          <div class="col-md-4 col-xs-12 ">
-          <center>
-          <img src="assets/images/balck-dog.png" class="img-responsive img-rounded listing-mobile" />						
-                      
-          <a  [routerLink]="['/singlepet']" class="btn btn-danger contact-button"><i class="fa fa-address-book" aria-hidden="true"></i> &nbsp;contact </a>						
-          </center>
-          </div>
-  
-      
-          <div class="col-md-8 col-xs-12">
-          <div class="row">
-          <div class="col-xs-12"><h3 class="theme-color listname">Oreo</h3></div>						
-          </div>
-          <div class="row">
-          <div class="col-xs-5">Pet Type</div>						
-          <div class="col-xs-7 l-text">Dog</div>
-          </div>
-          <div class="row">
-          <div class="col-xs-5">Description</div>
-          <div class="col-xs-7 l-text">A Little, Fluffy, Cute and</div>
-          </div>
-          <div class="row">
-          <div class="col-xs-5">Breed</div>
-          <div class="col-xs-7 l-text">Poodle</div>
-          </div>
-          
-          <div class="row">
-          <div class="col-xs-5">Date of Birth</div>
-          <div class="col-xs-7 l-text">AUG 02, 2015</div>
-          </div>
-          <div class="row">
-          <div class="col-xs-5">Gender</div>
-          <div class="col-xs-7 l-text">M</div>
-          </div>
-          <div class="row">
-          <div class="col-xs-5">Color</div>
-          <div class="col-xs-7 l-text">Black adn White</div>
-          </div>
-          <div class="row">
-          <div class="col-xs-5">City</div>
-          <div class="col-xs-7 l-text">Hyderabad</div>
-          </div>
-          <div class="row">
-          <div class="col-xs-5">Area Name</div>
-          <div class="col-xs-7 l-text">Manikonda</div>
-          </div>						
-          </div>
-          </div>
-      
-      
-      
-      </div>
+     
       
       <!-- Listing End -->
       
@@ -323,121 +275,7 @@
       
       <!-- Listing Start -->
       
-      <div class="col-md-6 " >
-          <div class="row listing">
-          <div class="col-md-4 col-xs-12 ">
-          <center>
-          <img src="assets/images/balck-dog.png" class="img-responsive img-rounded listing-mobile" />						
-                      
-          <a  [routerLink]="['/singlepet']" class="btn btn-danger contact-button"><i class="fa fa-address-book" aria-hidden="true"></i> &nbsp;contact </a>						
-          </center>
-          </div>
-  
       
-          <div class="col-md-8 col-xs-12">
-          <div class="row">
-          <div class="col-xs-12"><h3 class="theme-color listname">Oreo</h3></div>						
-          </div>
-          <div class="row">
-          <div class="col-xs-5">Pet Type</div>						
-          <div class="col-xs-7 l-text">Dog</div>
-          </div>
-          <div class="row">
-          <div class="col-xs-5">Description</div>
-          <div class="col-xs-7 l-text">A Little, Fluffy, Cute and</div>
-          </div>
-          <div class="row">
-          <div class="col-xs-5">Breed</div>
-          <div class="col-xs-7 l-text">Poodle</div>
-          </div>
-          
-          <div class="row">
-          <div class="col-xs-5">Date of Birth</div>
-          <div class="col-xs-7 l-text">AUG 02, 2015</div>
-          </div>
-          <div class="row">
-          <div class="col-xs-5">Gender</div>
-          <div class="col-xs-7 l-text">M</div>
-          </div>
-          <div class="row">
-          <div class="col-xs-5">Color</div>
-          <div class="col-xs-7 l-text">Black adn White</div>
-          </div>
-          <div class="row">
-          <div class="col-xs-5">City</div>
-          <div class="col-xs-7 l-text">Hyderabad</div>
-          </div>
-          <div class="row">
-          <div class="col-xs-5">Area Name</div>
-          <div class="col-xs-7 l-text">Manikonda</div>
-          </div>						
-          </div>
-          </div>
-      
-      
-      
-      </div>
-      
-      <!-- Listing End -->
-      
-      
-      
-      <!-- Listing Start -->
-      
-      <div class="col-md-6 " >
-          <div class="row listing">
-          <div class="col-md-4 col-xs-12 ">
-          <center>
-          <img src="assets/images/balck-dog.png" class="img-responsive img-rounded listing-mobile" />						
-                      
-          <a [routerLink]="['/singlepet']" class="btn btn-danger contact-button"><i class="fa fa-address-book" aria-hidden="true"></i> &nbsp;contact </a>						
-          </center>
-          </div>
-  
-      
-          <div class="col-md-8 col-xs-12">
-          <div class="row">
-          <div class="col-xs-12"><h3 class="theme-color listname">Oreo</h3></div>						
-          </div>
-          <div class="row">
-          <div class="col-xs-5">Pet Type</div>						
-          <div class="col-xs-7 l-text">Dog</div>
-          </div>
-          <div class="row">
-          <div class="col-xs-5">Description</div>
-          <div class="col-xs-7 l-text">A Little, Fluffy, Cute and</div>
-          </div>
-          <div class="row">
-          <div class="col-xs-5">Breed</div>
-          <div class="col-xs-7 l-text">Poodle</div>
-          </div>
-          
-          <div class="row">
-          <div class="col-xs-5">Date of Birth</div>
-          <div class="col-xs-7 l-text">AUG 02, 2015</div>
-          </div>
-          <div class="row">
-          <div class="col-xs-5">Gender</div>
-          <div class="col-xs-7 l-text">M</div>
-          </div>
-          <div class="row">
-          <div class="col-xs-5">Color</div>
-          <div class="col-xs-7 l-text">Black adn White</div>
-          </div>
-          <div class="row">
-          <div class="col-xs-5">City</div>
-          <div class="col-xs-7 l-text">Hyderabad</div>
-          </div>
-          <div class="row">
-          <div class="col-xs-5">Area Name</div>
-          <div class="col-xs-7 l-text">Manikonda</div>
-          </div>						
-          </div>
-          </div>
-      
-      
-      
-      </div>
       
       <!-- Listing End -->
       
