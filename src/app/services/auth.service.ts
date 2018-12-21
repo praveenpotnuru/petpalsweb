@@ -14,6 +14,10 @@ export class AuthService {
     return localStorage.getItem('token');
   }
 
+  public getCurrentUser(): string {
+    return JSON.parse(localStorage.getItem('currentUser'));
+  }
+
   public isAuthenticated(): boolean {
     // get the token
     const token = this.getToken();
