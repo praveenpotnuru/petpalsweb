@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { PetserviceService } from '../../services/petservice.service';
 
 @Component({
   selector: 'app-singlepet',
@@ -7,11 +9,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SinglepetComponent implements OnInit {
 
+  public petId:any;
   public hideShowFilter:boolean = false;
-  constructor() { }
+  public petData:any;
+  constructor(private _activatedRoute: ActivatedRoute,private petService:PetserviceService) {
+   this.petId = this._activatedRoute.snapshot.params.id;  
+   }
 
   ngOnInit() {
+    this.getPetData();
   }
+
+  getPetData(){
+   
+    this.petService.getPetDetails(this.petId).subscribe((data:any)=>{     
+     this.petData = data.Data[0];
+     console.log(this.petData);
+    },error=>{
+      console.log(error);
+    })
+
+    
+  } 
 
   showHideFilter():void{
     this.hideShowFilter = !this.hideShowFilter;  

@@ -8,29 +8,18 @@ import { map } from 'rxjs/operators';
 export class PetserviceService {
 
   
-  private apiUrl = "http://app.petpals.love/staging/api/Utils/SearchPets";
+  private apiUrl = "http://app.petpals.love/staging/api";
 
   constructor(private http: HttpClient) { }
 
 
-  getHeaders(){
-       let headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization':'Bearer 6742142b-0623-4adc-8e41-0b290330db7f' });
-    return headers;
-  }
-  searchPets(body){
-
-    let headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization':'Bearer 6742142b-0623-4adc-8e41-0b290330db7f'});
-
-    let options = { headers: headers};
-
-    return this.http.post(this.apiUrl, body).pipe(map(data => {
-      return data;
-    }));
+  searchPets(body){     
+    return this.http.post(this.apiUrl+'/Utils/SearchPets' ,body);         
   }
 
+  getPetDetails(petId){
+    return this.http.get(this.apiUrl+'/Utils/GetPetDetails?petId='+petId);  
+   
+  }
 
 }

@@ -10,6 +10,7 @@ import { error } from 'util';
 export class PetloveComponent implements OnInit {
 
   public hideShowFilter:boolean = false;
+  public petData:any;
   constructor(private petService:PetserviceService) { }
 
   ngOnInit() {
@@ -22,8 +23,8 @@ export class PetloveComponent implements OnInit {
       "Longitude": "1.44",
       "WillingToSell":0
     }
-    this.petService.searchPets(body).subscribe((data)=>{
-      console.log(data);
+    this.petService.searchPets(body).subscribe((data:any)=>{     
+     this.petData = data.Data;
     },error=>{
       console.log(error);
     })
