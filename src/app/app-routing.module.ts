@@ -13,6 +13,7 @@ const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'home',      component: HomeComponent },
   { path: 'petlove',      component: PetloveComponent },
+  { path: 'petlove/:type/:service',      component: PetloveComponent },
   { path: 'singlepet/:id',      component: SinglepetComponent },
   { path: 'about',      component: AboutComponent },
   { path: 'gallery',      component: GalleryComponent },

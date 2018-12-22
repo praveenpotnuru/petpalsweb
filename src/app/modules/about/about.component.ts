@@ -22,7 +22,6 @@ export class AboutComponent implements OnInit {
     // } catch (e) { }
   }
   onAnchorClick(){
-    debugger;
     let x = document.querySelector("#profile1");
     if (x){
         x.scrollIntoView();

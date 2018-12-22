@@ -35,4 +35,9 @@ export class AuthService {
       return data;
     }));
   }
+  signOut() {
+    return this.http.post(this.baseUrl + environment.apiEndPoints.signOut, {}).pipe(map(data => {
+      return data;
+    }));
+  }
 }

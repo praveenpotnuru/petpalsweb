@@ -25,6 +25,7 @@ export class MastHeadComponent implements OnInit {
   }
   logout(){
     localStorage.clear();
+    this.authService.signOut();
     this.router.navigate(['/home']);
   }
 

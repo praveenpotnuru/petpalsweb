@@ -3,6 +3,9 @@ export interface EnvironmentConfig {
     apiURL: string;
     apiEndPoints: {
         signin: string;
+        signOut:string;
+        searchPets:string;
+        petDetails:String
     }
 
 }

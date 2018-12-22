@@ -21,7 +21,6 @@ export class RegisterComponent implements OnInit {
     this.authService.signIn(this.userName, this.password)
       .subscribe((result: any) => {
         if (result != null && result.Status == "Successfull" && result.Data != null) {
-          debugger;
           localStorage.setItem('currentUser', JSON.stringify(result.Data) );
           localStorage.setItem('token', result.Data.SecurityToken);
           localStorage.setItem('emailId', result.Data.EmailId);
