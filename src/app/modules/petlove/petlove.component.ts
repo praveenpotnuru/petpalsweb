@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PetserviceService } from 'src/app/services/petservice.service';
 import { error } from 'util';
 import { ActivatedRoute } from '@angular/router';
+import { MasterService } from 'src/app/services/master.service';
 
 @Component({
   selector: 'app-petlove',
@@ -14,13 +15,20 @@ export class PetloveComponent implements OnInit {
   public petData: any;
   public searchType: string;
   public searchService: string;
+  public petTypes: string;
+  public breeds: string;
 
-  constructor(private petService: PetserviceService, private _activatedRoute: ActivatedRoute) {
+  constructor(private petService: PetserviceService,
+    private _activatedRoute: ActivatedRoute,
+    private masterService: MasterService
+  ) {
     this.searchType = this._activatedRoute.snapshot.params.type;
     this.searchService = this._activatedRoute.snapshot.params.service;
   }
 
   ngOnInit() {
+    this.getPetTypes();
+    this.getBreeds();
     this.getServicesData();
   }
 
@@ -28,7 +36,7 @@ export class PetloveComponent implements OnInit {
     var body = {};
     if (!!this.searchType) {
       body = {
-        "Latitude":  this.petService.getLatitude(),
+        "Latitude": this.petService.getLatitude(),
         "Longitude": this.petService.getLongitude(),
         "UserType": this.searchType + "," + this.searchService
       }
@@ -50,5 +58,24 @@ export class PetloveComponent implements OnInit {
   showHideFilter(): void {
     this.hideShowFilter = !this.hideShowFilter;
   }
+
+  getPetTypes() {
+    this.masterService.getPetTypeList().subscribe((data: any) => {
+      debugger;
+      this.petTypes = data.Data;
+      console.log(this.petTypes);
+    }, error => {
+      console.log(error);
+    })
+  }
+  getBreeds() {
+    this.masterService.getBreedList().subscribe((data: any) => {
+      debugger;
+      this.breeds = data.Data;
+      console.log(this.breeds);
+    }, error => {
+      console.log(error);
+    })
+   }
 }
 

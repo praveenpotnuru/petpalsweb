@@ -20,13 +20,16 @@ export class MastHeadComponent implements OnInit {
     if (!!this.authService.getToken()) {
       this.isUserLoggedIn = true;
       const currentUser: any = this.authService.getCurrentUser();
-      this.loggedinUserName=`${currentUser.FirstName}, ${currentUser.LastName}`;
+      this.loggedinUserName = `${currentUser.FirstName}, ${currentUser.LastName}`;
     }
   }
-  logout(){
+  logout() {
     localStorage.clear();
-    this.authService.signOut();
-    this.router.navigate(['/home']);
+    this.authService.signOut()
+      .subscribe((result: any) => {
+        debugger;
+        this.router.navigate(['/home']);
+      });
   }
 
 }

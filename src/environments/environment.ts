@@ -11,7 +11,15 @@ export const environment: EnvironmentConfig = {
         signin: "MobileAccount/Login",
         signOut: "MobileAccount/LogOut",
         searchPets:"Utils/SearchPets",
-        petDetails:"Utils/GetPetDetails"
+        petDetails:"Utils/GetPetDetails",
+        getPetTypes:"Utils/GetAllPetTypes",
+        getBreeds:"Utils/GetBreedListByString",
+        getCities:"Utils/GetCityListByCountry",
+        getAreaList:"Utils/GetAreaListByCity",
+        userTypes:"Utils/GetAllUserTypes",
+        countryList:"Utils/GetAllCountryList",
+        uploadFile:"Utils/UploadFile",
+
     }
 
 };

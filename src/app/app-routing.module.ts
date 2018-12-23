@@ -8,6 +8,7 @@ import { GalleryComponent } from './modules/gallery/gallery.component';
 import { ServicesComponent } from './modules/services/services.component';
 import { RegisterComponent } from './modules/register/register.component';
 import { EventsComponent } from './modules/events/events.component';
+import { SignupComponent } from './modules/signup/signup.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -20,6 +21,7 @@ const appRoutes: Routes = [
   { path: 'events',      component: EventsComponent },
   { path: 'services',      component: ServicesComponent },
   { path: 'register',      component: RegisterComponent },
+  { path: 'signup',      component: SignupComponent },
   
   { path: '**', redirectTo: '' }
 ];

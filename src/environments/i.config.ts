@@ -5,7 +5,14 @@ export interface EnvironmentConfig {
         signin: string;
         signOut:string;
         searchPets:string;
-        petDetails:String
+        petDetails:String;
+        getPetTypes:string;
+        getBreeds:string;
+        getCities:string;
+        getAreaList:string;
+        userTypes:string;
+        countryList:string;
+        uploadFile:string;
     }
 
 }

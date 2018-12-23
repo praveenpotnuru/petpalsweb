@@ -5,6 +5,7 @@ import {
 
 import { AuthService } from '../services/auth.service';
 import { environment } from 'src/environments/environment.prod';
+import { RequestOptions } from '@angular/http';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
@@ -31,6 +32,9 @@ export class AuthInterceptor implements HttpInterceptor {
         }
       });
       return next.handle(authReq); // do nothing
+    }
+    else if (req.url.indexOf(environment.apiEndPoints.uploadFile) > 0) {
+      return next.handle(req);
     }
     const authReq = req.clone({
       setHeaders: {

@@ -20,6 +20,7 @@ import { MastHeadComponent } from './shared/components/mast-head/mast-head.compo
 import { NavMenuComponent } from './shared/components/nav-menu/nav-menu.component';
 import { AuthService } from './services/auth.service';
 import { HttpClientModule } from '@angular/common/http';
+import { SignupComponent } from './modules/signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { HttpClientModule } from '@angular/common/http';
     GalleryComponent,
     EventsComponent,
     RegisterComponent,
+    SignupComponent,
   ],
   imports: [
     BrowserModule,
