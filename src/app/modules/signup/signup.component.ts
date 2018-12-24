@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { User } from 'src/app/shared/models/user.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { MasterService } from 'src/app/services/master.service';
@@ -6,6 +6,7 @@ import { Country } from 'src/app/shared/models/country.model';
 import { City } from 'src/app/shared/models/city.model';
 import { Area } from 'src/app/shared/models/area.model';
 import { NgForm } from '@angular/forms';
+import { ToastaService, ToastaConfig, ToastOptions, ToastData, ToastaEvent, ToastaEventType } from '../../../../projects/ngx-toasta/src/public_api';
 
 @Component({
   selector: 'app-signup',
@@ -58,22 +59,40 @@ export class SignupComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private searchService: MasterService
+    private searchService: MasterService,
+    private toastaService: ToastaService, private toastaConfig: ToastaConfig
   ) {
-
+    this.toastaConfig.theme = 'material';
   }
 
   ngOnInit() {
+    var toastOptions: ToastOptions = {
+      title: "Toast It!",
+      msg: "Mmmm, tasties...",
+      // showClose: true,
+      // //timeout: 5000,
+      theme: "default",
+      // onAdd: (toast: ToastData) => {
+      //   console.log('Toast ' + toast.id + ' has been added!');
+      // }
+
+    };
+    // Add see all possible types in one shot
+    this.toastaService.default(toastOptions)
+    this.toastaService.success(toastOptions);
+    this.toastaService.wait(toastOptions);
+    this.toastaService.error(toastOptions);
+    this.toastaService.warning(toastOptions);
 
     this.searchService.getUserTypeList()
-      .subscribe((UserTypeList) => {
-        this.UserTypeList = UserTypeList;
+      .subscribe((UserTypeList: any) => {
+        this.UserTypeList = UserTypeList.Data;
       });
 
 
     this.searchService.getCountryList()
-      .subscribe((countryList: Country[]) => {
-        this.countryList = countryList;
+      .subscribe((countryList: any) => {
+        this.countryList = countryList.Data;
       })
 
   }
@@ -82,8 +101,8 @@ export class SignupComponent implements OnInit {
 
   onCountryChange(selectedCountry: Country) {
     this.searchService.getCityList(selectedCountry.CountryId)
-      .subscribe((cityList: City[]) => {
-        this.cityList = cityList;
+      .subscribe((cityList: any) => {
+        this.cityList = cityList.Data;
       });
 
     this.selectedCountryName = selectedCountry.CountryName;
@@ -92,8 +111,8 @@ export class SignupComponent implements OnInit {
 
   onCityChange(selectedCity: City) {
     this.searchService.getAreaList(selectedCity.CityId)
-      .subscribe((areaList: Area[]) => {
-        this.areaList = areaList;
+      .subscribe((areaList: any) => {
+        this.areaList = areaList.Data;
       });
 
     this.selectedCityName = selectedCity.CityName;
