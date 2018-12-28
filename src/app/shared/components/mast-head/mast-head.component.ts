@@ -24,12 +24,19 @@ export class MastHeadComponent implements OnInit {
     }
   }
   logout() {
+    var latitude = localStorage.getItem('latitude');
+    var longitude = localStorage.getItem('longitude');
+
     localStorage.clear();
-    this.authService.signOut()
-      .subscribe((result: any) => {
-        debugger;
-        this.router.navigate(['/home']);
-      });
+    localStorage.setItem('latitude', latitude);
+    localStorage.setItem('longitude', longitude);
+
+    this.router.navigate(['/home']);
+    // this.authService.signOut()
+    //   .subscribe((result: any) => {
+    //     localStorage.clear();
+    //     this.router.navigate(['/home']);
+    //   });
   }
 
 }

@@ -61,7 +61,6 @@ export class PetloveComponent implements OnInit {
 
   getPetTypes() {
     this.masterService.getPetTypeList().subscribe((data: any) => {
-      debugger;
       this.petTypes = data.Data;
       console.log(this.petTypes);
     }, error => {
@@ -70,7 +69,6 @@ export class PetloveComponent implements OnInit {
   }
   getBreeds() {
     this.masterService.getBreedList().subscribe((data: any) => {
-      debugger;
       this.breeds = data.Data;
       console.log(this.breeds);
     }, error => {

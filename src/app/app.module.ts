@@ -22,9 +22,6 @@ import { AuthService } from './services/auth.service';
 import { HttpClientModule } from '@angular/common/http';
 import { SignupComponent } from './modules/signup/signup.component';
 import { ToastaModule } from '../../projects/ngx-toasta/src/public_api';
-//import { ToastaModule } from 'ngx-toasta';
-
-
 @NgModule({
   declarations: [
     AppComponent,

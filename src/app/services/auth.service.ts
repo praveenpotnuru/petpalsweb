@@ -89,7 +89,17 @@ export class AuthService {
       "ReferralCode": user.ReferralCode
 
     }
-    return this.http.post(this.baseUrl + 'MobileAccount/Register', body)
+    return this.http.post(this.baseUrl + environment.apiEndPoints.register, body)
+      .pipe(map(data => {
+        return data;
+      }));
+  }
+  forgotPassword(email: string) {
+
+    var body = {
+      "EmailId": email
+    }
+    return this.http.post(this.baseUrl + 'MobileAccount/ForgotPassword', body)
       .pipe(map(data => {
         return data;
       }));

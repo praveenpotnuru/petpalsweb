@@ -7,4 +7,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'tst';
+
+  constructor() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(position => {
+        localStorage.setItem('latitude', position.coords.latitude.toString());
+        localStorage.setItem('longitude', position.coords.longitude.toString());
+      });
+    }
+  }
 }

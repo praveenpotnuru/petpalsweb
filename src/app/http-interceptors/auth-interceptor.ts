@@ -25,7 +25,11 @@ export class AuthInterceptor implements HttpInterceptor {
     });
     */
     // Clone the request and set the new header in one step.
-    if (req.url.indexOf(environment.apiEndPoints.signin) > 0 || req.url.indexOf(environment.apiEndPoints.searchPets) > 0) {
+    if (req.url.indexOf(environment.apiEndPoints.signin) > 0 ||
+      req.url.indexOf(environment.apiEndPoints.searchPets) > 0 ||
+      req.url.indexOf(environment.apiEndPoints.register) > 0 ||
+      req.url.indexOf(environment.apiEndPoints.forgotPassword) > 0
+    ) {
       const authReq = req.clone({
         setHeaders: {
           "Content-Type": "application/json"

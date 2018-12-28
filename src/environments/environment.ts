@@ -19,6 +19,8 @@ export const environment: EnvironmentConfig = {
         userTypes:"Utils/GetAllUserTypes",
         countryList:"Utils/GetAllCountryList",
         uploadFile:"Utils/UploadFile",
+        register:"MobileAccount/Register",
+        forgotPassword:"MobileAccount/ForgotPassword"
 
     }
 

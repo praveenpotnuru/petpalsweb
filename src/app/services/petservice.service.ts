@@ -11,14 +11,14 @@ export class PetserviceService {
   private latitude: string;
   private longitude: string;
   constructor(private http: HttpClient) {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(position => {
-        console.log(position.coords);
-        this.latitude = position.coords.latitude.toString();
-        this.longitude = position.coords.longitude.toString();
+    // if (navigator.geolocation) {
+    //   navigator.geolocation.getCurrentPosition(position => {
+    //     console.log(position.coords);
+    //     this.latitude = position.coords.latitude.toString();
+    //     this.longitude = position.coords.longitude.toString();
 
-      });
-    }
+    //   });
+    // }
   }
   searchPets(body) {
     return this.http.post(this.apiUrl + environment.apiEndPoints.searchPets, body);
@@ -29,11 +29,19 @@ export class PetserviceService {
 
   }
   getLatitude() {
-    return this.latitude ? this.latitude : "0";
+    let latitude = localStorage.getItem('latitude');
+    if (latitude == "null") {
+      latitude = "";
+    }
+    return latitude ? latitude : "0";
   }
 
   getLongitude() {
-    return this.longitude ? this.longitude : "0";
+    let longitude = localStorage.getItem('longitude');
+    if (longitude == "null") {
+      longitude = "";
+    }
+    return longitude ? longitude : "0";
   }
 
 

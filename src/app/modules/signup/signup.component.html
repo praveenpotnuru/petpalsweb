@@ -1,7 +1,7 @@
 <app-mast-head>
 
 </app-mast-head>
-<div class="container" style="margin-bottom:10px;" >
+<div class="container" style="margin-bottom:10px;">
   <div class="row">
     <div class="col-md-3"></div>
     <div class="offset-sm-2 col-md-6">
@@ -17,7 +17,7 @@
               <input type="file" style="background-color: firebrick;color: wheat;" (change)="fileChangeEvent($event)"
                 placeholder="Upload file..." />
               <!--For  Previewing image -->
-              <img id="blah" [src]="imagePath" alt="" />
+              <img id="blah" [src]="imagePath" style="height:50%;width:50%;" alt="" />
             </div>
 
             <div class="form-group">
@@ -49,7 +49,7 @@
             </div>
             <div class="form-group">
               <label>Confirm Password<sup style="color: red">*</sup></label>
-              <input type="password" class="form-control" [(ngModel)]="user.Password" name="ConfirmPassword">
+              <input type="password" class="form-control" [(ngModel)]="ConfirmPassword" name="ConfirmPassword">
             </div>
             <div class="form-group">
               <label>Contact Number<sup style="color: red">*</sup></label>

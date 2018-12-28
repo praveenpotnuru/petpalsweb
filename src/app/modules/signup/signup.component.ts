@@ -7,6 +7,8 @@ import { City } from 'src/app/shared/models/city.model';
 import { Area } from 'src/app/shared/models/area.model';
 import { NgForm } from '@angular/forms';
 import { ToastaService, ToastaConfig, ToastOptions, ToastData, ToastaEvent, ToastaEventType } from '../../../../projects/ngx-toasta/src/public_api';
+import { DebugRenderer2 } from '@angular/core/src/view/services';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -50,7 +52,7 @@ export class SignupComponent implements OnInit {
   selectedCityName = '';
   selectedCountryName = '';
   selectedAreaName = '';
-
+  ConfirmPassword: string;
   files: FileList;
   uploadedFile: File;
   imagePath: any = "#";
@@ -60,29 +62,14 @@ export class SignupComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private searchService: MasterService,
-    private toastaService: ToastaService, private toastaConfig: ToastaConfig
+    private toastaService: ToastaService, private toastaConfig: ToastaConfig,
+    private router: Router
   ) {
     this.toastaConfig.theme = 'material';
   }
 
   ngOnInit() {
-    var toastOptions: ToastOptions = {
-      title: "Toast It!",
-      msg: "Mmmm, tasties...",
-      // showClose: true,
-      // //timeout: 5000,
-      theme: "default",
-      // onAdd: (toast: ToastData) => {
-      //   console.log('Toast ' + toast.id + ' has been added!');
-      // }
 
-    };
-    // Add see all possible types in one shot
-    this.toastaService.default(toastOptions)
-    this.toastaService.success(toastOptions);
-    this.toastaService.wait(toastOptions);
-    this.toastaService.error(toastOptions);
-    this.toastaService.warning(toastOptions);
 
     this.searchService.getUserTypeList()
       .subscribe((UserTypeList: any) => {
@@ -143,12 +130,11 @@ export class SignupComponent implements OnInit {
 
 
   onSubmit(userForm: NgForm) {
-
     //save image
     this.authService.saveImage(this.uploadedFile)
       .subscribe((result: any) => {
         console.log(result.ImgUrl)
-        this.user.UserProfilePicture = result.ImgUrl;
+        this.user.UserProfilePicture = result.Data.ImgUrl;
       });
 
 
@@ -158,41 +144,51 @@ export class SignupComponent implements OnInit {
       && userForm.value.City.CityName != undefined && userForm.value.Area.AreaName != undefined
       && userForm.value.KCIDetails != "") {
       ///set form value to user model
-      const UserName = userForm.value.FirstName + ' ' + userForm.value.LastName;
-      this.user.UserName = UserName;
-      this.user.Password = userForm.value.Password
-      this.user.FirstName = userForm.value.FirstName
-      this.user.AreaId = userForm.value.Area.Areaid;
-      this.user.Dob = userForm.value.Dob;
-      this.user.UserId = 6;
-      this.user.LastName = userForm.value.LastName;
-      this.user.MobilePhone = userForm.value.MobilePhone;
-      this.user.EmailId = userForm.value.EmailId;
-      this.user.Gender = userForm.value.Gender;
-      this.user.EmailNotification = true;
-      this.user.SmsNotification = true;
-      this.user.DeviceType = "Web";
-      this.user.UserType = userForm.value.UserType;
-      this.user.CountryId = userForm.value.Country.CountryId;
-      this.user.CountryName = userForm.value.Country.CountryName;
-      this.user.CityId = userForm.value.City.CityId;
-      this.user.CityName = userForm.value.City.CityName;
-      this.user.AreaName = userForm.value.Area.AreaName;
-      this.user.KCIRegistered = 1;
-      this.user.KCIDetails = userForm.value.KCIDetails;
-      this.user.ReferralCode = 0;
+      if (userForm.value.Password == userForm.value.ConfirmPassword) {
+        const UserName = userForm.value.FirstName + ' ' + userForm.value.LastName;
+        this.user.UserName = UserName;
+        this.user.Password = userForm.value.Password
+        this.user.FirstName = userForm.value.FirstName
+        this.user.AreaId = userForm.value.Area.Areaid;
+        this.user.Dob = userForm.value.Dob;
+        this.user.UserId = 6;
+        this.user.LastName = userForm.value.LastName;
+        this.user.MobilePhone = userForm.value.MobilePhone;
+        this.user.EmailId = userForm.value.EmailId;
+        this.user.Gender = userForm.value.Gender;
+        this.user.EmailNotification = true;
+        this.user.SmsNotification = true;
+        this.user.DeviceType = "Web";
+        this.user.UserType = userForm.value.UserType;
+        this.user.CountryId = userForm.value.Country.CountryId;
+        this.user.CountryName = userForm.value.Country.CountryName;
+        this.user.CityId = userForm.value.City.CityId;
+        this.user.CityName = userForm.value.City.CityName;
+        this.user.AreaName = userForm.value.Area.AreaName;
+        this.user.KCIRegistered = 1;
+        this.user.KCIDetails = userForm.value.KCIDetails;
+        this.user.ReferralCode = 0;
 
-      console.log(this.user)
+        console.log(this.user)
 
-      this.authService.signUp(this.user)
-        .subscribe((result: any) => {
-          let status = result.Status;
-          if (status != "Errored") {
-          }
-          else {
-          }
+        this.authService.signUp(this.user)
+          .subscribe((result: any) => {
+            let status = result.Status;
 
-        });
+            if (status != "Errored") {
+              var toastOptions = this.searchService.setToastOptions('Registration', 'Success', 'register')
+              this.toastaService.success(toastOptions);
+            }
+
+            else {
+              var toastOptions = this.searchService.setToastOptions('Registration', result.ErrorMessage, '')
+              this.toastaService.error(toastOptions);
+            }
+
+          });
+      } else {
+        alert("Password and confirm password should be matched");
+      }
     }
     else {
     }
@@ -200,7 +196,17 @@ export class SignupComponent implements OnInit {
 
 
   }
-
+  // var toastOptions: ToastOptions = {
+  //   title: "Toast It!",
+  //   msg: "Mmmm, tasties...",
+  //   theme: "default",
+  // };
+  // // Add see all possible types in one shot
+  // this.toastaService.default(toastOptions)
+  // this.toastaService.success(toastOptions);
+  // this.toastaService.wait(toastOptions);
+  // this.toastaService.error(toastOptions);
+  // this.toastaService.warning(toastOptions);
 
 
 
