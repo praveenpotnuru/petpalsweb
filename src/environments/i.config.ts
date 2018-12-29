@@ -1,6 +1,7 @@
 export interface EnvironmentConfig {
     production: boolean;
     apiURL: string;
+    defaultCountryId:number;
     apiEndPoints: {
         signin: string;
         signOut: string;
