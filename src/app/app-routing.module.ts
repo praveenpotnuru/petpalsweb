@@ -12,17 +12,18 @@ import { SignupComponent } from './modules/signup/signup.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'home',      component: HomeComponent },
-  { path: 'petlove',      component: PetloveComponent },
-  { path: 'petlove/:type/:service',      component: PetloveComponent },
-  { path: 'singlepet/:id',      component: SinglepetComponent },
-  { path: 'about',      component: AboutComponent },
-  { path: 'gallery',      component: GalleryComponent },
-  { path: 'events',      component: EventsComponent },
-  { path: 'services',      component: ServicesComponent },
-  { path: 'register',      component: RegisterComponent },
-  { path: 'signup',      component: SignupComponent },
-  
+  { path: 'home', component: HomeComponent },
+  { path: 'petlove', component: PetloveComponent },
+  { path: 'petlove/:type/:service', component: PetloveComponent },
+  { path: 'petdetails/:id', component: SinglepetComponent },
+  { path: 'petdetails/:type/:id', component: SinglepetComponent },
+  { path: 'about', component: AboutComponent },
+  { path: 'gallery', component: GalleryComponent },
+  { path: 'events', component: EventsComponent },
+  { path: 'services', component: ServicesComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'signup', component: SignupComponent },
+
   { path: '**', redirectTo: '' }
 ];
 

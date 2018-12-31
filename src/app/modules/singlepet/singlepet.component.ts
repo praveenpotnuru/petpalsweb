@@ -9,30 +9,33 @@ import { PetserviceService } from '../../services/petservice.service';
 })
 export class SinglepetComponent implements OnInit {
 
-  public petId:any;
-  public hideShowFilter:boolean = false;
-  public petData:any;
-  constructor(private _activatedRoute: ActivatedRoute,private petService:PetserviceService) {
-   this.petId = this._activatedRoute.snapshot.params.id;  
-   }
+  public petId: any;
+  public hideShowFilter: boolean = false;
+  public petData: any;
+  public petType: any;
+
+  constructor(private _activatedRoute: ActivatedRoute, private petService: PetserviceService) {
+    this.petId = this._activatedRoute.snapshot.params.id;
+    this.petType = this._activatedRoute.snapshot.params.type;
+  }
 
   ngOnInit() {
     this.getPetData();
   }
 
-  getPetData(){
-   
-    this.petService.getPetDetails(this.petId).subscribe((data:any)=>{     
-     this.petData = data.Data[0];
-     console.log(this.petData);
-    },error=>{
+  getPetData() {
+
+    this.petService.getPetDetails(this.petId).subscribe((data: any) => {
+      this.petData = data.Data[0];
+      console.log(this.petData);
+    }, error => {
       console.log(error);
     })
 
-    
-  } 
 
-  showHideFilter():void{
-    this.hideShowFilter = !this.hideShowFilter;  
+  }
+
+  showHideFilter(): void {
+    this.hideShowFilter = !this.hideShowFilter;
   }
 }

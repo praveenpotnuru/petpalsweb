@@ -117,13 +117,6 @@
 
 		</div>
 
-
-
-
-
-
-
-
 	</div>
 </div>
 
@@ -132,27 +125,29 @@
 
 	<div class="row more-padding ">
 
-
-
-
 		<!-- Listing Start -->
 
 		<div class="col-md-6 " *ngFor="let pet of petData">
 			<div class="row listing">
-				<div class="col-md-4 col-xs-12 ">
+				<div class="col-md-4 col-xs-12 " *ngIf="searchService">
 					<center>
 						<img src={{pet.PictrueName}} style="height: 110px; width: 120px;" class="img-responsive img-rounded listing-mobile" />
-
-						<a [routerLink]="['/singlepet',pet.PetId]" class="btn btn-danger contact-button"><i class="fa fa-address-book"
+						<a [routerLink]="['/petdetails',searchService,pet.PetId]" class="btn btn-danger contact-button"><i class="fa fa-address-book"
+							 aria-hidden="true"></i> &nbsp;contact </a>
+					</center>
+				</div>
+				<div class="col-md-4 col-xs-12 " *ngIf="!searchService">
+					<center>
+						<img src={{pet.PictrueName}} style="height: 110px; width: 120px;" class="img-responsive img-rounded listing-mobile" />
+						<a [routerLink]="['/petdetails',pet.PetId]" class="btn btn-danger contact-button"><i class="fa fa-address-book"
 							 aria-hidden="true"></i> &nbsp;contact </a>
 					</center>
 				</div>
 
-
 				<div class="col-md-8 col-xs-12">
 					<div class="row">
 						<div class="col-xs-12">
-							<h3 class="theme-color listname">{{pet.PetType}}</h3>
+							<h3 class="theme-color listname">{{pet.PetName}}</h3>
 						</div>
 					</div>
 					<div class="row">
@@ -191,103 +186,11 @@
 				</div>
 			</div>
 
-
-
 		</div>
-
-		<!-- Listing End -->
-
-
-
-
-
-		<!-- Listing End -->
-
-
-
-		<!-- Listing Start -->
-
-
-
-		<!-- Listing End -->
-
-
-
-		<!-- Listing Start -->
-
-
-
-		<!-- Listing End -->
-
 
 	</div>
 
-	<!-- Service Desription -->
-	<div class="row more-padding ">
-
-
-
-
-		<div class="col-md-12 ">
-			<div class="row listing">
-
-				<div class="col-md-3">
-					<img src="assets/images/balck-dog.png" class="img-responsive img-rounded" />
-				</div>
-
-				<div class="col-md-9">
-
-					<h3 class="theme-color">Find Pet Love</h3>
-					<p>Mating is a natural process for most pets. But when they are enclosed as part of the family, they need help.
-						Health, timing &amp; environmental considerations are important aspects for successful breeding. However, many
-						pet parents are also turning to artificial insemination these days for diversifying the gene poll and for health
-						&amp; safety reasons.</p>
-					<h3 class="theme-color">Health &amp; Safety of Your Pet</h3>
-					<p> It is recommended that male dogs should not be bread until they are 18 months of age &amp; the female canines
-						should not mate until they are on their second or third heat cycle. Normally, natural mating is conducted at the
-						male dog’s residence. This is because the male outside the normal environment may feel insecure. Pets should be
-						given a private enclosed area with good footing where they can mate without distraction. Both the pet parents
-						should be present at the site. Dogs may take hours or days to feel comfortable with each other based upon their
-						disposition, experience &amp; timing of the breeding. Pets should be supervised at all times so as to ensure
-						their safety. Pet parents can softly talk to pets in order to encourage them and help them feel secure &amp;
-						comfortable. Never holler at them out of frustration. Following copulation, the female should not be allowed to
-						urinate for 15 minutes in order to help her conceive. </p>
-					<br>
-					<h3 class="theme-color">Every Pet Needs a Mate</h3>
-					<p> PetPals app is very useful for finding a suitable partner for your pet. This is a one stop destination for all
-						pet parents out there who will like to manage their pets’ day-to-day needs efficiently. Apart from helping you
-						find a suitable pet mate, it also helps you find the best pet spa, pet boarding services, pet products &amp;
-						accessories, pet friendly restaurants, the best pet food, grooming, vets &amp; everything your pet would need
-						throughout the journey with you. While you are always there with the pet, they still need some stimulating
-						company now &amp; then. PetPals app will let you sift through numerous other pet profiles till you find the right
-						match for your pet. Eventually, you can exchange pictures of your pet &amp; probably set up a date for them. Just
-						in case you are unable to find the right match, fill up the form &amp; we will get back to you sooner or later.
-					</p><br>
-					<h3 class="theme-color">Another Aspect to Finding Pet Love</h3>
-					<p> Studies have found that pets also raise your chances of finding love. Pets are considered as conversation
-						starters &amp; they make people more desirable. It is a fact that we all tend to coo over cute pets when we come
-						across them anywhere. Pets attract attention &amp; give us something to talk about. Pets are one of the best ways
-						to someone’s heart. Pet parents find it difficult to date someone who could not get along with their pets. Most
-						pet parents see pets as a symbol of something greater. It is also true that pet parents are more family oriented
-						than people without pets. </p>
-
-
-
-
-
-
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<!-- End Service Desription -->
 </div>
 
-
-
-
-
 <app-mast-footer>
-
 </app-mast-footer>
