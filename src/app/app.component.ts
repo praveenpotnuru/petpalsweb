@@ -16,4 +16,7 @@ export class AppComponent {
       });
     }
   }
+  onActivate() {
+    window.scroll(0, 0);
+  }
 }

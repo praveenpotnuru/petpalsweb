@@ -22,111 +22,128 @@
 		</div>
 
 		<div class="row filtercolor" *ngIf="hideShowFilter">
+			<div *ngIf="!searchService">
+				<div class="col-md-3">
 
-			<div class="col-md-3">
+					<div class="block">
 
-				<div class="block">
-
-					<h5>PET TYPE</h5>
-					<div *ngFor="let petType of petTypes">
-						<p><label class="checkbox-inline"><input type="checkbox" (click)="petTypeChecked($event)" [(ngModel)]="petType.checked"
-								 value="{{petType}}">{{petType}} </label></p>
+						<h5>PET TYPE</h5>
+						<div *ngFor="let petType of petTypes">
+							<p><label class="checkbox-inline"><input type="checkbox" (click)="petTypeChecked($event)" [checked]="selectedPetTypes.indexOf(petType)>-1"
+									 value="{{petType}}">{{petType}} </label></p>
+						</div>
 					</div>
-				</div>
 
 
-				<div class="block">
+					<div class="block">
 
-					<h5>GENDER</h5>
-					<p><label class="checkbox-inline"><input type="checkbox" (click)="clickGender($event)" value="M">Male </label></p>
-					<p><label class="checkbox-inline"><input type="checkbox" (click)="clickGender($event)" value="F">Female </label></p>
+						<h5>GENDER</h5>
+						<p><label class="checkbox-inline"><input type="checkbox" (click)="clickGender($event)" [checked]="selectedGender.indexOf('M')>-1"
+								 value="M">Male </label></p>
+						<p><label class="checkbox-inline"><input type="checkbox" (click)="clickGender($event)" [checked]="selectedGender.indexOf('F')>-1"
+								 value="F">Female </label></p>
 
-				</div>
+					</div>
 
-				<div class="block">
+					<div class="block">
 
-					<h5>Location</h5>
-					<div class="sub-location">
-						<!-- <p><input type="text" class="location form-control" value="" placeholder="City"> </p>
+						<h5>Location</h5>
+						<div class="sub-location">
+							<!-- <p><input type="text" class="location form-control" value="" placeholder="City"> </p>
 						<p><input type="text" class="location form-control" value="" placeholder="Area"> </p> -->
 
-						<select name="City" [(ngModel)]="selectedCity" class="form-control" (change)="onCityChange()">
-							<!-- <option selected>City </option> -->
-							<option *ngFor="let city of cityList" [ngValue]="city">{{city.CityName}}</option>
-						</select>
-						<br />
-						<select name="Area" [(ngModel)]="selectedArea" class="form-control">
-							<!-- <option selected>Area </option> -->
-							<option *ngFor="let area of areaList" [ngValue]="area">{{area.AreaName}}</option>
-						</select>
+							<select name="City" [(ngModel)]="selectedCity" class="form-control" (change)="onCityChange()">
+								<!-- <option selected>City </option> -->
+								<option *ngFor="let city of cityList" [ngValue]="city">{{city.CityName}}</option>
+							</select>
+							<br />
+							<select name="Area" [(ngModel)]="selectedArea" class="form-control">
+								<!-- <option selected>Area </option> -->
+								<option *ngFor="let area of areaList" [ngValue]="area">{{area.AreaName}}</option>
+							</select>
+						</div>
+
 					</div>
 
-				</div>
+					<div class="block">
 
-				<div class="block">
+						<h5>GENERIC</h5>
+						<p><label class="checkbox-inline"><input type="checkbox" value="">KYC </label></p>
+					</div>
 
-					<h5>GENERIC</h5>
-					<p><label class="checkbox-inline"><input type="checkbox" value="">KYC </label></p>
-				</div>
+					<div class="block">
 
-				<div class="block">
-
-					<h5>AGE</h5>
-					<p><input type="text" class="location form-control" [(ngModel)]="enteredAge" placeholder="Age in months"> </p>
-					<!-- <p><label class="checkbox-inline"><input type="checkbox" value="">
+						<h5>AGE</h5>
+						<p><input type="text" class="location form-control" [(ngModel)]="enteredAge" placeholder="Age in months"> </p>
+						<!-- <p><label class="checkbox-inline"><input type="checkbox" value="">
 							<1 Month </label> </p> <p><label class="checkbox-inline"><input type="checkbox" value="">
 									<3 Months </label> </p> <p><label class="checkbox-inline"><input type="checkbox" value="">
 											<6 Months </label> </p> <p><label class="checkbox-inline"><input type="checkbox" value="">> Year </label></p>
 				-->
+					</div>
+				</div>
+				<div class="col-md-9">
+
+					<div class="block">
+
+						<h5>BREED</h5>
+
+						<hr>
+						<span *ngFor="let breed of breeds;index as i">
+							<div [ngSwitch]="i % 3">
+								<div class="col-md-4" *ngSwitchCase="0">
+									<p><label class="checkbox-inline"><input type="checkbox" [(ngModel)]="breed.checked" value="{{breed.BreedId}}">{{breed.BreedName}}</label></p>
+								</div>
+								<div class="col-md-4" *ngSwitchCase="1">
+									<p><label class="checkbox-inline"><input type="checkbox" [(ngModel)]="breed.checked" value="{{breed.BreedId}}">{{breed.BreedName}}</label></p>
+								</div>
+								<div class="col-md-4" *ngSwitchCase="2">
+									<p><label class="checkbox-inline"><input type="checkbox" [(ngModel)]="breed.checked" value="{{breed.BreedId}}">{{breed.BreedName}}</label></p>
+								</div>
+							</div>
+						</span>
+					</div>
+
+
 				</div>
 			</div>
-			<div class="col-md-9">
+			<div *ngIf="searchService">
+				<div class="col-md-3">
 
-				<div class="block">
 
-					<h5>BREED</h5>
+					<div class="block">
 
-					<hr>
-					<span *ngFor="let breed of breeds;index as i">
-						<div [ngSwitch]="i % 3">
-							<div class="col-md-4" *ngSwitchCase="0">
-								<p><label class="checkbox-inline"><input type="checkbox" [(ngModel)]="breed.checked" value="{{breed.BreedId}}">{{breed.BreedName}}</label></p>
-							</div>
-							<div class="col-md-4" *ngSwitchCase="1">
-								<p><label class="checkbox-inline"><input type="checkbox" [(ngModel)]="breed.checked" value="{{breed.BreedId}}">{{breed.BreedName}}</label></p>
-							</div>
-							<div class="col-md-4" *ngSwitchCase="2">
-								<p><label class="checkbox-inline"><input type="checkbox" [(ngModel)]="breed.checked" value="{{breed.BreedId}}">{{breed.BreedName}}</label></p>
-							</div>
+						<h5>Location</h5>
+						<div class="sub-location">
+							<!-- <p><input type="text" class="location form-control" value="" placeholder="City"> </p>
+						<p><input type="text" class="location form-control" value="" placeholder="Area"> </p> -->
+
+							<select name="City" [(ngModel)]="selectedCity" class="form-control" (change)="onCityChange()">
+								<!-- <option selected>City </option> -->
+								<option *ngFor="let city of cityList" [ngValue]="city">{{city.CityName}}</option>
+							</select>
+							<br />
+							<select name="Area" [(ngModel)]="selectedArea" class="form-control">
+								<!-- <option selected>Area </option> -->
+								<option *ngFor="let area of areaList" [ngValue]="area">{{area.AreaName}}</option>
+							</select>
 						</div>
-					</span>
+
+					</div>
+
 				</div>
-
-
 			</div>
-
 			<div class="col-md-12 filter-bottom">
-
 				<button type="button" class="btn btn-default pull-left" (click)="showHideFilter()">CLOSE</button>
 				<button type="button" class="btn btn-default pull-right" (click)="applyFilter()">SUBMIT</button>
-
-
 			</div>
-
-
-
 		</div>
-
 	</div>
 </div>
 
 
 <div class="container-fluid " style="background-color:#e0dddf">
-
 	<div class="row more-padding ">
-
-		<!-- Listing Start -->
-
 		<div class="col-md-6 " *ngFor="let pet of petData">
 			<div class="row listing">
 				<div class="col-md-4 col-xs-12 " *ngIf="searchService">
@@ -144,7 +161,7 @@
 					</center>
 				</div>
 
-				<div class="col-md-8 col-xs-12">
+				<div class="col-md-8 col-xs-12" *ngIf="!searchService">
 					<div class="row">
 						<div class="col-xs-12">
 							<h3 class="theme-color listname">{{pet.PetName}}</h3>
@@ -184,12 +201,36 @@
 						<div class="col-xs-7 l-text">{{pet.AreaName}}</div>
 					</div>
 				</div>
+				<div class="col-md-8 col-xs-12" *ngIf="searchService">
+					<div class="row">
+						<div class="col-xs-12">
+							<h3 class="theme-color listname">{{pet.PetName}}</h3>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-5">Service Type</div>
+						<div class="col-xs-7 l-text">{{searchService}}</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-5">Description</div>
+						<div class="col-xs-7 l-text">{{pet.Description}}</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-5">City</div>
+						<div class="col-xs-7 l-text">{{pet.CityName}}</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-5">Area Name</div>
+						<div class="col-xs-7 l-text">{{pet.AreaName}}</div>
+					</div>
+				</div>
 			</div>
 
 		</div>
-
+		<div  class="col-md-4" *ngIf="petData.length==0">
+			<img width="100%" src="assets/images/noresult.png">
+		</div>
 	</div>
-
 </div>
 
 <app-mast-footer>

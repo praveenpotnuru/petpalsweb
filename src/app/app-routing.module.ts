@@ -21,7 +21,7 @@ const appRoutes: Routes = [
   { path: 'gallery', component: GalleryComponent },
   { path: 'events', component: EventsComponent },
   { path: 'services', component: ServicesComponent },
-  { path: 'register', component: RegisterComponent },
+  { path: 'signin', component: RegisterComponent },
   { path: 'signup', component: SignupComponent },
 
   { path: '**', redirectTo: '' }

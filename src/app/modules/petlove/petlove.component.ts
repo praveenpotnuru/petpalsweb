@@ -105,8 +105,10 @@ export class PetloveComponent implements OnInit {
       body['Age'] = this.enteredAge;
     this.petService.searchPets(body).subscribe((data: any) => {
       this.petData = data.Data;
+      window.scroll(0, 0);
     }, error => {
       console.log(error);
+      window.scroll(0, 0);
     })
   }
   petTypeChecked(event) {
