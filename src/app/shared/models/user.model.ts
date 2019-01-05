@@ -14,41 +14,45 @@ export class User {
     UserProfilePicture: string;
     DeviceType: string;
     UserType: string;
-    CountryId:number;
+    CountryId: number;
     CountryName: string;
-    CityId:number;
+    CityId: number;
     CityName: string;
     AreaName: string;
     KCIRegistered: number;
     KCIDetails: string;
-    ReferralCode:number;
+    ReferralCode: number;
+    Latitude: string;
+    Longitude: string;
 
 
 
     constructor(
-    UserName: string,
-    Password: string,
-    FirstName: string,
-    AreaId: number,
-    Dob: string,
-    UserId: number,
-    LastName: string,
-    MobilePhone: string,
-    EmailId: string,
-    Gender: string,
-    EmailNotification: boolean,
-    SmsNotification: boolean,
-    UserProfilePicture: string,
-    DeviceType: string,
-    UserType: string,
-    CountryId:number,
-    CountryName: string,
-    CityId:number,
-    CityName: string,
-    AreaName: string,
-    KCIRegistered: number,
-    KCIDetails: string,
-    ReferralCode:number
+        UserName: string,
+        Password: string,
+        FirstName: string,
+        AreaId: number,
+        Dob: string,
+        UserId: number,
+        LastName: string,
+        MobilePhone: string,
+        EmailId: string,
+        Gender: string,
+        EmailNotification: boolean,
+        SmsNotification: boolean,
+        UserProfilePicture: string,
+        DeviceType: string,
+        UserType: string,
+        CountryId: number,
+        CountryName: string,
+        CityId: number,
+        CityName: string,
+        AreaName: string,
+        KCIRegistered: number,
+        KCIDetails: string,
+        ReferralCode: number,
+        Latitude: string,
+        Longitude: string
     ) {
         this.UserName = UserName;
         this.Password = Password;
@@ -65,13 +69,16 @@ export class User {
         this.UserProfilePicture = UserProfilePicture;
         this.DeviceType = DeviceType;
         this.UserType = UserType;
-        this.CountryId=CountryId;
+        this.CountryId = CountryId;
         this.CountryName = CountryName;
-        this.CityId=CityId
+        this.CityId = CityId
         this.CityName = CityName;
         this.AreaName = AreaName;
         this.KCIRegistered = KCIRegistered;
         this.KCIDetails = KCIDetails;
-        this.ReferralCode=ReferralCode;
+        this.ReferralCode = ReferralCode;
+        this.Latitude = Latitude;
+        this.Longitude = Longitude;
+
     }
 }

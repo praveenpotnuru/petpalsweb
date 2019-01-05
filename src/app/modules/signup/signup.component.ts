@@ -41,7 +41,9 @@ export class SignupComponent implements OnInit {
     AreaName: '',
     KCIRegistered: 1,
     KCIDetails: '',
-    ReferralCode: 0
+    ReferralCode: 0,
+    Latitude: "",
+    Longitude: ""
   }
 
 
@@ -266,6 +268,9 @@ export class SignupComponent implements OnInit {
       this.user.CityName = userForm.value.City.CityName;
       this.user.AreaId = userForm.value.Area.Areaid;
       this.user.AreaName = userForm.value.Area.AreaName;
+    } else {
+      this.user.Latitude = this.petService.getLatitude();
+      this.user.Longitude = this.petService.getLongitude();
     }
 
     //this.user.KCIRegistered = 1;
