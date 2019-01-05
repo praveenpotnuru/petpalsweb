@@ -1,6 +1,7 @@
 <app-mast-head>
 
 </app-mast-head>
+
 <div class="container" style="margin-bottom:10px;">
   <div class="row">
     <div class="col-md-3"></div>
@@ -11,16 +12,19 @@
         </div>
         <div class="card-body">
           <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)">
-
             <div class="form-group">
-              <label>Upload Picture<sup style="color: red">*</sup></label>
+              <label>Upload Picture</label>
               <input type="file" style="background-color: firebrick;color: wheat;" (change)="fileChangeEvent($event)"
                 placeholder="Upload file..." />
               <!--For  Previewing image -->
               <img id="blah" [src]="imagePath" style="height:50%;width:50%;" alt="" />
             </div>
-
             <div class="form-group">
+              <p><label class="checkbox-inline"><input type="checkbox" name="vendorLogin" [(ngModel)]="vendorLogin">Vendor
+                  Login
+                </label></p>
+            </div>
+            <div class="form-group" *ngIf="vendorLogin">
               <label>You are an?<sup style="color: red">*</sup></label>
               <select class="form-control" [(ngModel)]="user.UserType" name="UserType">
                 <option *ngFor="let userType of UserTypeList" value="{{userType}}">{{userType}}
@@ -32,17 +36,18 @@
               <input type="text" class="form-control" [(ngModel)]="user.FirstName" name="FirstName">
             </div>
             <div class="form-group">
-              <label>Last Name<sup style="color: red">*</sup></label>
+              <label>Last Name</label>
               <input type="text" class="form-control" [(ngModel)]="user.LastName" name="LastName">
             </div>
             <div class="form-group">
               <label>Email<sup style="color: red">*</sup></label>
-              <input type="text" class="form-control" [(ngModel)]="user.EmailId" name="EmailId">
+              <input type="email" [email]="true" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" class="form-control"
+                [(ngModel)]="user.EmailId" name="EmailId">
             </div>
-            <div class="form-group">
+            <!-- <div class="form-group">
               <label>Description<sup style="color: red">*</sup></label>
               <input type="text" class="form-control" [(ngModel)]="user.KCIDetails" name="KCIDetails">
-            </div>
+            </div> -->
             <div class="form-group">
               <label>Password<sup style="color: red">*</sup></label>
               <input type="password" class="form-control" [(ngModel)]="user.Password" name="Password">
@@ -53,38 +58,39 @@
             </div>
             <div class="form-group">
               <label>Contact Number<sup style="color: red">*</sup></label>
-              <input type="text" class="form-control" [(ngModel)]="user.MobilePhone" name="MobilePhone">
+              <input type="text" numbersOnly maxlength="10" minlength="10" class="form-control" [(ngModel)]="user.MobilePhone"
+                name="MobilePhone">
             </div>
-            <div class="form-group">
+            <!-- <div class="form-group">
               <label>Date od birth<sup style="color: red">*</sup></label>
               <input type="date" class="form-control" [(ngModel)]="user.Dob" name="Dob">
-            </div>
-            <div class="form-group">
+            </div> -->
+            <!-- <div class="form-group">
               <label>Gender<sup style="color: red">*</sup></label>
               <select name="Gender" [(ngModel)]="user.Gender" class="form-control">
                 <option>Male</option>
                 <option>Female</option>
               </select>
-            </div>
-            <div class="form-group">
+            </div> -->
+            <div class="form-group" *ngIf="!isNavigationEnabled">
               <label>Select Country<sup style="color: red">*</sup></label>
               <select name="Country" [(ngModel)]="user.CountryName" class="form-control" (change)="onCountryChange(user.CountryName)">
                 <option *ngFor="let country of countryList" [ngValue]="country">{{country.CountryName}}</option>
               </select>
             </div>
-            <div class="form-group">
+            <div class="form-group" *ngIf="!isNavigationEnabled">
               <label>Select City<sup style="color: red">*</sup></label>
               <select name="City" [(ngModel)]="user.CityName" class="form-control" (change)="onCityChange(user.CityName)">
                 <option *ngFor="let city of cityList" [ngValue]="city">{{city.CityName}}</option>
               </select>
             </div>
-            <div class="form-group">
+            <div class="form-group" *ngIf="!isNavigationEnabled">
               <label>Select Area<sup style="color: red">*</sup></label>
               <select name="Area" [(ngModel)]="user.AreaName" class="form-control" (change)="onAreaChange(user.AreaName)">
                 <option *ngFor="let area of areaList" [ngValue]="area">{{area.AreaName}}</option>
               </select>
             </div>
-            <button type="submit" class="btn" style="background-color: #A50F2D;color: white;">Sign Up</button>
+            <button type="submit" [disabled]="submitDisabled" class="btn"  style="background-color: #A50F2D;color: white;">Sign Up</button>
           </form>
         </div>
       </div>

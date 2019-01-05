@@ -13,7 +13,7 @@ import { environment } from 'src/environments/environment';
 export class PetloveComponent implements OnInit {
 
   public hideShowFilter: boolean = false;
-  public petData: any;
+  public petData: any = [];
   public searchType: string;
   public searchService: string;
   public petTypes: any;
@@ -25,6 +25,8 @@ export class PetloveComponent implements OnInit {
   public selectedCity: any;
   public selectedArea: any;
   public enteredAge: any;
+  public selectedKCI = 0;
+  public filterText: string;
 
   constructor(private petService: PetserviceService,
     private _activatedRoute: ActivatedRoute,
@@ -96,13 +98,14 @@ export class PetloveComponent implements OnInit {
     if (this.selectedPetTypes.length)
       body['PetType'] = this.selectedPetTypes.toString();
     if (this.selectedGender.length)
-      body['PetGende'] = this.selectedGender.toString();
+      body['PetGender'] = this.selectedGender.toString();
     if (this.selectedCity)
       body['CityId'] = this.selectedCity.CityId;
     if (this.selectedArea)
       body['AreaId'] = this.selectedArea.Areaid;
     if (this.enteredAge)
       body['Age'] = this.enteredAge;
+    body['KCIRegistered'] = this.selectedKCI ? "1" : "0";
     this.petService.searchPets(body).subscribe((data: any) => {
       this.petData = data.Data;
       window.scroll(0, 0);
@@ -137,6 +140,19 @@ export class PetloveComponent implements OnInit {
         this.areaList = areaList.Data;
       });
 
+  }
+  searchTextFilter() {
+    const body = {
+      "Latitude": this.petService.getLatitude(),
+      "Longitude": this.petService.getLongitude()
+    }
+    this.petService.searchTextPets(this.filterText, body).subscribe((data: any) => {
+      this.petData = data.Data;
+      window.scroll(0, 0);
+    }, error => {
+      console.log(error);
+      window.scroll(0, 0);
+    })
   }
 }
 

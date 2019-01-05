@@ -31,7 +31,7 @@ export class MastHeadComponent implements OnInit {
     localStorage.setItem('latitude', latitude);
     localStorage.setItem('longitude', longitude);
 
-    this.router.navigate(['/home']);
+    this.router.navigate(['/']);
     // this.authService.signOut()
     //   .subscribe((result: any) => {
     //     localStorage.clear();

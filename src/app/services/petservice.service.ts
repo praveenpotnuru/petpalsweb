@@ -11,19 +11,15 @@ export class PetserviceService {
   private latitude: string;
   private longitude: string;
   constructor(private http: HttpClient) {
-    // if (navigator.geolocation) {
-    //   navigator.geolocation.getCurrentPosition(position => {
-    //     console.log(position.coords);
-    //     this.latitude = position.coords.latitude.toString();
-    //     this.longitude = position.coords.longitude.toString();
 
-    //   });
-    // }
   }
   searchPets(body) {
     return this.http.post(this.apiUrl + environment.apiEndPoints.searchPets, body);
   }
 
+  searchTextPets(params, body) {
+    return this.http.post(this.apiUrl + environment.apiEndPoints.searchPets + '?searchText=' + params, body);
+  }
   getPetDetails(petId) {
     return this.http.get(this.apiUrl + environment.apiEndPoints.petDetails + '?petId=' + petId);
 

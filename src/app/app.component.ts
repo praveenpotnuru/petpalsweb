@@ -14,6 +14,8 @@ export class AppComponent {
         localStorage.setItem('latitude', position.coords.latitude.toString());
         localStorage.setItem('longitude', position.coords.longitude.toString());
       });
+    }else{
+      alert("location is not enabled");
     }
   }
   onActivate() {

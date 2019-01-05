@@ -9,6 +9,7 @@ import { NgForm } from '@angular/forms';
 import { ToastaService, ToastaConfig, ToastOptions, ToastData, ToastaEvent, ToastaEventType } from '../../../../projects/ngx-toasta/src/public_api';
 import { DebugRenderer2 } from '@angular/core/src/view/services';
 import { Router } from '@angular/router';
+import { PetserviceService } from 'src/app/services/petservice.service';
 
 @Component({
   selector: 'app-signup',
@@ -56,20 +57,32 @@ export class SignupComponent implements OnInit {
   files: FileList;
   uploadedFile: File;
   imagePath: any = "#";
-
-
-
+  vendorLogin: boolean = false;
+  isNavigationEnabled: boolean = false;
+  submitDisabled: boolean = false;
   constructor(
     private authService: AuthService,
     private searchService: MasterService,
     private toastaService: ToastaService, private toastaConfig: ToastaConfig,
-    private router: Router
+    private router: Router,
+    private petService: PetserviceService,
+
   ) {
     this.toastaConfig.theme = 'material';
+
   }
 
   ngOnInit() {
 
+    navigator.geolocation.watchPosition(() => {
+      console.log("i'm tracking you!");
+      this.isNavigationEnabled = true;
+    },
+      (error) => {
+        if (error.code == error.PERMISSION_DENIED)
+          console.log("you denied me :-(");
+        this.isNavigationEnabled = false;
+      });
 
     this.searchService.getUserTypeList()
       .subscribe((UserTypeList: any) => {
@@ -116,8 +129,6 @@ export class SignupComponent implements OnInit {
   fileChangeEvent(fileInput: any) {
     this.files = fileInput.target.files;
     this.uploadedFile = this.files[0];
-
-
     var reader = new FileReader();
     reader.onload = (event: ProgressEvent) => {
       //no problem for this error
@@ -131,69 +142,74 @@ export class SignupComponent implements OnInit {
 
   onSubmit(userForm: NgForm) {
     //save image
-    this.authService.saveImage(this.uploadedFile)
-      .subscribe((result: any) => {
-        console.log(result.ImgUrl)
-        this.user.UserProfilePicture = result.Data.ImgUrl;
-      });
+    let isValidForm = true;
+    if (this.vendorLogin) {
+      if (!userForm.value.UserType) {
+        var toastOptions = this.searchService.setToastOptions('Sign Up Errors', 'Please sleect you are an?', '')
+        this.toastaService.error(toastOptions);
+        isValidForm = false;
 
-
-    if (userForm.value.FirstName != "" && userForm.value.LastName != "" && userForm.value.Password &&
-      userForm.value.Dob != "" && userForm.value.MobilePhone != "" && userForm.value.EmailId != "" &&
-      userForm.value.Gender != "" && userForm.value.UserType != "" && userForm.value.Country.CountryName != undefined
-      && userForm.value.City.CityName != undefined && userForm.value.Area.AreaName != undefined
-      && userForm.value.KCIDetails != "") {
-      ///set form value to user model
-      if (userForm.value.Password == userForm.value.ConfirmPassword) {
-        const UserName = userForm.value.FirstName + ' ' + userForm.value.LastName;
-        this.user.UserName = UserName;
-        this.user.Password = userForm.value.Password
-        this.user.FirstName = userForm.value.FirstName
-        this.user.AreaId = userForm.value.Area.Areaid;
-        this.user.Dob = userForm.value.Dob;
-        this.user.UserId = 6;
-        this.user.LastName = userForm.value.LastName;
-        this.user.MobilePhone = userForm.value.MobilePhone;
-        this.user.EmailId = userForm.value.EmailId;
-        this.user.Gender = userForm.value.Gender;
-        this.user.EmailNotification = true;
-        this.user.SmsNotification = true;
-        this.user.DeviceType = "Web";
-        this.user.UserType = userForm.value.UserType;
-        this.user.CountryId = userForm.value.Country.CountryId;
-        this.user.CountryName = userForm.value.Country.CountryName;
-        this.user.CityId = userForm.value.City.CityId;
-        this.user.CityName = userForm.value.City.CityName;
-        this.user.AreaName = userForm.value.Area.AreaName;
-        this.user.KCIRegistered = 1;
-        this.user.KCIDetails = userForm.value.KCIDetails;
-        this.user.ReferralCode = 0;
-
-        console.log(this.user)
-
-        this.authService.signUp(this.user)
-          .subscribe((result: any) => {
-            let status = result.Status;
-
-            if (status != "Errored") {
-              var toastOptions = this.searchService.setToastOptions('Registration', 'Success', 'register')
-              this.toastaService.success(toastOptions);
-            }
-
-            else {
-              var toastOptions = this.searchService.setToastOptions('Registration', result.ErrorMessage, '')
-              this.toastaService.error(toastOptions);
-            }
-
-          });
-      } else {
-        alert("Password and confirm password should be matched");
       }
     }
-    else {
+    if (!userForm.value.FirstName) {
+      var toastOptions = this.searchService.setToastOptions('Sign Up Errors', 'Please enter first name', '')
+      this.toastaService.error(toastOptions);
+      isValidForm = false;
     }
 
+    if (userForm.controls.EmailId.status == "INVALID" || !userForm.value.EmailId) {
+      var toastOptions = this.searchService.setToastOptions('Sign Up Errors', 'Please enter valid email id', '')
+      this.toastaService.error(toastOptions);
+      isValidForm = false;
+    }
 
+    if (userForm.controls.MobilePhone.status == "INVALID" || !userForm.value.MobilePhone) {
+      var toastOptions = this.searchService.setToastOptions('Sign Up Errors', 'Please enter valid mobile number', '')
+      this.toastaService.error(toastOptions);
+      isValidForm = false;
+    }
+
+    if (!userForm.value.Password) {
+      var toastOptions = this.searchService.setToastOptions('Sign Up Errors', 'Please enter password', '')
+      this.toastaService.error(toastOptions);
+      isValidForm = false;
+    }
+
+    if (userForm.value.Password != userForm.value.ConfirmPassword) {
+      var toastOptions = this.searchService.setToastOptions('Sign Up Errors', 'Password and confirm password should be matched', '')
+      this.toastaService.error(toastOptions);
+      isValidForm = false;
+    }
+
+    if (!this.isNavigationEnabled) {
+      if (!userForm.value.Country) {
+        var toastOptions = this.searchService.setToastOptions('Sign Up Errors', 'Please sleect country', '')
+        this.toastaService.error(toastOptions);
+        isValidForm = false;
+      }
+      if (!userForm.value.City) {
+        var toastOptions = this.searchService.setToastOptions('Sign Up Errors', 'Please sleect city', '')
+        this.toastaService.error(toastOptions);
+        isValidForm = false;
+      }
+      if (!userForm.value.Area) {
+        var toastOptions = this.searchService.setToastOptions('Sign Up Errors', 'Please sleect area', '')
+        this.toastaService.error(toastOptions);
+        isValidForm = false;
+      }
+
+    }
+
+    if (!isValidForm) {
+      return false;
+    }
+    this.submitDisabled = true;
+    if (this.uploadedFile) {
+      this.saveUserImage(userForm);
+    }
+    else {
+      this.saveUserDetails(userForm);
+    }
 
   }
   // var toastOptions: ToastOptions = {
@@ -208,7 +224,66 @@ export class SignupComponent implements OnInit {
   // this.toastaService.error(toastOptions);
   // this.toastaService.warning(toastOptions);
 
+  saveUserImage(userForm: NgForm) {
+    this.authService.saveImage(this.uploadedFile)
+      .subscribe((result: any) => {
+        console.log(result.ImgUrl)
+        this.user.UserProfilePicture = result.Data.ImgUrl;
+        this.saveUserDetails(userForm);
+      });
+  }
+  saveUserDetails(userForm: NgForm) {
+    debugger;
 
+    const UserName = userForm.value.FirstName + ' ' + userForm.value.LastName;
+    this.user.UserName = UserName;
+    this.user.Password = userForm.value.Password
+    this.user.FirstName = userForm.value.FirstName
 
+    //this.user.Dob = userForm.value.Dob;
+    //this.user.UserId = 6;
 
+    this.user.LastName = userForm.value.LastName;
+    this.user.MobilePhone = userForm.value.MobilePhone;
+    this.user.EmailId = userForm.value.EmailId;
+
+    //this.user.Gender = userForm.value.Gender;
+
+    this.user.EmailNotification = true;
+    this.user.SmsNotification = true;
+    this.user.DeviceType = "Web";
+
+    if (this.vendorLogin) {
+      this.user.UserType = userForm.value.UserType;
+    } else {
+      this.user.UserType = "PetParent";
+    }
+
+    if (!this.isNavigationEnabled) {
+      this.user.CountryId = userForm.value.Country.CountryId;
+      this.user.CountryName = userForm.value.Country.CountryName;
+      this.user.CityId = userForm.value.City.CityId;
+      this.user.CityName = userForm.value.City.CityName;
+      this.user.AreaId = userForm.value.Area.Areaid;
+      this.user.AreaName = userForm.value.Area.AreaName;
+    }
+
+    //this.user.KCIRegistered = 1;
+    //this.user.KCIDetails = userForm.value.KCIDetails;
+
+    this.user.ReferralCode = 0;
+    this.authService.signUp(this.user)
+      .subscribe((result: any) => {
+        let status = result.Status;
+        if (status != "Errored") {
+          var toastOptions = this.searchService.setToastOptions('Registration', 'Success', 'signin')
+          this.toastaService.success(toastOptions);
+        }
+        else {
+          var toastOptions = this.searchService.setToastOptions('Registration', result.ErrorMessage, '')
+          this.toastaService.error(toastOptions);
+          this.submitDisabled = false;
+        }
+      });
+  }
 }

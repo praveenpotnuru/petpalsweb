@@ -13,9 +13,10 @@
 
 		<div class="row " style="padding:20px;">
 
-			<div class="input-group">
-				<input type="text" class="form-control" style="line-height: 2;height:auto;">
-				<span class="input-group-btn">
+			<div class="input-group inner-addon left-addon">
+				<i class="glyphicon glyphicon-search" (click)="searchTextFilter()" ></i>
+				<input type="text" class="form-control" [(ngModel)]="filterText" style="line-height: 2;height:auto;" (keyup)="$event.keyCode == 13 ? searchTextFilter() : null">
+				<span class="input-group-btn" style="padding-left:1%;">
 					<button class="btn btn-default filter" type="button" (click)="showHideFilter()">FILTER</button>
 				</span>
 			</div>
@@ -38,10 +39,10 @@
 					<div class="block">
 
 						<h5>GENDER</h5>
-						<p><label class="checkbox-inline"><input type="checkbox" (click)="clickGender($event)" [checked]="selectedGender.indexOf('M')>-1"
-								 value="M">Male </label></p>
-						<p><label class="checkbox-inline"><input type="checkbox" (click)="clickGender($event)" [checked]="selectedGender.indexOf('F')>-1"
-								 value="F">Female </label></p>
+						<p><label class="checkbox-inline"><input type="checkbox" (click)="clickGender($event)" [checked]="selectedGender.indexOf('Male')>-1"
+								 value="Male">Male </label></p>
+						<p><label class="checkbox-inline"><input type="checkbox" (click)="clickGender($event)" [checked]="selectedGender.indexOf('Female')>-1"
+								 value="Female">Female </label></p>
 
 					</div>
 
@@ -67,14 +68,16 @@
 
 					<div class="block">
 
-						<h5>GENERIC</h5>
-						<p><label class="checkbox-inline"><input type="checkbox" value="">KYC </label></p>
+						<h5>GENERAL</h5>
+						<p><label class="checkbox-inline"><input type="checkbox" [(ngModel)]="selectedKCI" value="1">KCI Registered
+							</label></p>
 					</div>
 
 					<div class="block">
 
 						<h5>AGE</h5>
-						<p><input type="text" class="location form-control" [(ngModel)]="enteredAge" placeholder="Age in months"> </p>
+						<p><input type="text" class="location form-control" numbersOnly [(ngModel)]="enteredAge" placeholder="Age in months">
+						</p>
 						<!-- <p><label class="checkbox-inline"><input type="checkbox" value="">
 							<1 Month </label> </p> <p><label class="checkbox-inline"><input type="checkbox" value="">
 									<3 Months </label> </p> <p><label class="checkbox-inline"><input type="checkbox" value="">
@@ -227,7 +230,7 @@
 			</div>
 
 		</div>
-		<div  class="col-md-4" *ngIf="petData.length==0">
+		<div class="col-md-4" *ngIf="petData.length==0">
 			<img width="100%" src="assets/images/noresult.png">
 		</div>
 	</div>
