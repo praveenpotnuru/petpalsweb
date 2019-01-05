@@ -260,7 +260,7 @@ export class SignupComponent implements OnInit {
     } else {
       this.user.UserType = "PetParent";
     }
-
+    debugger;
     if (!this.isNavigationEnabled) {
       this.user.CountryId = userForm.value.Country.CountryId;
       this.user.CountryName = userForm.value.Country.CountryName;

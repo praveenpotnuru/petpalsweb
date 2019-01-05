@@ -86,7 +86,10 @@ export class AuthService {
       "KCIRegistered": user.KCIRegistered,
       "KCIDetails": user.KCIDetails,
       "DeviceType": user.DeviceType,
-      "ReferralCode": user.ReferralCode
+      "ReferralCode": user.ReferralCode,
+      "Latitude": user.Latitude,
+      "Longitude": user.Longitude,
+
 
     }
     return this.http.post(this.baseUrl + environment.apiEndPoints.register, body)
