@@ -18,6 +18,12 @@ export interface EnvironmentConfig {
         forgotPassword: string;
         myrequests: string;
         withdrawrequests:string;
+        myPets:string;
+        addToFavourites:string;
+        deletePet:string;
+        savePet:string;
+        updatePet:string;
+        myPetDetails:string;
 
     }
 

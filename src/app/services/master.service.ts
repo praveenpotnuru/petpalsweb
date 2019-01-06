@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { ToastOptions, ToastData } from 'projects/ngx-toasta/src/public_api';
 import { Router } from '@angular/router';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -35,6 +36,26 @@ export class MasterService {
 
   getCountryList() {
     return this.http.get(this.baseUrl + environment.apiEndPoints.countryList);
+  }
+
+  saveImage(file: File) {
+    if (file != undefined) {
+      let formData: FormData = new FormData();
+      formData.append('Content-Disposition', file);
+      formData.append('name', 'DemoFieldName');
+      formData.append('filename', file.name);
+      formData.append('Content-Type', file.type);
+
+      return this.http.post(this.baseUrl + environment.apiEndPoints.uploadFile, formData)
+        .pipe(map(response => {
+          return response;
+        }));
+
+    }
+    else {
+      window.alert("Please add profile picture")
+    }
+
   }
 
   setToastOptions(title: string, msg: string, returnUrl: string) {

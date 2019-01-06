@@ -19,7 +19,13 @@ export const environment: EnvironmentConfig = {
         register: "MobileAccount/Register",
         forgotPassword: "MobileAccount/ForgotPassword",
         myrequests: "Utils/MessageList",
-        withdrawrequests: "Utils/WithdrawRequest?PetMatingRequestId="
+        withdrawrequests: "Utils/WithdrawRequest?PetMatingRequestId=",
+        myPets: "Utils/mypets",
+        addToFavourites: "Utils/MakePetFavorite",
+        deletePet: "Utils/DeletePet",
+        savePet: "Utils/AddPet",
+        updatePet: "Utils/UpdatePet",
+        myPetDetails: "/Utils/GetPetDetails?petId="
     }
 
 };

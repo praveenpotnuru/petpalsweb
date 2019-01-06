@@ -24,7 +24,6 @@ export class SinglepetComponent implements OnInit {
   }
 
   getPetData() {
-    debugger;
     this.petService.getPetDetails(this.petId).subscribe((data: any) => {
       this.petData = data.Data[0];
       console.log(this.petData);

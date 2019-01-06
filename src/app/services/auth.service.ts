@@ -44,25 +44,7 @@ export class AuthService {
       return data;
     }));
   }
-  saveImage(file: File) {
-    if (file != undefined) {
-      let formData: FormData = new FormData();
-      formData.append('Content-Disposition', file);
-      formData.append('name', 'DemoFieldName');
-      formData.append('filename', file.name);
-      formData.append('Content-Type', file.type);
-
-      return this.http.post(this.baseUrl + environment.apiEndPoints.uploadFile, formData)
-        .pipe(map(response => {
-          return response;
-        }));
-
-    }
-    else {
-      window.alert("Please add profile picture")
-    }
-
-  }
+  
   signUp(user: User) {
     var body = {
       "FirstName": user.FirstName,

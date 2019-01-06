@@ -1,5 +1,110 @@
 <app-mast-head>
-
 </app-mast-head>
+
+<div class="container-fluid " style="background-color:#e0dddf">
+  <div class="row">
+    <h2 class="theme-color text-center bold">My Pets
+      <a [routerLink]="['/addpet']" class="btn btn-primary btn-sm">
+        <span class="glyphicon glyphicon-plus"></span> Add Pet
+      </a>
+    </h2>
+
+  </div>
+
+  <div class="row more-padding ">
+    <div class="col-md-12" *ngFor="let myPet of loadedMyPetList">
+      <div class="row listing">
+        <div class="row">
+          <div class="col-xs-5"></div>
+          <div class="col-xs-7 l-text">
+
+            <a href="#" (click)="onLoveClick(myPet.PetId)" *ngIf="myPet.PetId !=1&&!myPet.IsFavorite" class="btn btn-warning btn-sm">
+              <span class="glyphicon glyphicon-heart-empty"></span> Favourite
+
+            </a>
+            <a *ngIf="myPet.PetId !=1&&myPet.IsFavorite" class="btn btn-warning btn-sm" style="cursor:none">
+              <span class="glyphicon glyphicon-heart"></span> Favourite
+            </a>
+            &nbsp;
+
+            <a href="#" (click)="onDeleteClick(myPet.PetId)" data-toggle="modal" data-target="#DeletePetModal" *ngIf="myPet.PetId !=1"
+              class="btn btn-danger btn-sm">
+              <span class="glyphicon glyphicon-remove"></span> Remove
+            </a>
+          </div>
+        </div>
+
+        <div class="col-md-4 col-xs-12 ">
+          <center>
+            <img src="{{myPet.PictrueName}}" style="height: 110px; width: 120px;" class="img-responsive img-rounded listing-mobile" />
+            <a [routerLink]="['/petdetails',myPet.PetId]" class="btn btn-danger  contact-button"><i class="fa fa-eye"
+                aria-hidden="true"></i> &nbsp;View </a>
+          </center>
+        </div>
+
+        <div class="col-md-8 col-xs-12">
+          <div class="row">
+            <div class="col-xs-12">
+              <h3 class="theme-color listname">{{myPet.PetName}}</h3>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-5">Pet Gender</div>
+            <div class="col-xs-7 l-text">{{myPet.PetGender}}</div>
+          </div>
+          <div class="row">
+            <div class="col-xs-5">Pet Type</div>
+            <div class="col-xs-7 l-text">{{myPet.PetType}}</div>
+          </div>
+          <div class="row">
+            <div class="col-xs-5">Breed Name</div>
+            <div class="col-xs-7 l-text">{{myPet.BreedName}}</div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+    <div class="col-md-12" *ngIf="loadedMyPetList.length==0">
+      <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+          <img width="100%" src="assets/images/noresult.png">
+        </div>
+        <div class="col-md-4"></div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-2">
+    <!-- The  Delete Pet Modal -->
+    <div class="modal fade" id="DeletePetModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">Delete Pet</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+
+          <!-- Modal body -->
+          <div class="modal-body">
+            <h5>Are you sure you want to delete this pet?</h5>
+          </div>
+
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-info" data-dismiss="modal" (click)="onDeletePet()">Send</button>
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
 <app-mast-footer>
 </app-mast-footer>

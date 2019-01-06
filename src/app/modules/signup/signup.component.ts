@@ -214,29 +214,15 @@ export class SignupComponent implements OnInit {
     }
 
   }
-  // var toastOptions: ToastOptions = {
-  //   title: "Toast It!",
-  //   msg: "Mmmm, tasties...",
-  //   theme: "default",
-  // };
-  // // Add see all possible types in one shot
-  // this.toastaService.default(toastOptions)
-  // this.toastaService.success(toastOptions);
-  // this.toastaService.wait(toastOptions);
-  // this.toastaService.error(toastOptions);
-  // this.toastaService.warning(toastOptions);
 
   saveUserImage(userForm: NgForm) {
-    this.authService.saveImage(this.uploadedFile)
+    this.searchService.saveImage(this.uploadedFile)
       .subscribe((result: any) => {
-        console.log(result.ImgUrl)
         this.user.UserProfilePicture = result.Data.ImgUrl;
         this.saveUserDetails(userForm);
       });
   }
   saveUserDetails(userForm: NgForm) {
-    debugger;
-
     const UserName = userForm.value.FirstName + ' ' + userForm.value.LastName;
     this.user.UserName = UserName;
     this.user.Password = userForm.value.Password
@@ -260,7 +246,6 @@ export class SignupComponent implements OnInit {
     } else {
       this.user.UserType = "PetParent";
     }
-    debugger;
     if (!this.isNavigationEnabled) {
       this.user.CountryId = userForm.value.Country.CountryId;
       this.user.CountryName = userForm.value.Country.CountryName;
