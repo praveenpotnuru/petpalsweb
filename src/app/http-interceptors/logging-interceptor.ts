@@ -6,10 +6,12 @@ import {
 
 import { finalize, tap } from 'rxjs/operators';
 import { MessageService } from '../services/message.service';
+import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class LoggingInterceptor implements HttpInterceptor {
-  constructor(private messenger: MessageService) {}
+  constructor(private messenger: MessageService, private authService: AuthService, private router: Router) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
     const started = Date.now();
@@ -22,7 +24,16 @@ export class LoggingInterceptor implements HttpInterceptor {
           // Succeeds when there is a response; ignore other events
           event => ok = event instanceof HttpResponse ? 'succeeded' : '',
           // Operation failed; error is an HttpErrorResponse
-          error => ok = 'failed'
+          error => {
+            if (error.status == 401 && error.error.ErrorMessage == "Invalid Token") {
+              var latitude = localStorage.getItem('latitude');
+              var longitude = localStorage.getItem('longitude');
+              localStorage.clear();
+              localStorage.setItem('latitude', latitude);
+              localStorage.setItem('longitude', longitude);
+              this.router.navigate(['/']);
+            }
+          }
         ),
         // Log when response observable either completes or errors
         finalize(() => {

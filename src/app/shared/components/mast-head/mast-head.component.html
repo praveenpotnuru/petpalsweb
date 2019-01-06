@@ -62,7 +62,7 @@
         <li><a [routerLink]="['/events']">Event</a></li>
         <li><a href="blog.html">Blog</a></li>
         <li><a href="#contact">Contact Us</a></li>
-       
+
         <!-- <li class="hidden-sm hidden-xs"><a href="#"><span class="fa fa-bars"></span></a></li> -->
         <li class="dropdown">
           <a href="#" data-toggle="dropdown" class="dropdown-toggle"><span class="fa fa-bars"></span></a>
@@ -79,11 +79,12 @@
                 <li><a href="#">One more separated link</a></li>
               </ul>
             </li> -->
-            <li><a  *ngIf="isUserLoggedIn" style="cursor: pointer;" (click)="logout()">Logout</a></li>
-            <li><a [routerLink]="['/signup']" *ngIf="!isUserLoggedIn" >Sign Up</a></li>
-            <li><a [routerLink]="['/signin']" *ngIf="!isUserLoggedIn" >Sign In</a></li>
+            <li><a [routerLink]="['/signup']" *ngIf="!isUserLoggedIn">Sign Up</a></li>
+            <li><a [routerLink]="['/signin']" *ngIf="!isUserLoggedIn">Sign In</a></li>
+            <li><a [routerLink]="['/myrequests']" *ngIf="isUserLoggedIn">My Requests</a></li>
+            <li><a [routerLink]="['/mypets']" *ngIf="isUserLoggedIn">My Pets</a></li>
+            <li><a *ngIf="isUserLoggedIn" style="cursor: pointer;" (click)="logout()">Logout</a></li>
 
-     
             <!-- <li class="divider"></li> -->
             <!-- <li><a href="#">Separated link</a></li> -->
           </ul>

@@ -6,7 +6,7 @@ export interface EnvironmentConfig {
         signin: string;
         signOut: string;
         searchPets: string;
-        petDetails: String;
+        petDetails: string;
         getPetTypes: string;
         getBreeds: string;
         getCities: string;
@@ -16,6 +16,9 @@ export interface EnvironmentConfig {
         uploadFile: string;
         register: string;
         forgotPassword: string;
+        myrequests: string;
+        withdrawrequests:string;
+
     }
 
 }

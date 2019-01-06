@@ -39,6 +39,10 @@ export class PetserviceService {
     }
     return longitude ? longitude : "0";
   }
-
-
+  getAllRequest() {
+    return this.http.get(this.apiUrl + environment.apiEndPoints.myrequests);
+  }
+  WidrawRequest(requestId: number) {
+    return this.http.get(this.apiUrl + environment.apiEndPoints.withdrawrequests + requestId);
+  }
 }

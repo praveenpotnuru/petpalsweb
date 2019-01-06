@@ -17,7 +17,9 @@ export const environment: EnvironmentConfig = {
         countryList: "Utils/GetAllCountryList",
         uploadFile: "Utils/UploadFile",
         register: "MobileAccount/Register",
-        forgotPassword: "MobileAccount/ForgotPassword"
+        forgotPassword: "MobileAccount/ForgotPassword",
+        myrequests: "Utils/MessageList",
+        withdrawrequests: "Utils/WithdrawRequest?PetMatingRequestId="
     }
 
 };

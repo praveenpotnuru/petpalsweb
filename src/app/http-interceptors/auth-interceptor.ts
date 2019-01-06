@@ -25,7 +25,9 @@ export class AuthInterceptor implements HttpInterceptor {
     if (req.url.indexOf(environment.apiEndPoints.signin) > 0 ||
       req.url.indexOf(environment.apiEndPoints.searchPets) > 0 ||
       req.url.indexOf(environment.apiEndPoints.register) > 0 ||
-      req.url.indexOf(environment.apiEndPoints.forgotPassword) > 0
+      req.url.indexOf(environment.apiEndPoints.forgotPassword) > 0||
+      req.url.indexOf(environment.apiEndPoints.petDetails) > 0
+
     ) {
       const authReq = req.clone({
         setHeaders: {
@@ -40,6 +42,7 @@ export class AuthInterceptor implements HttpInterceptor {
     const authReq = req.clone({
       setHeaders: {
         Authorization: authToken,
+        SecurityToken: this.auth.getToken(),
         "Content-Type": "application/json"
       }
     });

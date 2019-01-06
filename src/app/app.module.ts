@@ -23,6 +23,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { SignupComponent } from './modules/signup/signup.component';
 import { ToastaModule } from '../../projects/ngx-toasta/src/public_api';
 import { NumbersOnlyDirective } from './shared/directives/numbers-only.directive';
+import { MyrequestsComponent } from './modules/myrequests/myrequests.component';
+import { MypetsComponent } from './modules/mypets/mypets.component';
+import { AddpetComponent } from './modules/addpet/addpet.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,6 +42,9 @@ import { NumbersOnlyDirective } from './shared/directives/numbers-only.directive
     RegisterComponent,
     SignupComponent,
     NumbersOnlyDirective,
+    MyrequestsComponent,
+    MypetsComponent,
+    AddpetComponent,
   ],
   imports: [
     BrowserModule,

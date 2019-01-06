@@ -1,0 +1,117 @@
+<app-mast-head>
+</app-mast-head>
+
+<div class="container-fluid " style="background-color:#e0dddf">
+
+  <div class="row">
+    <h2 class="theme-color text-center bold">My Requests</h2>
+
+  </div>
+  <div class="row more-padding ">
+    <div class="col-md-12" *ngFor="let requestData of loadedRequestList">
+
+      <div class="row listing">
+        <div class="row">
+          <div class="col-xs-5"></div>
+          <div class="col-xs-7 l-text"> {{requestData.RequestedDateTime}}
+
+            <a href="#" *ngIf="requestData.MsgStatus=='Under Screening'" class="btn btn-info btn-sm">
+              <span class="glyphicon glyphicon-send"></span> In Screening
+            </a>
+            <a href="#" *ngIf="requestData.MsgStatus!='Approved' && requestData.MsgStatus!='Under Screening'" class="btn btn-info btn-sm">
+              <span class="glyphicon glyphicon-send"></span> In Screening
+            </a>
+            &nbsp;
+            <a href="#" *ngIf="requestData.MsgStatus=='Approved'" class="btn btn-success btn-sm">
+              <span class="glyphicon glyphicon-ok"></span> Approved
+            </a>
+            &nbsp;
+            <a href="#" (click)="onContactRequest(requestData.PetMatingRequestId)" data-toggle="modal" data-target="#withdrawRequestModal"
+              *ngIf="requestData.MsgStatus!='Approved'" class="btn btn-danger btn-sm">
+              <span class="glyphicon glyphicon-remove"></span> withdraw
+            </a>
+          </div>
+        </div>
+
+        <div class="col-md-4 col-xs-12 ">
+          <center>
+            <img src={{requestData.RequestedPetImageName}} style="height: 110px; width: 120px;" class="img-responsive img-rounded listing-mobile" />
+            <a [routerLink]="['/petdetails',requestData.ReuestedPetId]" class="btn btn-danger contact-button"><i class="fa fa-eye"
+                aria-hidden="true"></i> &nbsp;View </a>
+          </center>
+        </div>
+
+        <div class="col-md-8 col-xs-12">
+          <div class="row">
+            <div class="col-xs-5">Requester Contact Details</div>
+            <div class="col-xs-7 l-text">{{requestData.RequestedMobile}},{{requestData.RequestedMailId}}</div>
+          </div>
+          <div class="row">
+            <div class="col-xs-5">Area</div>
+            <div class="col-xs-7 l-text">{{requestData.RequestersAreaName}}</div>
+          </div>
+          <div class="row">
+            <div class="col-xs-5">City</div>
+            <div class="col-xs-7 l-text">{{requestData.RequestersCityName}}</div>
+          </div>
+
+          <div class="row">
+            <div class="col-xs-5">Receiver Contact Details</div>
+            <div class="col-xs-7 l-text">{{requestData.OwnerMobile}},{{requestData.OwnerMailId}}</div>
+          </div>
+          <div class="row">
+            <div class="col-xs-5">Area</div>
+            <div class="col-xs-7 l-text">{{requestData.OwnerAreaName}}</div>
+          </div>
+          <div class="row">
+            <div class="col-xs-5">City</div>
+            <div class="col-xs-7 l-text">{{requestData.OwnerCityName}}</div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+    <div class="col-md-12" *ngIf="loadedRequestList.length==0">
+      <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+          <img width="100%" src="assets/images/noresult.png">
+        </div>
+        <div class="col-md-4"></div>
+
+      </div>
+
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-2">
+      <!-- The  withdraw Request Modal -->
+      <div class="modal fade" id="withdrawRequestModal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h4 class="modal-title">withdraw Request</h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+              <h5>Are you sure you want to withdraw the request</h5>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+              <button type="button" class="btn btn-info" data-dismiss="modal" (click)="onWithdrawRequest()">Send</button>
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-mast-footer>
+  </app-mast-footer>

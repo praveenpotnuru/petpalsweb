@@ -9,6 +9,9 @@ import { ServicesComponent } from './modules/services/services.component';
 import { RegisterComponent } from './modules/register/register.component';
 import { EventsComponent } from './modules/events/events.component';
 import { SignupComponent } from './modules/signup/signup.component';
+import { AddpetComponent } from './modules/addpet/addpet.component';
+import { MypetsComponent } from './modules/mypets/mypets.component';
+import { MyrequestsComponent } from './modules/myrequests/myrequests.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -23,6 +26,10 @@ const appRoutes: Routes = [
   { path: 'services', component: ServicesComponent },
   { path: 'signin', component: RegisterComponent },
   { path: 'signup', component: SignupComponent },
+  { path: 'addpet', component: AddpetComponent },
+  { path: 'mypets', component: MypetsComponent },
+  { path: 'myrequests', component: MyrequestsComponent },
+
 
   { path: '**', redirectTo: '' }
 ];
