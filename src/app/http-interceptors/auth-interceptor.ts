@@ -26,8 +26,12 @@ export class AuthInterceptor implements HttpInterceptor {
       req.url.indexOf(environment.apiEndPoints.searchPets) > 0 ||
       req.url.indexOf(environment.apiEndPoints.register) > 0 ||
       req.url.indexOf(environment.apiEndPoints.forgotPassword) > 0||
-      req.url.indexOf(environment.apiEndPoints.petDetails) > 0
-
+      req.url.indexOf(environment.apiEndPoints.petDetails) > 0||
+      req.url.indexOf(environment.apiEndPoints.countryList) > 0||
+      req.url.indexOf(environment.apiEndPoints.getCities) > 0||
+      req.url.indexOf(environment.apiEndPoints.getAreaList) > 0||
+      req.url.indexOf(environment.apiEndPoints.getBreeds) > 0||
+      req.url.indexOf(environment.apiEndPoints.getPetTypes) > 0
     ) {
       const authReq = req.clone({
         setHeaders: {

@@ -12,8 +12,19 @@
   </div>
 
   <div class="row more-padding ">
+
     <div class="col-md-12" *ngFor="let myPet of loadedMyPetList">
-      <div class="row listing">
+      <div class="row listing" *ngIf="myPet.PetId ==1">
+        <div class="row">
+          <div class="col-xs-4"></div>
+          <div class="col-xs-8 l-text">
+            <h3 class="theme-color listname">{{myPet.PetName}}</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12" *ngFor="let myPet of loadedMyPetList">
+      <div class="row listing" *ngIf="myPet.PetId !=1">
         <div class="row">
           <div class="col-xs-5"></div>
           <div class="col-xs-7 l-text">

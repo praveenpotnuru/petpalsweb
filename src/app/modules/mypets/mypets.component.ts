@@ -32,18 +32,21 @@ export class MypetsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.myPetService.mypetList()
-      .subscribe((result: any) => {
-        let status = result.Status;
-        if (status != "Errored") {
-          this.loadedMyPetList = result.Data;
-        }
-        else {
-          //this.toastr.error(result.ErrorMessage, 'Error')
-        }
-      })
+   this.getMyPets();
   }
 
+  getMyPets(){
+    this.myPetService.mypetList()
+    .subscribe((result: any) => {
+      let status = result.Status;
+      if (status != "Errored") {
+        this.loadedMyPetList = result.Data;
+      }
+      else {
+        //this.toastr.error(result.ErrorMessage, 'Error')
+      }
+    })
+  }
   onDetailsClick(petId: number) {
     this.router.navigate(['/petdetails/' + petId]);
   }
@@ -55,6 +58,7 @@ export class MypetsComponent implements OnInit {
         if (status != "Errored") {
           var toastOptions = this.masterService.setToastOptions('Add Favourite', 'Pet Successfully added as favourite', '')
           this.toastaService.success(toastOptions);
+          this.getMyPets();
         }
         else {
           var toastOptions = this.masterService.setToastOptions('Add Favourite', result.ErrorMessage, '')
@@ -77,18 +81,7 @@ export class MypetsComponent implements OnInit {
           var toastOptions = this.masterService.setToastOptions('Delete Pet', 'Pet Successfully deleted', '')
           this.toastaService.success(toastOptions);
 
-          this.myPetService.mypetList()
-            .subscribe((result: any) => {
-              let status = result.Status;
-              if (status != "Errored") {
-                this.loadedMyPetList = result.Data;
-              }
-              else {
-                var toastOptions = this.masterService.setToastOptions('Delete Pet', result.ErrorMessage, '')
-                this.toastaService.error(toastOptions);
-              }
-
-            })
+          this.getMyPets();
 
         }
         else {

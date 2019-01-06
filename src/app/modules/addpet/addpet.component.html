@@ -44,7 +44,7 @@
             <input type="text" class="form-control" [(ngModel)]="myPet.PetName" name="PetName">
           </div>
           <div class="form-group">
-            <label>Describe Your Pet<sup style="color: red">*</sup></label>
+            <label>Describe Your Pet</label>
             <input type="text" class="form-control" [(ngModel)]="myPet.KCIDetails" name="Description">
           </div>
           <div class="form-group">
@@ -78,7 +78,7 @@
             <input type="date" class="form-control" [(ngModel)]="myPet.PetDob" name="Dob">
           </div>
           <div class="form-group">
-            <label>Pet Color<sup style="color: red">*</sup></label>
+            <label>Pet Color</label>
             <input type="text" class="form-control" [(ngModel)]="myPet.Colors" name="PetColor">
           </div>
           <div class="form-group">
@@ -95,7 +95,7 @@
               KCI Verified
             </label>
           </div>
-          <button type="submit" class="btn" style="background-color: #A50F2D;color: white;">{{buttonName}}</button>
+          <button type="submit" [disabled]="submitDisabled" class="btn" style="background-color: #A50F2D;color: white;">{{buttonName}}</button>
         </form>
       </div>
     </div>

@@ -24,7 +24,7 @@ export class AddpetComponent implements OnInit {
   selectedCityName = '';
   selectedCountryName = '';
   selectedAreaName = '';
-
+  submitDisabled: boolean = false;
   files: FileList;
   uploadedFile: File;
   imagePath: any;
@@ -223,6 +223,58 @@ export class AddpetComponent implements OnInit {
 
 
   onSubmit(myPetForm: NgForm) {
+
+    let isValidForm = true;
+    debugger;
+    if (!this.uploadedFile) {
+      var toastOptions = this.masterService.setToastOptions('Add Pet Errors', 'Please upload a photo', '')
+      this.toastaService.error(toastOptions);
+      return false;
+    }
+    if (!myPetForm.value.PetName) {
+      var toastOptions = this.masterService.setToastOptions('Add Pet Errors', 'Please enter pet name', '')
+      this.toastaService.error(toastOptions);
+      return false;
+    }
+    if (!myPetForm.value.PetType) {
+      var toastOptions = this.masterService.setToastOptions('Add Pet Errors', 'Please select pet type', '')
+      this.toastaService.error(toastOptions);
+      return false;
+    }
+    if (!myPetForm.value.PetType) {
+      var toastOptions = this.masterService.setToastOptions('Add Pet Errors', 'Please select pet type', '')
+      this.toastaService.error(toastOptions);
+      return false;
+    }
+    if (!myPetForm.value.BreedName) {
+      var toastOptions = this.masterService.setToastOptions('Add Pet Errors', 'Please select breed type', '')
+      this.toastaService.error(toastOptions);
+      return false;
+    }
+    if (!myPetForm.value.City) {
+      var toastOptions = this.masterService.setToastOptions('Add Pet Errors', 'Please select city', '')
+      this.toastaService.error(toastOptions);
+      return false;
+    }
+    if (!myPetForm.value.Area) {
+      var toastOptions = this.masterService.setToastOptions('Add Pet Errors', 'Please select area', '')
+      this.toastaService.error(toastOptions);
+      return false;
+    }
+    if (!myPetForm.value.Gender) {
+      var toastOptions = this.masterService.setToastOptions('Add Pet Errors', 'Please select gender', '')
+      this.toastaService.error(toastOptions);
+      return false;
+    }
+    if (!myPetForm.value.Dob) {
+      var toastOptions = this.masterService.setToastOptions('Add Pet Errors', 'Please enter dob', '')
+      this.toastaService.error(toastOptions);
+       false;
+    }
+   
+    this.submitDisabled = true;
+
+
     if (this.isEditPet) { //for edit pet
       if (this.uploadedFile != undefined) {
         //save image
@@ -255,9 +307,6 @@ export class AddpetComponent implements OnInit {
         this.myPet.HeatingCycleFrom = myPetForm.value.HeatingCycleFrom;
         this.myPet.HeatingCycleTo = myPetForm.value.HeatingCycleTo;
         this.myPet.KCIRegistered = myPetForm.value.KCIRegistered;
-
-
-
         this.myPetService.updateMypet(this.myPet, this.petImageUrl)
           .subscribe((result: any) => {
             let status = result.Status;
@@ -285,22 +334,7 @@ export class AddpetComponent implements OnInit {
       }
     }
     else { //for add pet
-
-      //save image
-      if (this.uploadedFile) {
-        this.savePetImage(myPetForm);
-      }
-      else {
-        this.savePet(myPetForm);
-      }
-
-      if (myPetForm.value.PetName != "" && myPetForm.value.PetType != "" && myPetForm.value.Description && myPetForm.value.BreedName != "" &&
-        myPetForm.value.City != undefined && myPetForm.value.Area != undefined &&
-        myPetForm.value.Gender != "" && myPetForm.value.Dob != "" && myPetForm.value.PetColor != "") {
-      }
-      else {
-        //this.toastr.error('Please add required data', 'Error')
-      }
+      this.savePetImage(myPetForm);
     }
   }
 
@@ -326,7 +360,7 @@ export class AddpetComponent implements OnInit {
     this.myPet.HeatingCycleTo = myPetForm.value.HeatingCycleTo;
     this.myPet.KCIRegistered = myPetForm.value.KCIRegistered;
 
-    this.myPetService.saveMypet(this.myPet, this.petImageUrl)
+    this.myPetService.saveMypet(this.myPet, this.myPet.PictrueName)
       .subscribe((result: any) => {
         let status = result.Status;
         if (status != "Errored") {
@@ -336,7 +370,7 @@ export class AddpetComponent implements OnInit {
         else {
           var toastOptions = this.masterService.setToastOptions('Save Pet', result.ErrorMessage, '')
           this.toastaService.error(toastOptions);
-          //this.submitDisabled = false;
+          this.submitDisabled = false;
         }
 
       });
