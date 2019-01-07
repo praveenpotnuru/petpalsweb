@@ -22,6 +22,11 @@ export class AuthService {
     return JSON.parse(localStorage.getItem('currentUser'));
   }
 
+
+  public getRequesterOwnerId(): string {
+    return localStorage.getItem('RequesterOwnerId');
+  }
+
   public isAuthenticated(): boolean {
     // get the token
     const token = this.getToken();
@@ -44,7 +49,7 @@ export class AuthService {
       return data;
     }));
   }
-  
+
   signUp(user: User) {
     var body = {
       "FirstName": user.FirstName,
