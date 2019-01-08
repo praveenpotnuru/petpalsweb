@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ToastaService } from 'projects/ngx-toasta/src/public_api';
 import { MasterService } from 'src/app/services/master.service';
 @Component({
@@ -17,7 +17,8 @@ export class RegisterComponent implements OnInit {
   constructor(private authService: AuthService,
     private router: Router,
     private toastaService: ToastaService,
-    private searchService: MasterService
+    private searchService: MasterService,
+    private _activatedRoute: ActivatedRoute,
   ) { }
 
   ngOnInit() {
@@ -32,7 +33,12 @@ export class RegisterComponent implements OnInit {
             localStorage.setItem('token', result.Data.SecurityToken);
             localStorage.setItem('emailId', result.Data.EmailId);
             localStorage.setItem('RequesterOwnerId', result.Data.UserId);
-            this.router.navigate(['/petlove']);
+            let returnUrl = this._activatedRoute.snapshot.queryParams['returnUrl']
+            if (returnUrl) {
+              this.router.navigateByUrl(returnUrl);
+            } else {
+              this.router.navigate(['/petlove']);
+            }
           }
           else {
             //alert("Invalid Credential");

@@ -19,7 +19,7 @@ export class SinglepetComponent implements OnInit {
   public myPets: any = [];
   public selectedPetForLove: any;
   public petLoveRequestDisabled: boolean = true;
-
+  public displayModal = 'none';
 
   @ViewChild('fileInput') fileInput: ElementRef;
 
@@ -45,6 +45,7 @@ export class SinglepetComponent implements OnInit {
 
   onModalOpen(event) {
     if (this.authService.isAuthenticated()) {
+      this.displayModal = 'block';
       this.petService.mypetList()
         .subscribe((result: any) => {
           let status = result.Status;
@@ -63,7 +64,9 @@ export class SinglepetComponent implements OnInit {
     else {
       var toastOptions = this.masterService.setToastOptions('Pet Love Request', 'Please login to continue', '')
       this.toastaService.error(toastOptions);
-      this.router.navigate(['/signin']);
+      //{ queryParams: { returnurl: this._activatedRoute.snapshot.url } }
+      let returnUrl: any = this._activatedRoute.snapshot;
+      this.router.navigate(['/signin'], { queryParams: { returnUrl: returnUrl._routerState.url } });
     }
   }
 
@@ -98,6 +101,7 @@ export class SinglepetComponent implements OnInit {
             if (status != 'Errored') {
               var toastOptions = this.masterService.setToastOptions('Pet Love Request', 'Pet Love Rquest Placed Successfully', '')
               this.toastaService.success(toastOptions);
+              this.displayModal = 'none';
               this.router.navigate(['/myrequests']);
             }
             else {
@@ -110,6 +114,7 @@ export class SinglepetComponent implements OnInit {
       else {
         var toastOptions = this.masterService.setToastOptions('Pet Love Request', 'Please select Pet to make love request', '')
         this.toastaService.error(toastOptions);
+        this.displayModal = 'block';
       }
     }
     else {
@@ -118,5 +123,8 @@ export class SinglepetComponent implements OnInit {
       this.router.navigate(['/signin']);
     }
 
+  }
+  closeModal() {
+    this.displayModal = 'none';
   }
 }
