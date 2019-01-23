@@ -4,6 +4,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { PetserviceService } from '../../services/petservice.service';
 import { MasterService } from 'src/app/services/master.service';
 import { ToastaService } from 'projects/ngx-toasta/src/public_api';
+import { Breed } from 'src/app/shared/models/breed.model';
 
 @Component({
   selector: 'app-singlepet',
@@ -20,6 +21,19 @@ export class SinglepetComponent implements OnInit {
   public selectedPetForLove: any;
   public petLoveRequestDisabled: boolean = true;
   public displayModal = 'none';
+
+  /*Boarding*/
+  public displayBoardingModal = 'none';
+  breedList: Breed[] = [];
+  public selectedBreed = '';
+  public selectedFoodOption = 'Non Veg';
+  public selectedPickupDrop = 0;
+  public selectedNumberOfDays = 0;
+  public otherRequirements = "";
+  public boardingStartDate = "";
+  public boardingEndDate = "";
+
+
 
   @ViewChild('fileInput') fileInput: ElementRef;
 
@@ -43,9 +57,31 @@ export class SinglepetComponent implements OnInit {
     this.fileInput.nativeElement.addEventListener('click', this.onModalOpen.bind(this));
   }
 
+  getCurrentDate() {
+    let todayDate = new Date();
+    let currentMonth = (todayDate.getMonth() + 1).toString();
+    let currentDate = todayDate.getDate().toString();
+    currentMonth = currentMonth.length == 2 ? currentMonth : "0" + currentMonth;
+    currentDate = currentDate.length == 2 ? currentDate : "0" + currentDate;
+    return todayDate.getFullYear() + "-" + currentMonth + "-" + currentDate;
+  }
   onModalOpen(event) {
     if (this.authService.isAuthenticated()) {
+      this.handleModalPopups();
+    }
+    else {
+      var toastOptions = this.masterService.setToastOptions('Pet Love Request', 'Please login to continue', '')
+      this.toastaService.error(toastOptions);
+      //{ queryParams: { returnurl: this._activatedRoute.snapshot.url } }
+      let returnUrl: any = this._activatedRoute.snapshot;
+      this.router.navigate(['/signin'], { queryParams: { returnUrl: returnUrl._routerState.url } });
+    }
+  }
+
+  handleModalPopups() {
+    if (!this.petType) {
       this.displayModal = 'block';
+      document.body.style.overflow = 'hidden'
       this.petService.mypetList()
         .subscribe((result: any) => {
           let status = result.Status;
@@ -61,12 +97,18 @@ export class SinglepetComponent implements OnInit {
           }
         })
     }
-    else {
-      var toastOptions = this.masterService.setToastOptions('Pet Love Request', 'Please login to continue', '')
-      this.toastaService.error(toastOptions);
-      //{ queryParams: { returnurl: this._activatedRoute.snapshot.url } }
-      let returnUrl: any = this._activatedRoute.snapshot;
-      this.router.navigate(['/signin'], { queryParams: { returnUrl: returnUrl._routerState.url } });
+    else if (this.petType == "Boarding") {
+      this.displayBoardingModal = 'block';
+      document.body.style.overflow = 'hidden'
+      this.boardingStartDate = this.getCurrentDate();
+      this.boardingEndDate = this.getCurrentDate();
+
+      if (this.breedList.length == 0) {
+        this.masterService.getBreedList()
+          .subscribe((breedList: any) => {
+            this.breedList = breedList.Data;
+          });
+      }
     }
   }
 
@@ -126,5 +168,7 @@ export class SinglepetComponent implements OnInit {
   }
   closeModal() {
     this.displayModal = 'none';
+    this.displayBoardingModal = 'none';
+    document.body.removeAttribute('style')
   }
 }

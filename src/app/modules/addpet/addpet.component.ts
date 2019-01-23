@@ -225,7 +225,6 @@ export class AddpetComponent implements OnInit {
   onSubmit(myPetForm: NgForm) {
 
     let isValidForm = true;
-    debugger;
     if (!this.uploadedFile) {
       var toastOptions = this.masterService.setToastOptions('Add Pet Errors', 'Please upload a photo', '')
       this.toastaService.error(toastOptions);
