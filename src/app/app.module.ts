@@ -27,6 +27,8 @@ import { MastFooterComponent } from './shared/components/mast-footer/mast-footer
 import { MastHeadComponent } from './shared/components/mast-head/mast-head.component';
 import { NavMenuComponent } from './shared/components/nav-menu/nav-menu.component';
 import { NumbersOnlyDirective } from './shared/directives/numbers-only.directive';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 @NgModule({
   declarations: [
     AppComponent,
@@ -56,7 +58,8 @@ import { NumbersOnlyDirective } from './shared/directives/numbers-only.directive
     MatTabsModule,
     DeferLoadModule,
     BrowserAnimationsModule,
-    ToastaModule.forRoot()
+    ToastaModule.forRoot(),
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [httpInterceptorProviders,
     AuthService],
