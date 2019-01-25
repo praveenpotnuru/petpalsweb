@@ -9,8 +9,10 @@
     <div class="col-md-12" *ngFor="let requestData of loadedRequestList">
       <div class="row listing">
         <div class="row">
-          <div class="col-xs-5"></div>
-          <div class="col-xs-7 l-text"> {{requestData.RequestedDateTime}}
+          <div class="col-xs-5 l-text">
+            {{requestData.Message}}
+          </div>
+          <div class="col-md-7 l-text"> {{requestData.RequestedDateTime}}
 
             <a href="#" *ngIf="requestData.MsgStatus=='Under Screening'" class="btn btn-info btn-sm">
               <span class="glyphicon glyphicon-send"></span> In Screening
@@ -30,15 +32,19 @@
           </div>
         </div>
 
-        <div class="col-md-4 col-xs-12 ">
+        <!-- <div class="col-md-4 col-xs-12 ">
           <center>
             <img src={{requestData.RequestedPetImageName}} style="height: 110px; width: 120px;" class="img-responsive img-rounded listing-mobile" />
             <a [routerLink]="['/petdetails',requestData.ReuestedPetId]" class="btn btn-danger contact-button"><i class="fa fa-eye"
                 aria-hidden="true"></i> &nbsp;View </a>
           </center>
-        </div>
+        </div> -->
 
-        <div class="col-md-8 col-xs-12">
+        <div class="col-md-12 col-xs-12">
+          <div class="row">
+            <div class="col-xs-5">Service Type</div>
+            <div class="col-xs-7 l-text">{{requestData.ServiceType}}</div>
+          </div>
           <div class="row">
             <div class="col-xs-5">Requester Contact Details</div>
             <div class="col-xs-7 l-text">{{requestData.RequestedMobile}},{{requestData.RequestedMailId}}</div>
@@ -80,34 +86,34 @@
     </div>
   </div>
 </div>
-  <div class="row">
-    <div class="col-sm-2">
-      <!-- The  withdraw Request Modal -->
-      <div class="modal fade" id="withdrawRequestModal">
-        <div class="modal-dialog">
-          <div class="modal-content">
+<div class="row">
+  <div class="col-sm-2">
+    <!-- The  withdraw Request Modal -->
+    <div class="modal fade" id="withdrawRequestModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
 
-            <!-- Modal Header -->
-            <div class="modal-header">
-              <h4 class="modal-title">withdraw Request</h4>
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-
-            <!-- Modal body -->
-            <div class="modal-body">
-              <h5>Are you sure you want to withdraw the request</h5>
-            </div>
-
-            <!-- Modal footer -->
-            <div class="modal-footer">
-              <button type="button" class="btn btn-info" data-dismiss="modal" (click)="onWithdrawRequest()">Send</button>
-              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-            </div>
-
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">withdraw Request</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
           </div>
+
+          <!-- Modal body -->
+          <div class="modal-body">
+            <h5>Are you sure you want to withdraw the request</h5>
+          </div>
+
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-info" data-dismiss="modal" (click)="onWithdrawRequest()">Send</button>
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+          </div>
+
         </div>
       </div>
     </div>
   </div>
-  <app-mast-footer>
-  </app-mast-footer>
+</div>
+<app-mast-footer>
+</app-mast-footer>

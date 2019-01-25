@@ -116,7 +116,7 @@
       <div class="modal-header">
         <h4 class="modal-title">Pet Love Request
         </h4>
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <button type="button" class="close" (click)="closeModal()">&times;</button>
       </div>
 
       <!-- Modal body -->
@@ -161,7 +161,7 @@
       <div class="modal-header">
         <h4 class="modal-title">Boarding Request Details
         </h4>
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <button type="button" class="close" (click)="closeModal()">&times;</button>
       </div>
 
       <!-- Modal body -->
@@ -177,7 +177,7 @@
         <div class="form-group">
           <label>Select Breed</label>
           <select class="form-control" [(ngModel)]="selectedBreed" name="BreedName">
-            <option *ngFor="let breed of breedList" value="{{breed.BreedName}}">{{breed.BreedName}}
+            <option *ngFor="let breed of breedList" value="{{breed.BreedId}}">{{breed.BreedName}}
             </option>
           </select>
         </div>
@@ -215,7 +215,7 @@
 
       <!-- Modal footer -->
       <div class="modal-footer">
-        <button type="button" [disabled]="petLoveRequestDisabled" class="btn btn-info" (click)="petBoardingRequest()">Send</button>
+        <button type="button" class="btn btn-info" (click)="petBoardingRequest()">Send</button>
         <button type="button" class="btn btn-danger" (click)="closeModal()">Close</button>
       </div>
 

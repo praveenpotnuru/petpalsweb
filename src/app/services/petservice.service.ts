@@ -145,10 +145,13 @@ export class PetserviceService {
   mypetByPetId(petId: number) {
     return this.http.get(this.apiUrl + environment.apiEndPoints.myPetDetails + petId);
   }
-  
+
   petLoveRequestsRequest(body: any, requestType: string) {
     return this.http.post(this.apiUrl + 'Utils/' + requestType, body);
   }
 
+  petBoardingRequest(body: any) {
+    return this.http.post(this.apiUrl + environment.apiEndPoints.boardingRequest, body);
+  }
 
 }

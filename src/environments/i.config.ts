@@ -1,7 +1,7 @@
 export interface EnvironmentConfig {
     production: boolean;
     apiURL: string;
-    defaultCountryId:number;
+    defaultCountryId: number;
     apiEndPoints: {
         signin: string;
         signOut: string;
@@ -17,14 +17,14 @@ export interface EnvironmentConfig {
         register: string;
         forgotPassword: string;
         myrequests: string;
-        withdrawrequests:string;
-        myPets:string;
-        addToFavourites:string;
-        deletePet:string;
-        savePet:string;
-        updatePet:string;
-        myPetDetails:string;
-
+        withdrawrequests: string;
+        myPets: string;
+        addToFavourites: string;
+        deletePet: string;
+        savePet: string;
+        updatePet: string;
+        myPetDetails: string;
+        boardingRequest: string;
     }
 
 }

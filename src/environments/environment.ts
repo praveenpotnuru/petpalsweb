@@ -29,7 +29,8 @@ export const environment: EnvironmentConfig = {
         deletePet: "Utils/DeletePet",
         savePet: "Utils/AddPet",
         updatePet: "Utils/UpdatePet",
-        myPetDetails: "/Utils/GetPetDetails?petId="
+        myPetDetails: "Utils/GetPetDetails?petId=",
+        boardingRequest:"Utils/AddBoardingRequest"
     }
 
 };

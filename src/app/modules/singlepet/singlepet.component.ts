@@ -27,8 +27,8 @@ export class SinglepetComponent implements OnInit {
   breedList: Breed[] = [];
   public selectedBreed = '';
   public selectedFoodOption = 'Non Veg';
-  public selectedPickupDrop = 0;
-  public selectedNumberOfDays = 0;
+  public selectedPickupDrop = 1;
+  public selectedNumberOfDays = 1;
   public otherRequirements = "";
   public boardingStartDate = "";
   public boardingEndDate = "";
@@ -171,4 +171,40 @@ export class SinglepetComponent implements OnInit {
     this.displayBoardingModal = 'none';
     document.body.removeAttribute('style')
   }
+  petBoardingRequest() {
+    let body =
+    {
+      "PetId": this.petData.PetId,
+      "PetOwnerId": this.petData.PetOwnerId,
+      "RequesterOwnerId": this.authService.getRequesterOwnerId(),
+      "RequesterPetId": "",
+      "BoardingRequestDetails":
+        [{
+          "StartDate": this.boardingStartDate,
+          "EndDate": this.boardingEndDate,
+          "BreedId": this.selectedBreed,
+          "BoardingAgencyId": this.petData.PetOwnerId,
+          "NumberOfDays": this.selectedNumberOfDays,
+          "TypeOfFood": this.selectedFoodOption,
+          "PickUpDropNeeded": this.selectedPickupDrop,
+          "OtherRequirements": this.otherRequirements
+        }]
+    }
+    this.petService.petBoardingRequest(body).subscribe((result: any) => {
+      var status = result.Status;
+      var errorMessage = result.ErrorMessage;
+      if (status != 'Errored') {
+        var toastOptions = this.masterService.setToastOptions('Pet Boarding Request', 'Pet Boarding Rquest Placed Successfully', '')
+        this.toastaService.success(toastOptions);
+        this.closeModal();
+        this.router.navigate(['/myrequests']);
+      }
+      else {
+        var toastOptions = this.masterService.setToastOptions('Pet Boarding Request', errorMessage, '')
+        this.toastaService.error(toastOptions);
+      }
+
+    });
+  }
+
 }
