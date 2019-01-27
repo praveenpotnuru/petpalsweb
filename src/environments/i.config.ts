@@ -25,6 +25,14 @@ export interface EnvironmentConfig {
         updatePet: string;
         myPetDetails: string;
         boardingRequest: string;
+        addWalkerRequest:string;
+        addTrainingRequest:string;
+        addRescuerRequest:string;
+        addAdoptionRequest:string;
+        addSpaRequest:string;
+        addCabRequest:string;
+        addVolunteersRequest:string;
+
     }
 
 }

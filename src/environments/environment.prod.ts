@@ -26,8 +26,14 @@ export const environment: EnvironmentConfig = {
         savePet: "Utils/AddPet",
         updatePet: "Utils/UpdatePet",
         myPetDetails: "Utils/GetPetDetails?petId=",
-        boardingRequest:"Utils/AddBoardingRequest"
-
+        boardingRequest:"Utils/AddBoardingRequest",
+        addWalkerRequest:"Utils/AddWalkerRequest",
+        addTrainingRequest:"Utils/AddTrainingRequest",
+        addRescuerRequest:"Utils/AddRescuerRequest",
+        addAdoptionRequest:"Utils/AdoptPetRequest",
+        addSpaRequest:"Utils/AddSPARequest",
+        addCabRequest:"Utils/AddCABRequest",
+        addVolunteersRequest:"Utils/AddVolunteersRequest",
     }
 
 };

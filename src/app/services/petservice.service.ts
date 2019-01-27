@@ -154,4 +154,31 @@ export class PetserviceService {
     return this.http.post(this.apiUrl + environment.apiEndPoints.boardingRequest, body);
   }
 
+  petWalkerRequest(body: any) {
+    return this.http.post(this.apiUrl + environment.apiEndPoints.addWalkerRequest, body);
+  }
+  
+  petTrainerRequest(body: any) {
+    return this.http.post(this.apiUrl + environment.apiEndPoints.addTrainingRequest, body);
+  }
+
+  petRescuerRequest(body: any) {
+    return this.http.post(this.apiUrl + environment.apiEndPoints.addRescuerRequest, body);
+  }
+
+  petAdoptionRequest(body: any) {
+    return this.http.post(this.apiUrl + environment.apiEndPoints.addAdoptionRequest, body);
+  }
+
+  petSpaRequest(body: any) {
+    return this.http.post(this.apiUrl + environment.apiEndPoints.addSpaRequest, body);
+  }
+
+  petCabRequest(body: any) {
+    return this.http.post(this.apiUrl + environment.apiEndPoints.addCabRequest, body);
+  }
+
+  petVolutneersRequest(body: any) {
+    return this.http.post(this.apiUrl + environment.apiEndPoints.addVolunteersRequest, body);
+  }
 }

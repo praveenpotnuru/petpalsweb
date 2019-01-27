@@ -46,10 +46,18 @@ export class PetloveComponent implements OnInit {
   getServicesData() {
     var body = {};
     if (!!this.searchType) {
-      body = {
-        "Latitude": this.petService.getLatitude(),
-        "Longitude": this.petService.getLongitude(),
-        "UserType": this.searchType + "," + this.searchService
+      if (this.searchService == "Adoption") {
+        body = {
+          "Latitude": this.petService.getLatitude(),
+          "Longitude": this.petService.getLongitude(),
+          "UserType": this.searchService
+        }
+      } else {
+        body = {
+          "Latitude": this.petService.getLatitude(),
+          "Longitude": this.petService.getLongitude(),
+          "UserType": this.searchType + "," + this.searchService
+        }
       }
     }
     else {

@@ -223,5 +223,32 @@
   </div>
 </div>
 
+<div class="modal" id="commonModal" [ngStyle]="{'display':displayCommonModal}">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">{{petType}} Request Details
+        </h4>
+        <button type="button" class="close" (click)="closeModal()">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        Are you sure want to place the request?
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-info" (click)="petCommonModalRequest()">Send</button>
+        <button type="button" class="btn btn-danger" (click)="closeModal()">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
 <app-mast-footer>
 </app-mast-footer>
