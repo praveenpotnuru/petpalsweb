@@ -19,6 +19,7 @@ export class MypetsComponent implements OnInit {
   securityToken: string;
   loginUserId: string;
   withdrawRequestId: number;
+  show: boolean;
 
   // @ViewChild('searchInput') searchValue: ElementRef;
 
@@ -32,20 +33,23 @@ export class MypetsComponent implements OnInit {
   }
 
   ngOnInit() {
-   this.getMyPets();
+    this.getMyPets();
   }
 
-  getMyPets(){
+  getMyPets() {
+    this.show = false;
     this.myPetService.mypetList()
-    .subscribe((result: any) => {
-      let status = result.Status;
-      if (status != "Errored") {
-        this.loadedMyPetList = result.Data;
-      }
-      else {
-        //this.toastr.error(result.ErrorMessage, 'Error')
-      }
-    })
+      .subscribe((result: any) => {
+        let status = result.Status;
+        this.show = true;
+
+        if (status != "Errored") {
+          this.loadedMyPetList = result.Data;
+        }
+        else {
+          //this.toastr.error(result.ErrorMessage, 'Error')
+        }
+      })
   }
   onDetailsClick(petId: number) {
     this.router.navigate(['/petdetails/' + petId]);

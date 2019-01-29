@@ -157,7 +157,7 @@ export class PetserviceService {
   petWalkerRequest(body: any) {
     return this.http.post(this.apiUrl + environment.apiEndPoints.addWalkerRequest, body);
   }
-  
+
   petTrainerRequest(body: any) {
     return this.http.post(this.apiUrl + environment.apiEndPoints.addTrainingRequest, body);
   }
@@ -180,5 +180,9 @@ export class PetserviceService {
 
   petVolutneersRequest(body: any) {
     return this.http.post(this.apiUrl + environment.apiEndPoints.addVolunteersRequest, body);
+  }
+
+  getExternalHtml(link) {
+    return this.http.get(link);
   }
 }

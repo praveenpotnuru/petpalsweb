@@ -29,6 +29,7 @@ import { NavMenuComponent } from './shared/components/nav-menu/nav-menu.componen
 import { NumbersOnlyDirective } from './shared/directives/numbers-only.directive';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { LoaderComponent } from './shared/components/loader/loader.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,6 +49,7 @@ import { environment } from '../environments/environment';
     MyrequestsComponent,
     MypetsComponent,
     AddpetComponent,
+    LoaderComponent,
   ],
   imports: [
     BrowserModule,

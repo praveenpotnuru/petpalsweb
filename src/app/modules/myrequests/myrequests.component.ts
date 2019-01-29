@@ -17,6 +17,7 @@ export class MyrequestsComponent implements OnInit {
   securityToken: string;
   loginUserId: string;
   withdrawRequestId: number;
+  show: boolean;
 
   // @ViewChild('searchInput') searchValue: ElementRef;
 
@@ -32,11 +33,12 @@ export class MyrequestsComponent implements OnInit {
 
   ngOnInit() {
 
-    this.securityToken = localStorage.getItem('token')
+    this.securityToken = localStorage.getItem('token');
+    this.show = false;
     this.sharedService.getAllRequest()
       .subscribe((result: any) => {
         this.loadedRequestList = result.Data;
-        console.log(this.loadedRequestList)
+        this.show = true;
         if (this.loadedRequestList.length == 0) {
           this.dataHasOrNot = true;
           console.log(this.dataHasOrNot);

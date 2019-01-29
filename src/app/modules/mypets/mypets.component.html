@@ -1,7 +1,7 @@
 <app-mast-head>
 </app-mast-head>
 
-<div class="container-fluid " style="background-color:#e0dddf">
+<div class="container-fluid container-fluid-minheight" style="background-color:#e0dddf">
   <div class="row">
     <h2 class="theme-color text-center bold">My Pets
       <a [routerLink]="['/addpet']" class="btn btn-primary btn-sm">
@@ -11,7 +11,7 @@
 
   </div>
 
-  <div class="row more-padding ">
+  <div class="row more-padding " *ngIf="show">
 
     <div class="col-md-12" *ngFor="let myPet of loadedMyPetList">
       <div class="row listing" *ngIf="myPet.PetId ==1">

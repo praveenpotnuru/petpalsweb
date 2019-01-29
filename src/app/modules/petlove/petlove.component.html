@@ -14,7 +14,7 @@
 		<div class="row " style="padding:20px;">
 
 			<div class="input-group inner-addon left-addon">
-				<i class="glyphicon glyphicon-search" (click)="searchTextFilter()" ></i>
+				<i class="glyphicon glyphicon-search" (click)="searchTextFilter()"></i>
 				<input type="text" class="form-control" [(ngModel)]="filterText" style="line-height: 2;height:auto;" (keyup)="$event.keyCode == 13 ? searchTextFilter() : null">
 				<span class="input-group-btn" style="padding-left:1%;">
 					<button class="btn btn-default filter" type="button" (click)="showHideFilter()">FILTER</button>
@@ -143,9 +143,7 @@
 		</div>
 	</div>
 </div>
-
-
-<div class="container-fluid " style="background-color:#e0dddf">
+<div class="container-fluid " style="background-color:#e0dddf" *ngIf="show">
 	<div class="row more-padding ">
 		<div class="col-md-6 " *ngFor="let pet of petData">
 			<div class="row listing">
@@ -235,6 +233,7 @@
 		</div>
 	</div>
 </div>
-
+<div [innerHtml]="myTemplate">
+</div>
 <app-mast-footer>
 </app-mast-footer>

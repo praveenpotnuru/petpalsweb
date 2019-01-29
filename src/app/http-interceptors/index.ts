@@ -7,6 +7,7 @@ import { EnsureHttpsInterceptor } from './ensure-https-interceptor';
 import { LoggingInterceptor } from './logging-interceptor';
 //import { NoopInterceptor } from './noop-interceptor';
 import { TrimBodyInterceptor } from './trim-body-interceptor';
+import { LoaderInterceptorService } from './loader-interceptor.service';
 //import { UploadInterceptor } from './upload-interceptor';
 
 
@@ -20,6 +21,8 @@ export const httpInterceptorProviders = [
     { provide: HTTP_INTERCEPTORS, useClass: LoggingInterceptor, multi: true },
     // { provide: HTTP_INTERCEPTORS, useClass: UploadInterceptor, multi: true },
     // { provide: HTTP_INTERCEPTORS, useClass: CachingInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptorService, multi: true },
+
 
 ];
 
