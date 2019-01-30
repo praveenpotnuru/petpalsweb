@@ -1,11 +1,13 @@
 <app-mast-head>
 
 </app-mast-head>
-<div class="container-fluid padding" style="background-color:#e0dddf">
+<div class="container-fluid padding " style="background-color:#e0dddf">
 
 
 	<div class="row">
-		<h2 class="theme-color text-center bold">PETLOVE</h2>
+		<h2 *ngIf="!searchService" class="theme-color text-center bold">Pet Love</h2>
+		<h2 *ngIf="searchService" class="theme-color text-center bold">{{searchService}}</h2>
+
 	</div>
 
 	<div class="row more-padding ">
@@ -15,7 +17,7 @@
 
 			<div class="input-group inner-addon left-addon">
 				<i class="glyphicon glyphicon-search" (click)="searchTextFilter()"></i>
-				<input type="text" class="form-control" [(ngModel)]="filterText" style="line-height: 2;height:auto;" (keyup)="$event.keyCode == 13 ? searchTextFilter() : null">
+				<input type="text" class="form-control" [(ngModel)]="filterText" style="height: 43px;" (keyup)="$event.keyCode == 13 ? searchTextFilter() : null">
 				<span class="input-group-btn" style="padding-left:1%;">
 					<button class="btn btn-default filter" type="button" (click)="showHideFilter()">FILTER</button>
 				</span>
@@ -143,7 +145,7 @@
 		</div>
 	</div>
 </div>
-<div class="container-fluid " style="background-color:#e0dddf" *ngIf="show">
+<div class="container-fluid container-fluid-200height" style="background-color:#e0dddf" *ngIf="show">
 	<div class="row more-padding ">
 		<div class="col-md-6 " *ngFor="let pet of petData">
 			<div class="row listing">
@@ -233,7 +235,7 @@
 		</div>
 	</div>
 </div>
-<div [innerHtml]="myTemplate">
-</div>
+<!-- <div [innerHtml]="myTemplate">
+</div> -->
 <app-mast-footer>
 </app-mast-footer>

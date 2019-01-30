@@ -374,6 +374,9 @@ cursor:pointer;
 .container-fluid-minheight{
 	min-height: 415px !important;
 }
+.container-fluid-200height{
+	min-height: 200px !important;
+}
 	
 @media screen and (min-width:768px){
     .navbar-brand-centered {
