@@ -1,13 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { PetserviceService } from 'src/app/services/petservice.service';
-import { error, debug } from 'util';
-import { ActivatedRoute } from '@angular/router';
-import { MasterService } from 'src/app/services/master.service';
-import { environment } from 'src/environments/environment';
-import { LoaderService } from 'src/app/services/loader.service';
-import { Subscription } from 'rxjs';
-import { LoaderState } from 'src/app/shared/components/loader/loader.model';
 import { Http } from '@angular/http';
+import { ActivatedRoute } from '@angular/router';
+import { LoaderService } from 'src/app/services/loader.service';
+import { MasterService } from 'src/app/services/master.service';
+import { PetserviceService } from 'src/app/services/petservice.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-petlove',
@@ -46,28 +43,13 @@ export class PetloveComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.subscription = this.loaderService.loaderState
-    //   .subscribe((state: LoaderState) => {
-    //     this.show = state.show;
-    //   });
     this.getServicesData();
     this.getPetTypes();
     this.getBreeds();
     this.getCityList();
-    //this.getExternalhtml();
   }
-  // ngOnDestroy() {
-  //   this.subscription.unsubscribe();
-  // }
-  getExternalhtml() {
-    this.petService.getExternalHtml("http://app.petpals.love/staging/buypetneeds.aspx?Redirect=snapdeal&Email=admin112@yourstore.com&UserName=&password=admin&FirstName=rakesh&LastName=patel&PhoneNo=123333&longitude=77.65170&latitude=12.86560")
-      .subscribe((data: any) => {
-        debugger;
-        this.myTemplate = data;
-      }, error => {
-        debugger;
-      })
-  }
+ 
+ 
   getServicesData() {
     var body = {};
     this.show = false;

@@ -11,5 +11,15 @@ export class MastFooterComponent implements OnInit {
 
   ngOnInit() {
   }
+  onFBClick() {
+    window.open(`https://www.facebook.com/petpals.love/`, "_blank");
+  }
 
+  onInstaGramClick() {
+    window.open(`https://www.instagram.com/petpalslove/`, "_blank");
+  }
+  onYoutubeClick(){
+    window.open(`https://www.youtube.com/channel/UCJuHynWZfsNvI-AmK2M-Knw`, "_blank");
+
+  }
 }

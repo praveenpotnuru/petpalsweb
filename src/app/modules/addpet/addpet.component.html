@@ -35,6 +35,8 @@
           <div class="form-group">
             <label>Select PetType<sup style="color: red">*</sup></label>
             <select class="form-control" [(ngModel)]="myPet.PetType" name="PetType">
+              <option value="">
+              </option>
               <option *ngFor="let petType of petTypeList" value="{{petType}}">{{petType}}
               </option>
             </select>
@@ -50,6 +52,8 @@
           <div class="form-group">
             <label>Select Breed<sup style="color: red">*</sup></label>
             <select class="form-control" [(ngModel)]="myPet.BreedName" name="BreedName">
+                <option value="">
+                  </option>
               <option *ngFor="let breed of breedList" value="{{breed.BreedName}}">{{breed.BreedName}}
               </option>
             </select>
@@ -57,6 +61,8 @@
           <div class="form-group">
             <label>Gender<sup style="color: red">*</sup></label>
             <select name="Gender" [(ngModel)]="myPet.PetGender" class="form-control">
+                <option value="">
+                  </option>
               <option>Male</option>
               <option>Female</option>
             </select>
@@ -64,12 +70,15 @@
           <div class="form-group">
             <label>Select City<sup style="color: red">*</sup></label>
             <select name="City" [(ngModel)]="myPet.CityName" class="form-control" (change)="onCityChange(myPet.CityName)">
+                <option value="">
+                  </option>
               <option *ngFor="let city of cityList" [ngValue]="city.CityName">{{city.CityName}}</option>
             </select>
           </div>
           <div class="form-group">
             <label>Select Area<sup style="color: red">*</sup></label>
             <select name="Area" [(ngModel)]="myPet.AreaName" class="form-control" (change)="onAreaChange(myPet.AreaName)">
+              <option value=""></option>
               <option *ngFor="let area of areaList" [ngValue]="area.AreaName">{{area.AreaName}}</option>
             </select>
           </div>

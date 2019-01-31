@@ -8,15 +8,17 @@ import { finalize, tap } from 'rxjs/operators';
 import { MessageService } from '../services/message.service';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
+import { LoaderService } from '../services/loader.service';
 
 @Injectable()
 export class LoggingInterceptor implements HttpInterceptor {
-  constructor(private messenger: MessageService, private authService: AuthService, private router: Router) { }
+  constructor(private messenger: MessageService, private authService: AuthService,
+    private router: Router, private loaderService: LoaderService) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
     const started = Date.now();
     let ok: string;
-
+    this.showLoader();
     // extend server response observable with logging
     return next.handle(req)
       .pipe(
@@ -26,6 +28,7 @@ export class LoggingInterceptor implements HttpInterceptor {
           // Operation failed; error is an HttpErrorResponse
           error => {
             if (error.status == 401 && error.error.ErrorMessage == "Invalid Token") {
+              this.onEnd();
               var latitude = localStorage.getItem('latitude');
               var longitude = localStorage.getItem('longitude');
               localStorage.clear();
@@ -41,8 +44,20 @@ export class LoggingInterceptor implements HttpInterceptor {
           const msg = `${req.method} "${req.urlWithParams}"
              ${ok} in ${elapsed} ms.`;
           this.messenger.add(msg);
+          this.onEnd();
         })
       );
+  }
+  private onEnd(): void {
+    this.hideLoader();
+  }
+
+  private showLoader(): void {
+    this.loaderService.show();
+  }
+
+  private hideLoader(): void {
+    this.loaderService.hide();
   }
 }
 

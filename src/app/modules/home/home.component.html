@@ -23,7 +23,8 @@
           </div>
           <div class="col-md-2 col-xs-3">
             <div class="icon">
-              <center><a [routerLink]="['/petlove']"> <img *ngIf="deferLoad" src="assets/images/2.png" class="img-responsive"></a></center>
+              <center><a (click)="onExternalLinkClick('snapdeal')"> <img *ngIf="deferLoad" src="assets/images/2.png"
+                    class="img-responsive"></a></center>
               <p>Pet Needs</p>
             </div>
           </div>
@@ -69,14 +70,15 @@
 
           <div class="col-md-2 col-xs-3 ">
             <div class="icon">
-              <center><a [routerLink]="['/petlove']"> <img *ngIf="deferLoad" src="assets/images/9.png" class="img-responsive"></a></center>
+              <center><a (click)="onExternalLinkClick('food')"> <img *ngIf="deferLoad" src="assets/images/9.png" class="img-responsive"></a></center>
               <p>Food</p>
             </div>
           </div>
 
           <div class="col-md-2 col-xs-3 ">
             <div class="icon">
-              <center><a [routerLink]="['/petlove']"> <img *ngIf="deferLoad" src="assets/images/10.png" class="img-responsive"></a></center>
+              <center><a (click)="onExternalLinkClick('nutrition')"> <img *ngIf="deferLoad" src="assets/images/10.png"
+                    class="img-responsive"></a></center>
               <p>Nutrition</p>
             </div>
           </div>
@@ -104,7 +106,8 @@
 
           <div class="col-md-2 col-xs-3 ">
             <div class="icon">
-              <center><a [routerLink]="['/petlove']"> <img *ngIf="deferLoad" src="assets/images/14.png" class="img-responsive"></a></center>
+              <center><a (click)="onExternalLinkClick('barbox')"> <img *ngIf="deferLoad" src="assets/images/14.png"
+                    class="img-responsive"></a></center>
               <p>Bark Box</p>
             </div>
           </div>
@@ -116,6 +119,13 @@
             </div>
           </div>
 
+          <div class="col-md-2 col-xs-3 ">
+            <div class="icon">
+              <center><a (click)="onExternalLinkClick('wagandtail')"> <img style="width:50px;height:50px;" *ngIf="deferLoad"
+                    src="assets/images/WL.jpg" class="img-responsive"></a></center>
+              <p>Natural Food</p>
+            </div>
+          </div>
           <div class="col-md-2 col-xs-3 ">
             <div class="icon">
               <center><a [routerLink]="['/petlove/Allied/Volunteers']"> <img *ngIf="deferLoad" src="assets/images/16.png"
@@ -327,12 +337,12 @@
     <h2 class="white-color text-center bold"> DOWNLOAD PETPALS APP ON</h2><br><br>
   </div>
   <div class="row">
-    <div class="col-md-4 col-md-offset-2 padding">
-      <img src="assets/images/google.png" class="img-rounded img-responsive" style="width:200px;">
-    </div>
-    <div class="col-md-4 padding">
-      <img src="assets/images/appstore.png" class="img-rounded img-responsive" style="width:200px;">
-    </div>
+    <div class="col-md-4 col-md-offset-2 padding" style="cursor:pointer">
+      <a (click)="onGooglePlayClick()"> <img src="assets/images/google.png" class="img-rounded img-responsive" style="width:200px;">
+      </a> </div>
+    <div class="col-md-4 padding" style="cursor:pointer">
+      <a (click)="onItunesClick()"> <img src="assets/images/appstore.png" class="img-rounded img-responsive" style="width:200px;">
+      </a> </div>
   </div>
 </div>
 <!-- end of download -->

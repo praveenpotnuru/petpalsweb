@@ -16,13 +16,15 @@
       </div>
 
       <div class="col-md-2 hidden-xs hidden-sm">
-        <h6 class="pull-right"><i class="fa fa-facebook-f"></i> &nbsp;&nbsp;<i class="fa fa-google-plus"></i>&nbsp;&nbsp;<i
-            class="fa fa-instagram"></i>&nbsp;&nbsp;<i class="fa fa-pinterest"></i>&nbsp;&nbsp;<i class="fa fa-youtube"></i></h6>
+        <h6 class="pull-right">
+          <i class="fa fa-facebook-f" style="cursor:pointer" (click)="onFBClick()"> </i> &nbsp;&nbsp;<i class="fa fa-google-plus"></i>&nbsp;&nbsp;<i
+            class="fa fa-instagram" style="cursor:pointer" (click)="onInstaGramClick()"></i>&nbsp;&nbsp;<i class="fa fa-pinterest"></i>&nbsp;&nbsp;<i
+            class="fa fa-youtube" style="cursor:pointer" (click)="onYoutubeClick()"></i></h6>
       </div>
       <div class="col-md-1 hidden-xs hidden-sm ">
         <h6 class="pull-left special-icon">
-          <i class="fa fa-apple"></i></h6>
-        <h6 class="pull-left special-icon"> <i class="fa fa-android"></i></h6>
+          <i class="fa fa-apple"  style="cursor:pointer" (click)="onItunesClick()"></i></h6>
+        <h6 class="pull-left special-icon"> <i class="fa fa-android"  style="cursor:pointer" (click)="onGooglePlayClick()"></i></h6>
       </div>
 
 
