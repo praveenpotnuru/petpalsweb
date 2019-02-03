@@ -1,18 +1,79 @@
 <app-mast-head>
 
 </app-mast-head>
-<div class="container-fluid padding " style="background-color:#e0dddf">
+<div class="container-fluid" style="background-color:#e0dddf">
 
 
 	<div class="row">
 		<h2 *ngIf="!searchService" class="theme-color text-center bold">Pet Love</h2>
 		<h2 *ngIf="searchService" class="theme-color text-center bold">{{searchService}}</h2>
+		<div class="row">
+
+			<div class="col-md-3"></div>
+			<div *ngIf="!searchService" class="col-md-6 white-bg-color container-text">
+				<p>We help people find a mate for their pet
+					· Being single is not appreciated by humans. Having love is one of the basics for humans, why would that not be
+					the
+					case with our pets. Feelings are same across all. We are here to help Find Pet Love. Give us a chance and we will
+					be
+					able to help you with it.
+				</p>
+			</div>
+			<div *ngIf="searchService&&searchService=='Boarding'" class="col-md-6 white-bg-color container-text">
+				<p>We have the best of the boarding agencies registered with us
+					· It is not possible to be home all the time with pets and it is not practical to leave our pets home alone too.
+					We have the choice to let your pets have the pampering with our boarding services.
+				</p>
+			</div>
+			<div *ngIf="searchService&&searchService=='Spa'" class="col-md-6 white-bg-color container-text">
+				<p>Pet Spa and Grooming agencies who have very good services have joined hands with us
+					· If you are under the assumption that pets don't have SPA, you are mistaken. We understand the need for Pet Spa.
+					All it requires is to pay a visit to one of our Spas and you will understand the transformation that we can bring
+					in for your pet.
+				</p>
+			</div>
+			<div *ngIf="searchService&&searchService=='Adoption'" class="col-md-6 white-bg-color container-text">
+				<p>Fluffly Nut will be joining hands with us soon. We support adoptions and help pets get a new, loving and a
+					comfortable home.
+					· Do you need a black one or a white one or a dotted one or some other choice. No worries, we have all covered. If
+					there is a pet in town available for adoption, you are guaranteed to have it as your pet.
+				</p>
+			</div>
+			<div *ngIf="searchService&&searchService=='Trainer'" class="col-md-6 white-bg-color container-text">
+				<p>We have dog trainers who have joined us, who provide basic and customized training for dogs.
+					· Who doesn't like the behaved pets. Want to show off few extra tricks from your pet, no worries. We have a crew
+					of trainers to help you make your pet learn to behave and listen to you. You don't need to start from ground, our
+					trainers trained enough pets so far. You are open to choose the trainer, rate, location, and what not.</p>
+			</div>
+			<div *ngIf="searchService&&searchService=='Cab'" class="col-md-6 white-bg-color container-text">
+				<p>We have pet cabs available too
+					· History taught us that all do not welcome the pets in their cabs. Reasons may be different but result remains
+					safe. We did tie up with the service, who will never say no for a pet to board in their cab. All it needs is a
+					click to book a cab.</p>
+			</div>
+			<div *ngIf="searchService&&searchService=='Rescuer'" class="col-md-6 white-bg-color container-text">
+				<p>Domlur Dog Park and PFA has joined hands with us for rescues
+					· We feel the social responsibility to save animals. Did you find an animal that requires attention and you feel
+					that you can't help much in that situation. No worries, call the rescuer near you, they are open to serve any
+					time.</p>
+			</div>
+			<div *ngIf="searchService&&searchService=='Walker'" class="col-md-6 white-bg-color container-text">
+				<p> We have pet walkers, who are good at taking dogs for their regular walks.
+					· Are you in a hurry or you feel that you are not giving enough walk to your pet, no worries. We are here to help
+					you with it. Have a professional walker handle it for you. All you need to let the walker know is your
+					requirement. They will ensure it is executed. We can hear you online as well as over a phone.</p>
+			</div>
+			<div *ngIf="searchService&&searchService=='Volunteers'" class="col-md-6 white-bg-color container-text">
+				<p> We have volunteers who love pets, who are ready to help pets in absence of their owners, be it feeding them or
+					looking after them for a certain period of time</p>
+			</div>
+			<div class="col-md-3 "></div>
+
+		</div>
 
 	</div>
 
 	<div class="row more-padding ">
-
-
 		<div class="row " style="padding:20px;">
 
 			<div class="input-group inner-addon left-addon">

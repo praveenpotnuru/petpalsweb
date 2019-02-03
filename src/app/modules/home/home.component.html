@@ -14,126 +14,7 @@
     <div class="row" style="margin:10px;">
 
       <div class="col-md-8 col-md-offset-2 services">
-        <div class="row">
-          <div class="col-md-2 col-xs-3">
-            <div class="icon">
-              <center><a [routerLink]="['/petlove']"> <img *ngIf="deferLoad" src="assets/images/1.png" class="img-responsive"></a></center>
-              <p>Pet Love</p>
-            </div>
-          </div>
-          <div class="col-md-2 col-xs-3">
-            <div class="icon">
-              <center><a (click)="onExternalLinkClick('snapdeal')"> <img *ngIf="deferLoad" src="assets/images/2.png"
-                    class="img-responsive"></a></center>
-              <p>Pet Needs</p>
-            </div>
-          </div>
-          <div class="col-md-2 col-xs-3">
-            <div class="icon">
-              <center><a [routerLink]="['/petlove']"> <img *ngIf="deferLoad" src="assets/images/3.png" class="img-responsive"></a></center>
-              <p>Stores</p>
-            </div>
-          </div>
-          <div class="col-md-2 col-xs-3">
-            <div class="icon">
-              <center><a [routerLink]="['/petlove/Allied/Clinic']"> <img *ngIf="deferLoad" src="assets/images/4.png"
-                    class="img-responsive"></a></center>
-              <p>Vet Clinic</p>
-            </div>
-          </div>
-          <div class="col-md-2 col-xs-3">
-            <div class="icon">
-              <center><a [routerLink]="['/petlove/Allied/Walker']"> <img src="assets/images/5.png" class="img-responsive"></a></center>
-              <p>Pet Walker</p>
-            </div>
-          </div>
-          <div class="col-md-2 col-xs-3 ">
-            <div class="icon">
-              <center><a [routerLink]="['/petlove/Allied/Adoption']"> <img src="assets/images/6.png" class="img-responsive"></a></center>
-              <p>Adoption</p>
-            </div>
-          </div>
-
-          <div class="col-md-2 col-xs-3 ">
-            <div class="icon">
-              <center><a [routerLink]="['/petlove/Allied/Boarding']"> <img src="assets/images/7.png" class="img-responsive"></a></center>
-              <p>Pet Boarding</p>
-            </div>
-          </div>
-
-          <div class="col-md-2 col-xs-3 ">
-            <div class="icon">
-              <center><a [routerLink]="['/petlove/Allied/Spa']"> <img src="assets/images/8.png" class="img-responsive"></a></center>
-              <p>Pet Spa</p>
-            </div>
-          </div>
-
-          <div class="col-md-2 col-xs-3 ">
-            <div class="icon">
-              <center><a (click)="onExternalLinkClick('food')"> <img *ngIf="deferLoad" src="assets/images/9.png" class="img-responsive"></a></center>
-              <p>Food</p>
-            </div>
-          </div>
-
-          <div class="col-md-2 col-xs-3 ">
-            <div class="icon">
-              <center><a (click)="onExternalLinkClick('nutrition')"> <img *ngIf="deferLoad" src="assets/images/10.png"
-                    class="img-responsive"></a></center>
-              <p>Nutrition</p>
-            </div>
-          </div>
-
-          <div class="col-md-2 col-xs-3 ">
-            <div class="icon">
-              <center><a [routerLink]="['/petlove/Allied/Trainer']"> <img src="assets/images/11.png" class="img-responsive"></a></center>
-              <p>Trainer</p>
-            </div>
-          </div>
-
-          <div class="col-md-2 col-xs-3 ">
-            <div class="icon">
-              <center><a [routerLink]="['/petlove/Allied/Cab']"> <img src="assets/images/12.png" class="img-responsive"></a></center>
-              <p>Pet Cab</p>
-            </div>
-          </div>
-
-          <div class="col-md-2 col-xs-3 ">
-            <div class="icon">
-              <center><a [routerLink]="['/petlove/Allied/Rescuer']"> <img src="assets/images/13.png" class="img-responsive"></a></center>
-              <p>Rescuer</p>
-            </div>
-          </div>
-
-          <div class="col-md-2 col-xs-3 ">
-            <div class="icon">
-              <center><a (click)="onExternalLinkClick('barbox')"> <img *ngIf="deferLoad" src="assets/images/14.png"
-                    class="img-responsive"></a></center>
-              <p>Bark Box</p>
-            </div>
-          </div>
-
-          <div class="col-md-2 col-xs-3 ">
-            <div class="icon">
-              <center><a [routerLink]="['/petlove']"> <img *ngIf="deferLoad" src="assets/images/15.png" class="img-responsive"></a></center>
-              <p>Reminder</p>
-            </div>
-          </div>
-
-          <div class="col-md-2 col-xs-3 ">
-            <div class="icon">
-              <center><a (click)="onExternalLinkClick('wagandtail')"> <img style="width:50px;height:50px;" *ngIf="deferLoad"
-                    src="assets/images/WL.jpg" class="img-responsive"></a></center>
-              <p>Natural Food</p>
-            </div>
-          </div>
-          <div class="col-md-2 col-xs-3 ">
-            <div class="icon">
-              <center><a [routerLink]="['/petlove/Allied/Volunteers']"> <img *ngIf="deferLoad" src="assets/images/16.png"
-                    class="img-responsive"></a></center>
-              <p>Volunteers</p>
-            </div>
-          </div>
-        </div>
+       <app-iconlist></app-iconlist>
       </div>
 
     </div>
@@ -141,72 +22,7 @@
   </div>
 
   <!-- Our Products -->
-  <div class="container-fluid padding" style="background-color:#e0dddf">
 
-
-    <div class="row">
-      <h2 class="theme-color text-center bold"> OUR PRODUCTS</h2>
-    </div>
-
-    <div class="row more-padding">
-
-
-      <div class="col-md-4">
-
-        <div class="products">
-          <h5 class="bold">BARK BOX</h5>
-          <div class="product-text">
-            <img *ngIf="deferLoad" src="assets/images/product1.png" class="img-responsive  img-rounded iconimg">
-
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ut nibh eros. Orci varius natoque
-              penatibus et magnis dis parturient montes, nascetur ridiculus must Lorem ipsum dolor sit amet,
-              consectetur adipiscing elit. Morbi ut nibh eros. Orci varius natoque penatibus et magnis dis parturient
-              montes, nascetur ridiculus must </p>
-          </div>
-        </div>
-
-
-      </div>
-
-      <div class="col-md-4">
-
-
-        <div class="products">
-          <h5 class="bold">PET SANITARY PAD</h5>
-          <div class="product-text">
-            <img *ngIf="deferLoad" src="assets/images/product2.png" class="img-responsive  img-rounded iconimg">
-
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ut nibh eros. Orci varius natoque
-              penatibus et magnis dis parturient montes, nascetur ridiculus must Lorem ipsum dolor sit amet,
-              consectetur adipiscing elit. Morbi ut nibh eros. Orci varius natoque penatibus et magnis dis parturient
-              montes, nascetur ridiculus must </p>
-          </div>
-        </div>
-
-
-      </div>
-
-      <div class="col-md-4">
-
-        <div class="products">
-          <h5 class="bold">TRACKING CHIP</h5>
-          <div class="product-text">
-            <img *ngIf="deferLoad" src="assets/images/product3.png" class="img-responsive  img-rounded iconimg">
-
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ut nibh eros. Orci varius natoque
-              penatibus et magnis dis parturient montes, nascetur ridiculus must Lorem ipsum dolor sit amet,
-              consectetur adipiscing elit. Morbi ut nibh eros. Orci varius natoque penatibus et magnis dis parturient
-              montes, nascetur ridiculus must </p>
-          </div>
-        </div>
-
-
-
-      </div>
-
-
-    </div>
-  </div>
   <!-- end of our products -->
 
   <!-- how it work -->
@@ -227,7 +43,7 @@
         <div class="products">
           <h5 class="bold">BOOK SERVICE</h5>
           <div class="product-text">
-            <img *ngIf="deferLoad" src="assets/images/work1.png" class="img-responsive img-rounded iconimg">
+            <img  src="assets/images/work1.png" class="img-responsive img-rounded iconimg">
 
             <p>
               As a pet parent you know that your pet needs the best. Whether it is grooming, training, day
@@ -246,7 +62,7 @@
         <div class="products">
           <h5 class="bold">MATCH</h5>
           <div class="product-text">
-            <img *ngIf="deferLoad" src="assets/images/work2.png" class="img-responsive img-rounded iconimg">
+            <img  src="assets/images/work2.png" class="img-responsive img-rounded iconimg">
 
             <p>PetPals app has covered all requirements of pet owners in detail, including dating &amp; mating
               services. Pet dating is for your pets when they do not have anyone to play with &amp; are feeling
@@ -265,7 +81,7 @@
         <div class="products">
           <h5 class="bold">RELAX</h5>
           <div class="product-text">
-            <img *ngIf="deferLoad" src="assets/images/work3.png" class="img-responsive img-rounded iconimg">
+            <img  src="assets/images/work3.png" class="img-responsive img-rounded iconimg">
 
             <p>We are a platform for all service providers and pet lovers who can find all needs of pets at one
               place. Our love towards pets has made us build this platform which was missing until now. We
@@ -300,7 +116,7 @@
       <div class="col-md-4">
 
 
-        <img *ngIf="deferLoad" src="assets/images/journey.png" class="img-rounded img-responsive">
+        <img  src="assets/images/journey.png" class="img-rounded img-responsive">
 
 
 
@@ -347,61 +163,7 @@
 </div>
 <!-- end of download -->
 <!-- get in touch  -->
-<div class="container-fluid padding" id="contact">
-  <div class="row">
 
-
-    <div class="col-md-4 col-md-offset-2 ">
-
-      <h2 class="theme-color bold"> GET IN TOUCH</h2><br><br>
-
-
-      <!-- Contact info -->
-
-      <p><i class="fa fa-envelope theme-color"></i><a href="mailto:varsha@petpals.love">&nbsp;varsha@petpals.love</a>
-        or call us</p>
-      <p><i class="fa fa-phone theme-color"></i> &nbsp;&nbsp;<a href="tel:+1 (203) 587 0578">+91 9632232118</a> <br> <a
-          href="tel:+9163640457623"> +91 6364045762 (Adoption)</a></p>
-
-      <br>
-      <!-- Adress info -->
-      <h4>Location &amp; Time</h4>
-      <p><i class="fa fa-map-marker theme-color"></i>&nbsp;&nbsp;We are omnipresent in US and India</p>
-      <br>
-      <p><i class="fa fa-clock-o theme-color"></i>&nbsp;&nbsp;Open from 9 a.m to 10 p.m local time on weekdays <br>
-        from 9 a.m to 2 p.m local time in weekends.</p>
-
-
-
-
-    </div>
-
-    <div class="col-md-4">
-
-      <h2 class="theme-color  bold"> We care for pets! <br>Contact us for More</h2>
-
-      <div class="form-group">
-        <label for="email">Name:</label>
-        <input type="text" class="form-control" id="name">
-      </div>
-
-      <div class="form-group">
-        <label for="email">Email :</label>
-        <input type="email" class="form-control" id="email">
-      </div>
-
-      <div class="form-group">
-        <label for="email">Message:</label>
-        <textarea class="form-control" rows=4> </textarea>
-      </div>
-      <button type="button" class="btn btn-danger">SUBMIT</button>
-
-    </div>
-
-
-  </div>
-
-</div>
 <!-- end of getintouch -->
 <app-mast-footer>
 

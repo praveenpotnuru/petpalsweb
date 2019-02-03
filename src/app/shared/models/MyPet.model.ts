@@ -27,6 +27,7 @@ export class MyPet {
     Taken: boolean;
     Latitude: number;
     Longitude: number;
+    Description:string
     
 constructor(
     PetId:number,

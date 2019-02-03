@@ -12,6 +12,8 @@ import { SignupComponent } from './modules/signup/signup.component';
 import { AddpetComponent } from './modules/addpet/addpet.component';
 import { MypetsComponent } from './modules/mypets/mypets.component';
 import { MyrequestsComponent } from './modules/myrequests/myrequests.component';
+import { ProductsComponent } from './modules/products/products.component';
+import { ContactusComponent } from './modules/contactus/contactus.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -26,11 +28,13 @@ const appRoutes: Routes = [
   { path: 'services', component: ServicesComponent },
   { path: 'signin', component: RegisterComponent },
   { path: 'signup', component: SignupComponent },
+  { path: 'myprofile', component: SignupComponent },
   { path: 'addpet', component: AddpetComponent },
+  { path: 'updatepet/:id', component: AddpetComponent },
   { path: 'mypets', component: MypetsComponent },
   { path: 'myrequests', component: MyrequestsComponent },
-
-
+  { path: 'products', component: ProductsComponent },
+  { path: 'contactus', component: ContactusComponent },
   { path: '**', redirectTo: '' }
 ];
 

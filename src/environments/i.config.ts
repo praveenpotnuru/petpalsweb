@@ -32,6 +32,8 @@ export interface EnvironmentConfig {
         addSpaRequest:string;
         addCabRequest:string;
         addVolunteersRequest:string;
+        contactus:string;
+        updateprofile:string;
 
     }
 

@@ -26,12 +26,13 @@
     <div class="col-md-12" *ngFor="let myPet of loadedMyPetList">
       <div class="row listing" *ngIf="myPet.PetId !=1">
         <div class="row">
-          <div class="col-xs-5"></div>
-          <div class="col-xs-7 l-text">
-
+          <div class="col-xs-3"></div>
+          <div class="col-xs-9 l-text">
+            <a [routerLink]="['/updatepet',myPet.PetId]" *ngIf="myPet.PetId !=1" class="btn btn-danger btn-sm">
+              <span class="glyphicon glyphicon-edit"></span> Edit
+            </a>&nbsp;&nbsp;
             <a href="#" (click)="onLoveClick(myPet.PetId)" *ngIf="myPet.PetId !=1&&!myPet.IsFavorite" class="btn btn-warning btn-sm">
               <span class="glyphicon glyphicon-heart-empty"></span> Favourite
-
             </a>
             <a *ngIf="myPet.PetId !=1&&myPet.IsFavorite" class="btn btn-warning btn-sm" style="cursor:none">
               <span class="glyphicon glyphicon-heart"></span> Favourite
@@ -47,8 +48,8 @@
 
         <div class="col-md-3 col-xs-12 ">
           <!-- <center> -->
-            <img src="{{myPet.PictrueName}}" style="height: 110px; width: 120px;" class="img-responsive img-rounded listing-mobile" />
-            <!-- <a [routerLink]="['/petdetails',myPet.PetId]" class="btn btn-danger  contact-button"><i class="fa fa-eye"
+          <img src="{{myPet.PictrueName}}" style="height: 110px; width: 120px;" class="img-responsive img-rounded listing-mobile" />
+          <!-- <a [routerLink]="['/petdetails',myPet.PetId]" class="btn btn-danger  contact-button"><i class="fa fa-eye"
                 aria-hidden="true"></i> &nbsp;View </a> -->
           <!-- </center> -->
         </div>

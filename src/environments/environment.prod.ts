@@ -34,6 +34,10 @@ export const environment: EnvironmentConfig = {
         addSpaRequest:"Utils/AddSPARequest",
         addCabRequest:"Utils/AddCABRequest",
         addVolunteersRequest:"Utils/AddVolunteersRequest",
+        contactus:"Utils/ContactUs",
+        updateprofile:"Utils/SaveMyProfile"
+
+
     }
 
 };

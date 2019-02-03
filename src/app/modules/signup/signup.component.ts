@@ -17,7 +17,7 @@ import { PetserviceService } from 'src/app/services/petservice.service';
   styleUrls: ['./signup.component.less']
 })
 export class SignupComponent implements OnInit {
-
+  isEditProfile: boolean = false;
   user: User = {
     UserName: '',
     Password: '',
@@ -45,9 +45,6 @@ export class SignupComponent implements OnInit {
     Latitude: "",
     Longitude: ""
   }
-
-
-
   UserTypeList: any = [];
   countryList: any = [];
   cityList: any = [];
@@ -62,6 +59,7 @@ export class SignupComponent implements OnInit {
   vendorLogin: boolean = false;
   isNavigationEnabled: boolean = false;
   submitDisabled: boolean = false;
+  buttonName: string = "Sign Up";
   constructor(
     private authService: AuthService,
     private searchService: MasterService,
@@ -71,11 +69,9 @@ export class SignupComponent implements OnInit {
 
   ) {
     this.toastaConfig.theme = 'material';
-
   }
 
   ngOnInit() {
-
     navigator.geolocation.watchPosition(() => {
       console.log("i'm tracking you!");
       this.isNavigationEnabled = true;
@@ -86,12 +82,20 @@ export class SignupComponent implements OnInit {
         this.isNavigationEnabled = false;
       });
 
+    if (localStorage.getItem('currentUser')) {
+      this.isEditProfile = true;
+      this.user = JSON.parse(localStorage.getItem('currentUser')) as User;
+      this.imagePath = this.user.UserProfilePicture;
+      this.buttonName = "Save";
+
+    } else {
+      this.isEditProfile = false;
+    }
+
     this.searchService.getUserTypeList()
       .subscribe((UserTypeList: any) => {
         this.UserTypeList = UserTypeList.Data;
       });
-
-
     this.searchService.getCountryList()
       .subscribe((countryList: any) => {
         this.countryList = countryList.Data;
@@ -124,10 +128,6 @@ export class SignupComponent implements OnInit {
     this.selectedAreaName = selectedArea.AreaName;
   }
 
-
-
-
-
   fileChangeEvent(fileInput: any) {
     this.files = fileInput.target.files;
     this.uploadedFile = this.files[0];
@@ -140,66 +140,63 @@ export class SignupComponent implements OnInit {
     reader.readAsDataURL(fileInput.target.files[0]);
   }
 
-
-
   onSubmit(userForm: NgForm) {
     //save image
     let isValidForm = true;
     if (this.vendorLogin) {
       if (!userForm.value.UserType) {
-        var toastOptions = this.searchService.setToastOptions('Sign Up Errors', 'Please sleect you are an?', '')
+        var toastOptions = this.searchService.setToastOptions('Errors', 'Please sleect you are an?', '')
         this.toastaService.error(toastOptions);
         isValidForm = false;
 
       }
     }
     if (!userForm.value.FirstName) {
-      var toastOptions = this.searchService.setToastOptions('Sign Up Errors', 'Please enter first name', '')
+      var toastOptions = this.searchService.setToastOptions('Errors', 'Please enter first name', '')
       this.toastaService.error(toastOptions);
       isValidForm = false;
     }
 
     if (userForm.controls.EmailId.status == "INVALID" || !userForm.value.EmailId) {
-      var toastOptions = this.searchService.setToastOptions('Sign Up Errors', 'Please enter valid email id', '')
+      var toastOptions = this.searchService.setToastOptions('Errors', 'Please enter valid email id', '')
       this.toastaService.error(toastOptions);
       isValidForm = false;
     }
 
     if (userForm.controls.MobilePhone.status == "INVALID" || !userForm.value.MobilePhone) {
-      var toastOptions = this.searchService.setToastOptions('Sign Up Errors', 'Please enter valid mobile number', '')
+      var toastOptions = this.searchService.setToastOptions('Errors', 'Please enter valid mobile number', '')
       this.toastaService.error(toastOptions);
       isValidForm = false;
     }
 
-    if (!userForm.value.Password) {
-      var toastOptions = this.searchService.setToastOptions('Sign Up Errors', 'Please enter password', '')
+    if (!userForm.value.Password && !this.isEditProfile) {
+      var toastOptions = this.searchService.setToastOptions('Errors', 'Please enter password', '')
       this.toastaService.error(toastOptions);
       isValidForm = false;
     }
 
-    if (userForm.value.Password != userForm.value.ConfirmPassword) {
-      var toastOptions = this.searchService.setToastOptions('Sign Up Errors', 'Password and confirm password should be matched', '')
+    if (userForm.value.Password != userForm.value.ConfirmPassword && !this.isEditProfile) {
+      var toastOptions = this.searchService.setToastOptions('Errors', 'Password and confirm password should be matched', '')
       this.toastaService.error(toastOptions);
       isValidForm = false;
     }
 
     if (!this.isNavigationEnabled) {
       if (!userForm.value.Country) {
-        var toastOptions = this.searchService.setToastOptions('Sign Up Errors', 'Please sleect country', '')
+        var toastOptions = this.searchService.setToastOptions('Errors', 'Please sleect country', '')
         this.toastaService.error(toastOptions);
         isValidForm = false;
       }
       if (!userForm.value.City) {
-        var toastOptions = this.searchService.setToastOptions('Sign Up Errors', 'Please sleect city', '')
+        var toastOptions = this.searchService.setToastOptions('Errors', 'Please sleect city', '')
         this.toastaService.error(toastOptions);
         isValidForm = false;
       }
       if (!userForm.value.Area) {
-        var toastOptions = this.searchService.setToastOptions('Sign Up Errors', 'Please sleect area', '')
+        var toastOptions = this.searchService.setToastOptions('Errors', 'Please sleect area', '')
         this.toastaService.error(toastOptions);
         isValidForm = false;
       }
-
     }
 
     if (!isValidForm) {
@@ -228,19 +225,13 @@ export class SignupComponent implements OnInit {
     this.user.Password = userForm.value.Password
     this.user.FirstName = userForm.value.FirstName
 
-    //this.user.Dob = userForm.value.Dob;
-    //this.user.UserId = 6;
-
     this.user.LastName = userForm.value.LastName;
     this.user.MobilePhone = userForm.value.MobilePhone;
     this.user.EmailId = userForm.value.EmailId;
-
     //this.user.Gender = userForm.value.Gender;
-
     this.user.EmailNotification = true;
     this.user.SmsNotification = true;
     this.user.DeviceType = "Web";
-
     if (this.vendorLogin) {
       this.user.UserType = userForm.value.UserType;
     } else {
@@ -257,23 +248,39 @@ export class SignupComponent implements OnInit {
       this.user.Latitude = this.petService.getLatitude();
       this.user.Longitude = this.petService.getLongitude();
     }
-
     //this.user.KCIRegistered = 1;
     //this.user.KCIDetails = userForm.value.KCIDetails;
-
     this.user.ReferralCode = 0;
-    this.authService.signUp(this.user)
-      .subscribe((result: any) => {
-        let status = result.Status;
-        if (status != "Errored") {
-          var toastOptions = this.searchService.setToastOptions('Registration', 'Success', 'signin')
-          this.toastaService.success(toastOptions);
-        }
-        else {
-          var toastOptions = this.searchService.setToastOptions('Registration', result.ErrorMessage, '')
-          this.toastaService.error(toastOptions);
-          this.submitDisabled = false;
-        }
-      });
+
+    if (this.isEditProfile) {
+      this.authService.updateProfile(this.user)
+        .subscribe((result: any) => {
+          let status = result.Status;
+          if (status != "Errored") {
+            var toastOptions = this.searchService.setToastOptions('Update Profile', 'Success', 'signin')
+            this.toastaService.success(toastOptions);
+          }
+          else {
+            var toastOptions = this.searchService.setToastOptions('Update Profile', result.ErrorMessage, '')
+            this.toastaService.error(toastOptions);
+            this.submitDisabled = false;
+          }
+        });
+    } else {
+
+      this.authService.signUp(this.user)
+        .subscribe((result: any) => {
+          let status = result.Status;
+          if (status != "Errored") {
+            var toastOptions = this.searchService.setToastOptions('Registration', 'Success', 'signin')
+            this.toastaService.success(toastOptions);
+          }
+          else {
+            var toastOptions = this.searchService.setToastOptions('Registration', result.ErrorMessage, '')
+            this.toastaService.error(toastOptions);
+            this.submitDisabled = false;
+          }
+        });
+    }
   }
 }

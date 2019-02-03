@@ -17,8 +17,10 @@
 
       <div class="col-md-2 hidden-xs hidden-sm">
         <h6 class="pull-right">
-          <i class="fa fa-facebook-f" style="cursor:pointer" (click)="onFBClick()"> </i> &nbsp;&nbsp;<i class="fa fa-google-plus"></i>&nbsp;&nbsp;<i
-            class="fa fa-instagram" style="cursor:pointer" (click)="onInstaGramClick()"></i>&nbsp;&nbsp;<i class="fa fa-pinterest"></i>&nbsp;&nbsp;<i
+          <i class="fa fa-facebook-f" style="cursor:pointer" (click)="onFBClick()"> </i> &nbsp;&nbsp;
+          <!-- <i class="fa fa-google-plus"></i>&nbsp;&nbsp; -->
+          <i class="fa fa-instagram" style="cursor:pointer" (click)="onInstaGramClick()">
+          </i>&nbsp;&nbsp;<i class="fa fa-pinterest" style="cursor:pointer" (click)="onPinterestClick()"></i>&nbsp;&nbsp;<i
             class="fa fa-youtube" style="cursor:pointer" (click)="onYoutubeClick()"></i></h6>
       </div>
       <div class="col-md-1 hidden-xs hidden-sm ">
@@ -58,12 +60,14 @@
         <li><a [routerLink]="['/home']" class="first">Home</a></li>
         <li><a [routerLink]="['/about']">About</a></li>
         <li><a [routerLink]="['/services']">Services</a></li>
-        <li><a [routerLink]="['/gallery']">Gallery</a></li>
+        <li><a [routerLink]="['/products']">Products</a></li>
+
+        <!-- <li><a [routerLink]="['/gallery']">Gallery</a></li> -->
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <!-- <li><a [routerLink]="['/events']">Event</a></li>
         <li><a href="blog.html">Blog</a></li> -->
-        <li><a href="#contact">Contact Us</a></li>
+        <li><a [routerLink]="['/contactus']">Contact Us</a></li>
 
         <!-- <li class="hidden-sm hidden-xs"><a href="#"><span class="fa fa-bars"></span></a></li> -->
         <li class="dropdown">
@@ -83,6 +87,7 @@
             </li> -->
             <li><a [routerLink]="['/signup']" *ngIf="!isUserLoggedIn">Sign Up</a></li>
             <li><a [routerLink]="['/signin']" *ngIf="!isUserLoggedIn">Sign In</a></li>
+            <li><a [routerLink]="['/myprofile']" *ngIf="isUserLoggedIn">My Profile</a></li>
             <li><a [routerLink]="['/myrequests']" *ngIf="isUserLoggedIn">My Requests</a></li>
             <li><a [routerLink]="['/mypets']" *ngIf="isUserLoggedIn">My Pets</a></li>
             <li><a *ngIf="isUserLoggedIn" style="cursor: pointer;" (click)="logout()">Logout</a></li>

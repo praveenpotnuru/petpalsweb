@@ -92,20 +92,16 @@ color:#A50F2D;
 }
 .heading
 {
-	padding:30px;
 	font-size:2.5em;
-	
 	text-align:center;
 	color:white;
 }
 .heading1
 {
-	padding:30px;
-	font-size:2.5em;
-	text-align:center;
-	margin:3rem;
-	color:#A50F2D;
-	
+    font-size: 2.5em;
+    text-align: center;
+    margin: 1rem;
+    color: #A50F2D;
 }
 .services
 {

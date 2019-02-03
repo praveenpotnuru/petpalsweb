@@ -63,7 +63,8 @@ export class AddpetComponent implements OnInit {
     Parenting: false,
     Taken: false,
     Latitude: 0,
-    Longitude: 0
+    Longitude: 0,
+    Description: ""
   }
 
   constructor(
@@ -77,7 +78,6 @@ export class AddpetComponent implements OnInit {
   }
 
   ngOnInit() {
-
     this.masterService.getCityList(environment.defaultCountryId)
       .subscribe((cityList: any) => {
         this.cityList = cityList.Data;
@@ -114,8 +114,6 @@ export class AddpetComponent implements OnInit {
           let status = result.Status;
           if (status != "Errored") {
             this.myPetList = result.Data;
-            console.log(result.Data[0].CityId);
-
             this.myPet.PetId = this.myPetList[0].PetId;
             this.myPet.PetName = this.myPetList[0].PetName;
             this.myPet.BreedName = this.myPetList[0].BreedName;
@@ -128,7 +126,6 @@ export class AddpetComponent implements OnInit {
             this.myPet.WatchdogAbility = this.myPetList[0].WatchdogAbility;
             this.myPet.CountryName = this.myPetList[0].CountryName;
             this.myPet.CityName = this.myPetList[0].CityName;
-            this.myPet.AreaName = this.myPetList[0].AreaName;
             this.myPet.HeatingCycleFrom = this.formatDate(this.myPetList[0].HeatingCycleFrom);
             this.myPet.HeatingCycleTo = this.formatDate(this.myPetList[0].HeatingCycleTo);
             this.myPet.PetGender = this.myPetList[0].PetGender;
@@ -144,14 +141,15 @@ export class AddpetComponent implements OnInit {
             this.myPet.Taken = this.myPetList[0].Taken;
             this.myPet.Latitude = this.myPetList[0].Latitude;
             this.myPet.Longitude = this.myPetList[0].Longitude;
-
+            this.myPet.Description = this.myPetList[0].Description;
             this.petImageUrl = this.myPetList[0].PictrueName;
             this.imagePath = this.myPetList[0].PictrueName;
-
+            this.selectedAreaName = this.myPetList[0].AreaName;
             //load area list
             this.masterService.getAreaList(result.Data[0].CityId)
-              .subscribe((areaList: Area[]) => {
-                this.areaList = areaList;
+              .subscribe((areaList: any) => {
+                this.areaList = areaList.Data;
+                this.myPet.AreaName = this.myPetList[0].AreaName;
               });
           }
           else {
@@ -178,10 +176,10 @@ export class AddpetComponent implements OnInit {
   onCityChange(selectedCity: string) {
     //get cityId from city list
     let cityId = this.cityList.find(c => c.CityName == selectedCity).CityId
-
     this.masterService.getAreaList(cityId)
       .subscribe((areaList: any) => {
         this.areaList = areaList.Data;
+        this.selectedAreaName = "";
       });
 
     this.selectedCityName = selectedCity;
@@ -225,7 +223,7 @@ export class AddpetComponent implements OnInit {
   onSubmit(myPetForm: NgForm) {
 
     let isValidForm = true;
-    if (!this.uploadedFile) {
+    if (!this.uploadedFile && !this.isEditPet) {
       var toastOptions = this.masterService.setToastOptions('Add Pet Errors', 'Please upload a photo', '')
       this.toastaService.error(toastOptions);
       return false;
@@ -255,7 +253,7 @@ export class AddpetComponent implements OnInit {
       this.toastaService.error(toastOptions);
       return false;
     }
-    if (!myPetForm.value.Area) {
+    if (!myPetForm.value.Area || !this.selectedAreaName) {
       var toastOptions = this.masterService.setToastOptions('Add Pet Errors', 'Please select area', '')
       this.toastaService.error(toastOptions);
       return false;
@@ -268,68 +266,16 @@ export class AddpetComponent implements OnInit {
     if (!myPetForm.value.Dob) {
       var toastOptions = this.masterService.setToastOptions('Add Pet Errors', 'Please enter dob', '')
       this.toastaService.error(toastOptions);
-       false;
+      return false;
     }
-   
     this.submitDisabled = true;
-
-
     if (this.isEditPet) { //for edit pet
       if (this.uploadedFile != undefined) {
-        //save image
-        this.masterService.saveImage(this.uploadedFile)
-          .subscribe((result: any) => {
-            this.myPet.PictrueName = result.Data.ImgUrl;
-            this.petImageUrl = result.Data.ImgUrl;
-          });
+        this.savePetImage(myPetForm);
       }
       else {
         this.myPet.PictrueName = this.petImageUrl;
-      }
-
-
-      if (myPetForm.value.PetName != "" && myPetForm.value.PetType != "" && myPetForm.value.Description && myPetForm.value.BreedName != "" &&
-        myPetForm.value.City != undefined && myPetForm.value.Area != undefined &&
-        myPetForm.value.Gender != "" && myPetForm.value.Dob != "" && myPetForm.value.PetColor != "") {
-
-        //set form value to myPet model
-        this.myPet.PetId = this.petId;
-        this.myPet.PetName = myPetForm.value.PetName;
-        this.myPet.PetType = myPetForm.value.PetType;
-        this.myPet.KCIDetails = myPetForm.value.Description;
-        this.myPet.BreedName = myPetForm.value.BreedName;
-        this.myPet.PetGender = myPetForm.value.Gender;
-        this.myPet.CityName = myPetForm.value.City;
-        this.myPet.AreaName = myPetForm.value.Area;
-        this.myPet.PetDob = myPetForm.value.Dob;
-        this.myPet.Colors = myPetForm.value.PetColor;
-        this.myPet.HeatingCycleFrom = myPetForm.value.HeatingCycleFrom;
-        this.myPet.HeatingCycleTo = myPetForm.value.HeatingCycleTo;
-        this.myPet.KCIRegistered = myPetForm.value.KCIRegistered;
-        this.myPetService.updateMypet(this.myPet, this.petImageUrl)
-          .subscribe((result: any) => {
-            let status = result.Status;
-            if (status != "Errored") {
-              if (this.isEditPet) {
-                ////this.toastr.success('Success', 'Success')
-                // this.router.navigate(['/my-pet-details/' + this.petId]);
-              }
-              else {
-                ////this.toastr.success('Success', 'Success')
-                // this.router.navigate(['/my-pet']);
-              }
-
-
-            }
-            else {
-              //this.toastr.error(result.ErrorMessage, 'Error')
-            }
-
-          });
-
-      }
-      else {
-        //this.toastr.error('Please add required data', 'Error')
+        this.updatePet(myPetForm);
       }
     }
     else { //for add pet
@@ -341,24 +287,27 @@ export class AddpetComponent implements OnInit {
     this.masterService.saveImage(this.uploadedFile)
       .subscribe((result: any) => {
         this.myPet.PictrueName = result.Data.ImgUrl;
-        this.savePet(userForm);
+        if (this.isEditPet) {
+          this.updatePet(userForm);
+        } else {
+          this.savePet(userForm);
+        }
       });
   }
 
   savePet(myPetForm: NgForm) {
     this.myPet.PetName = myPetForm.value.PetName;
     this.myPet.PetType = myPetForm.value.PetType;
-    this.myPet.KCIDetails = myPetForm.value.Description;
     this.myPet.BreedName = myPetForm.value.BreedName;
     this.myPet.PetGender = myPetForm.value.Gender;
     this.myPet.CityName = myPetForm.value.City;
     this.myPet.AreaName = myPetForm.value.Area;
-    this.myPet.PetDob = myPetForm.value.Dob;
+    this.myPet.PetDob = myPetForm.value.Dob == "NaN-NaN-NaN" ? "" : myPetForm.value.Dob;
     this.myPet.Colors = myPetForm.value.PetColor;
-    this.myPet.HeatingCycleFrom = myPetForm.value.HeatingCycleFrom;
-    this.myPet.HeatingCycleTo = myPetForm.value.HeatingCycleTo;
+    this.myPet.HeatingCycleFrom = myPetForm.value.HeatingCycleFrom == "NaN-NaN-NaN" ? "" : myPetForm.value.HeatingCycleFrom;
+    this.myPet.HeatingCycleTo = myPetForm.value.HeatingCycleTo == "NaN-NaN-NaN" ? "" : myPetForm.value.HeatingCycleTo;
     this.myPet.KCIRegistered = myPetForm.value.KCIRegistered;
-
+    this.myPet.Description = myPetForm.value.Description;
     this.myPetService.saveMypet(this.myPet, this.myPet.PictrueName)
       .subscribe((result: any) => {
         let status = result.Status;
@@ -372,6 +321,37 @@ export class AddpetComponent implements OnInit {
           this.submitDisabled = false;
         }
 
+      });
+  }
+
+  updatePet(myPetForm: NgForm) {
+    this.myPet.PetId = this.petId;
+    this.myPet.PetName = myPetForm.value.PetName;
+    this.myPet.PetType = myPetForm.value.PetType;
+    //this.myPet.KCIDetails = myPetForm.value.Description;
+    this.myPet.BreedName = myPetForm.value.BreedName;
+    this.myPet.PetGender = myPetForm.value.Gender;
+    this.myPet.CityName = myPetForm.value.City;
+    this.myPet.AreaName = myPetForm.value.Area;
+    this.myPet.PetDob = myPetForm.value.Dob == "NaN-NaN-NaN" ? "" : myPetForm.value.Dob;
+    this.myPet.Colors = myPetForm.value.PetColor;
+    this.myPet.HeatingCycleFrom = myPetForm.value.HeatingCycleFrom == "NaN-NaN-NaN" ? "" : myPetForm.value.HeatingCycleFrom;
+    this.myPet.HeatingCycleTo = myPetForm.value.HeatingCycleTo == "NaN-NaN-NaN" ? "" : myPetForm.value.HeatingCycleTo;
+    this.myPet.KCIRegistered = myPetForm.value.KCIRegistered;
+    //this.myPet.KCIDetails = myPetForm.value.Description;
+    this.myPet.Description = myPetForm.value.Description;
+    this.myPetService.updateMypet(this.myPet, this.myPet.PictrueName)
+      .subscribe((result: any) => {
+        let status = result.Status;
+        if (status != "Errored") {
+          var toastOptions = this.masterService.setToastOptions('Save Pet', 'Success', 'mypets')
+          this.toastaService.success(toastOptions);
+        }
+        else {
+          var toastOptions = this.masterService.setToastOptions('Update Pet', result.ErrorMessage, '')
+          this.toastaService.error(toastOptions);
+          this.submitDisabled = false;
+        }
       });
   }
 

@@ -96,7 +96,8 @@ export class PetserviceService {
       "Parenting": myPet.Parenting,
       "Taken": myPet.Taken,
       "Latitude": myPet.Latitude,
-      "Longitude": myPet.Longitude
+      "Longitude": myPet.Longitude,
+      "Description": myPet.Description
 
     }
 
@@ -128,6 +129,7 @@ export class PetserviceService {
       "PetType": myPet.PetType,
       "KCIRegistered": myPet.KCIRegistered,
       "KCIDetails": myPet.KCIDetails,
+      "Description": myPet.Description,
       "AvilableForAdotpion": myPet.AvilableForAdotpion,
       "OfferPriceFrom": myPet.OfferPriceFrom,
       "OfferPriceTo": myPet.OfferPriceTo,
@@ -184,5 +186,9 @@ export class PetserviceService {
 
   getExternalHtml(link) {
     return this.http.get(link);
+  }
+
+  contactUs(subject: string, message: string) {
+    return this.http.get(this.apiUrl + environment.apiEndPoints.contactus + `?Subject=${subject}&Message=${message}`);
   }
 }

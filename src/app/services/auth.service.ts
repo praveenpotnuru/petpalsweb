@@ -76,14 +76,46 @@ export class AuthService {
       "ReferralCode": user.ReferralCode,
       "Latitude": user.Latitude,
       "Longitude": user.Longitude,
-
-
     }
     return this.http.post(this.baseUrl + environment.apiEndPoints.register, body)
       .pipe(map(data => {
         return data;
       }));
   }
+
+  updateProfile(user: User) {
+    var body = {
+      "FirstName": user.FirstName,
+      "AreaId": user.AreaId,
+      "Dob": user.Dob,
+      "UserId": user.UserId,
+      "LastName": user.LastName,
+      "MobilePhone": user.MobilePhone,
+      "EmailId": user.EmailId,
+      "Gender": user.Gender,
+      "Password": user.Password,
+      "EmailNotification": user.EmailNotification,
+      "SmsNotification": user.SmsNotification,
+      "UserProfilePicture": user.UserProfilePicture,
+      "UserType": user.UserType,
+      "CountryName": user.CountryName,
+      "CityName": user.CityName,
+      "CityId": user.CityId,
+      "CountryId": user.CountryId,
+      "AreaName": user.AreaName,
+      "KCIRegistered": user.KCIRegistered,
+      "KCIDetails": user.KCIDetails,
+      "DeviceType": user.DeviceType,
+      "ReferralCode": user.ReferralCode,
+      "Latitude": user.Latitude,
+      "Longitude": user.Longitude,
+    }
+    return this.http.post(this.baseUrl + environment.apiEndPoints.updateprofile, body)
+      .pipe(map(data => {
+        return data;
+      }));
+  }
+
   forgotPassword(email: string) {
 
     var body = {

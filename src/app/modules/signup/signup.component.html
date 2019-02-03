@@ -19,7 +19,7 @@
               <!--For  Previewing image -->
               <img id="blah" [src]="imagePath" style="height:50%;width:50%;" alt="" />
             </div>
-            <div class="form-group">
+            <div class="form-group" *ngIf="!isEditProfile">
               <p><label class="checkbox-inline"><input type="checkbox" name="vendorLogin" [(ngModel)]="vendorLogin">Vendor
                   Login
                 </label></p>
@@ -48,11 +48,11 @@
               <label>Description<sup style="color: red">*</sup></label>
               <input type="text" class="form-control" [(ngModel)]="user.KCIDetails" name="KCIDetails">
             </div> -->
-            <div class="form-group">
+            <div class="form-group" *ngIf="!isEditProfile">
               <label>Password<sup style="color: red">*</sup></label>
               <input type="password" class="form-control" [(ngModel)]="user.Password" name="Password">
             </div>
-            <div class="form-group">
+            <div class="form-group" *ngIf="!isEditProfile">
               <label>Confirm Password<sup style="color: red">*</sup></label>
               <input type="password" class="form-control" [(ngModel)]="ConfirmPassword" name="ConfirmPassword">
             </div>
@@ -90,7 +90,7 @@
                 <option *ngFor="let area of areaList" [ngValue]="area">{{area.AreaName}}</option>
               </select>
             </div>
-            <button type="submit" [disabled]="submitDisabled" class="btn"  style="background-color: #A50F2D;color: white;">Sign Up</button>
+            <button type="submit" [disabled]="submitDisabled" class="btn" style="background-color: #A50F2D;color: white;">{{buttonName}}</button>
           </form>
         </div>
       </div>
@@ -98,5 +98,6 @@
     <div class="col-md-3"></div>
   </div>
 </div>
+<br />
 <app-mast-footer>
 </app-mast-footer>

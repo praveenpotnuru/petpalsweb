@@ -42,7 +42,7 @@ export class MastHeadComponent implements OnInit {
   onInstaGramClick() {
     window.open(`https://www.instagram.com/petpalslove/`, "_blank");
   }
-  onYoutubeClick(){
+  onYoutubeClick() {
     window.open(`https://www.youtube.com/channel/UCJuHynWZfsNvI-AmK2M-Knw`, "_blank");
   }
   onGooglePlayClick() {
@@ -50,5 +50,8 @@ export class MastHeadComponent implements OnInit {
   }
   onItunesClick() {
     window.open(`https://itunes.apple.com/us/app/petpals-pet-care-app/id1261370740?mt=8`, "_blank");
+  }
+  onPinterestClick() {
+    window.open(` https://in.pinterest.com/petpalslove`, "_blank");
   }
 }
