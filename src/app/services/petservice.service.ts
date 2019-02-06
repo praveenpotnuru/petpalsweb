@@ -188,7 +188,11 @@ export class PetserviceService {
     return this.http.get(link);
   }
 
-  contactUs(subject: string, message: string) {
+  contactUsLogin(subject: string, message: string) {
     return this.http.get(this.apiUrl + environment.apiEndPoints.contactus + `?Subject=${subject}&Message=${message}`);
+  }
+  contactUs(name: string, mobile: string, email: string, message: string) {
+    return this.http.get(this.apiUrl + environment.apiEndPoints.contactus +
+      `?email=${email}&Message=${message}&name=${name}&mobileno=${mobile}`);
   }
 }

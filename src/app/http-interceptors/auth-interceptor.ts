@@ -32,7 +32,7 @@ export class AuthInterceptor implements HttpInterceptor {
       req.url.indexOf(environment.apiEndPoints.getAreaList) > 0 ||
       req.url.indexOf(environment.apiEndPoints.getBreeds) > 0 ||
       req.url.indexOf(environment.apiEndPoints.getPetTypes) > 0 ||
-      req.url.indexOf(environment.apiEndPoints.contactus) > 0 ||
+      (req.url.indexOf(environment.apiEndPoints.contactus) > 0 && !this.auth.getToken()) ||
       req.url.indexOf(environment.apiEndPoints.getPetNews) > 0
 
     ) {
