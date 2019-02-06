@@ -35,6 +35,8 @@ import {OverlayModule} from '@angular/cdk/overlay';
 import { IconlistComponent } from './shared/components/iconlist/iconlist.component';
 import { ProductsComponent } from './modules/products/products.component';
 import { ContactusComponent } from './modules/contactus/contactus.component';
+import { HowitworksComponent } from './modules/howitworks/howitworks.component';
+import { PetnewsComponent } from './modules/petnews/petnews.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -58,6 +60,8 @@ import { ContactusComponent } from './modules/contactus/contactus.component';
     IconlistComponent,
     ProductsComponent,
     ContactusComponent,
+    HowitworksComponent,
+    PetnewsComponent,
   ],
   imports: [
     BrowserModule,

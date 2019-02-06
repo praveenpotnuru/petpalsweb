@@ -34,7 +34,8 @@ export interface EnvironmentConfig {
         addVolunteersRequest:string;
         contactus:string;
         updateprofile:string;
-
+        getMyProfile:string;
+        getPetNews:string;
     }
 
 }

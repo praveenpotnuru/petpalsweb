@@ -37,8 +37,10 @@ export class PetloveComponent implements OnInit {
     private loaderService: LoaderService,
     private http: Http
   ) {
-    this.searchType = this._activatedRoute.snapshot.params.type;
     this.searchService = this._activatedRoute.snapshot.params.service;
+    if (this.searchService) {
+      this.searchType = "Allied";
+    }
 
   }
 
@@ -48,8 +50,8 @@ export class PetloveComponent implements OnInit {
     this.getBreeds();
     this.getCityList();
   }
- 
- 
+
+
   getServicesData() {
     var body = {};
     this.show = false;

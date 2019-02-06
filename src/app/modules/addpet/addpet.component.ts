@@ -34,6 +34,7 @@ export class AddpetComponent implements OnInit {
   buttonName = 'Add';
   petImageUrl: string;
   showloadingImage: boolean = true;
+  selectedPetType: string = "Dating";
 
   myPet: MyPet = {
     PetId: 0,
@@ -64,7 +65,8 @@ export class AddpetComponent implements OnInit {
     Taken: false,
     Latitude: 0,
     Longitude: 0,
-    Description: ""
+    Description: "",
+    WillingToSell: true
   }
 
   constructor(
@@ -107,7 +109,7 @@ export class AddpetComponent implements OnInit {
           this.showloadingImage = false;
         }
       })
-
+    debugger;
     if (this.isEditPet) {
       this.myPetService.mypetByPetId(this.petId)
         .subscribe((result: any) => {
@@ -145,6 +147,15 @@ export class AddpetComponent implements OnInit {
             this.petImageUrl = this.myPetList[0].PictrueName;
             this.imagePath = this.myPetList[0].PictrueName;
             this.selectedAreaName = this.myPetList[0].AreaName;
+            this.myPet.WillingToSell = this.myPetList[0].WillingToSell;
+
+            if (this.myPet.WillingToSell) {
+              this.selectedPetType = "Dating";
+            } else if (this.myPet.AvilableForAdotpion) {
+              this.selectedPetType = "AvilableForAdotpion";
+            } else if (this.myPet.Parenting) {
+              this.selectedPetType = "Parenting";
+            }
             //load area list
             this.masterService.getAreaList(result.Data[0].CityId)
               .subscribe((areaList: any) => {
@@ -206,15 +217,20 @@ export class AddpetComponent implements OnInit {
   }
 
 
-  onChange(selectedValue: string) {
-    console.log(selectedValue)
-    if (selectedValue == "Dating") {
-      this.myPet.Taken = true;
+  onChange() {
+    if (this.selectedPetType == "Dating") {
+      this.myPet.AvilableForAdotpion = false;
+      this.myPet.WillingToSell = true;
+      this.myPet.Parenting = false;
     }
-    else if (selectedValue = "AvilableForAdotpion") {
+    else if (this.selectedPetType == "AvilableForAdotpion") {
       this.myPet.AvilableForAdotpion = true;
+      this.myPet.WillingToSell = false;
+      this.myPet.Parenting = false;
     }
     else {
+      this.myPet.AvilableForAdotpion = false;
+      this.myPet.WillingToSell = false;
       this.myPet.Parenting = true;
     }
   }
@@ -308,6 +324,7 @@ export class AddpetComponent implements OnInit {
     this.myPet.HeatingCycleTo = myPetForm.value.HeatingCycleTo == "NaN-NaN-NaN" ? "" : myPetForm.value.HeatingCycleTo;
     this.myPet.KCIRegistered = myPetForm.value.KCIRegistered;
     this.myPet.Description = myPetForm.value.Description;
+    debugger;
     this.myPetService.saveMypet(this.myPet, this.myPet.PictrueName)
       .subscribe((result: any) => {
         let status = result.Status;
@@ -325,6 +342,7 @@ export class AddpetComponent implements OnInit {
   }
 
   updatePet(myPetForm: NgForm) {
+    debugger;
     this.myPet.PetId = this.petId;
     this.myPet.PetName = myPetForm.value.PetName;
     this.myPet.PetType = myPetForm.value.PetType;

@@ -126,4 +126,8 @@ export class AuthService {
         return data;
       }));
   }
+  
+  getMyProfile() {
+    return this.http.get(this.baseUrl + environment.apiEndPoints.getMyProfile);
+  }
 }

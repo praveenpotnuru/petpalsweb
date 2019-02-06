@@ -14,12 +14,14 @@ import { MypetsComponent } from './modules/mypets/mypets.component';
 import { MyrequestsComponent } from './modules/myrequests/myrequests.component';
 import { ProductsComponent } from './modules/products/products.component';
 import { ContactusComponent } from './modules/contactus/contactus.component';
+import { HowitworksComponent } from './modules/howitworks/howitworks.component';
+import { PetnewsComponent } from './modules/petnews/petnews.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'home', component: HomeComponent },
   { path: 'petlove', component: PetloveComponent },
-  { path: 'petlove/:type/:service', component: PetloveComponent },
+  { path: 'petlove/:service', component: PetloveComponent },
   { path: 'petdetails/:id', component: SinglepetComponent },
   { path: 'petdetails/:type/:id', component: SinglepetComponent },
   { path: 'about', component: AboutComponent },
@@ -35,6 +37,8 @@ const appRoutes: Routes = [
   { path: 'myrequests', component: MyrequestsComponent },
   { path: 'products', component: ProductsComponent },
   { path: 'contactus', component: ContactusComponent },
+  { path: 'howitworks', component: HowitworksComponent },
+  { path: 'petnews', component: PetnewsComponent },
   { path: '**', redirectTo: '' }
 ];
 

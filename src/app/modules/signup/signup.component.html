@@ -7,8 +7,11 @@
     <div class="col-md-3"></div>
     <div class="offset-sm-2 col-md-6">
       <div class="card">
-        <div class="heading1">
+        <div class="heading1" *ngIf="!this.isEditProfile">
           Please Sign Up
+        </div>
+        <div class="heading1" *ngIf="this.isEditProfile">
+          Update Profile
         </div>
         <div class="card-body">
           <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)">
@@ -87,6 +90,7 @@
             <div class="form-group" *ngIf="!isNavigationEnabled">
               <label>Select Area<sup style="color: red">*</sup></label>
               <select name="Area" [(ngModel)]="user.AreaName" class="form-control" (change)="onAreaChange(user.AreaName)">
+                <option value=""></option>
                 <option *ngFor="let area of areaList" [ngValue]="area">{{area.AreaName}}</option>
               </select>
             </div>

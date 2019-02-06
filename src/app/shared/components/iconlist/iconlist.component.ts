@@ -19,7 +19,7 @@ export class IconlistComponent implements OnInit {
     let redirectParameters = "";
     if (currentUser) {
       currentUser = JSON.parse(currentUser);
-      redirectParameters = `&Email = ${emailId}&UserName=&password=admin&FirstName=${currentUser.FirstName}&LastName=${currentUser.LastName}&PhoneNo=${currentUser.MobilePhone}&longitude=${longitude}&latitude=${latitude}`;
+      redirectParameters = `&Email=${emailId}&UserName=&password=admin&FirstName=${currentUser.FirstName}&LastName=${currentUser.LastName}&PhoneNo=${currentUser.MobilePhone}&longitude=${longitude}&latitude=${latitude}`;
     }
     else if (latitude) {
       redirectParameters = `&longitude=${longitude}&latitude=${latitude}`;

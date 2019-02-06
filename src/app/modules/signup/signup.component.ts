@@ -103,8 +103,6 @@ export class SignupComponent implements OnInit {
 
   }
 
-
-
   onCountryChange(selectedCountry: Country) {
     this.searchService.getCityList(selectedCountry.CountryId)
       .subscribe((cityList: any) => {
@@ -209,7 +207,6 @@ export class SignupComponent implements OnInit {
     else {
       this.saveUserDetails(userForm);
     }
-
   }
 
   saveUserImage(userForm: NgForm) {
@@ -223,12 +220,9 @@ export class SignupComponent implements OnInit {
     const UserName = userForm.value.FirstName + ' ' + userForm.value.LastName;
     this.user.UserName = UserName;
     this.user.Password = userForm.value.Password
-    this.user.FirstName = userForm.value.FirstName
-
     this.user.LastName = userForm.value.LastName;
     this.user.MobilePhone = userForm.value.MobilePhone;
     this.user.EmailId = userForm.value.EmailId;
-    //this.user.Gender = userForm.value.Gender;
     this.user.EmailNotification = true;
     this.user.SmsNotification = true;
     this.user.DeviceType = "Web";
@@ -248,17 +242,16 @@ export class SignupComponent implements OnInit {
       this.user.Latitude = this.petService.getLatitude();
       this.user.Longitude = this.petService.getLongitude();
     }
-    //this.user.KCIRegistered = 1;
-    //this.user.KCIDetails = userForm.value.KCIDetails;
     this.user.ReferralCode = 0;
-
     if (this.isEditProfile) {
       this.authService.updateProfile(this.user)
         .subscribe((result: any) => {
           let status = result.Status;
           if (status != "Errored") {
-            var toastOptions = this.searchService.setToastOptions('Update Profile', 'Success', 'signin')
+            var toastOptions = this.searchService.setToastOptions('Update Profile', 'Success', '')
             this.toastaService.success(toastOptions);
+            this.submitDisabled = false;
+            this.getMyProfile();
           }
           else {
             var toastOptions = this.searchService.setToastOptions('Update Profile', result.ErrorMessage, '')
@@ -267,7 +260,7 @@ export class SignupComponent implements OnInit {
           }
         });
     } else {
-
+      this.user.FirstName = userForm.value.FirstName
       this.authService.signUp(this.user)
         .subscribe((result: any) => {
           let status = result.Status;
@@ -282,5 +275,11 @@ export class SignupComponent implements OnInit {
           }
         });
     }
+  }
+  getMyProfile() {
+    this.authService.getMyProfile().subscribe((result: any) => {
+      let userData = result.Data;
+      localStorage.setItem('currentUser', JSON.stringify(userData));
+    });
   }
 }

@@ -35,8 +35,9 @@ export const environment: EnvironmentConfig = {
         addCabRequest:"Utils/AddCABRequest",
         addVolunteersRequest:"Utils/AddVolunteersRequest",
         contactus:"Utils/ContactUs",
-        updateprofile:"Utils/SaveMyProfile"
-
+        updateprofile:"MobileAccount/SaveMyProfile",
+        getMyProfile:"MobileAccount/GetMyProfile",
+        getPetNews:"Utils/Petnews"
 
     }
 

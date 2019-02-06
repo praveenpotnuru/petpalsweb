@@ -68,7 +68,6 @@ export class PetserviceService {
   }
 
   saveMypet(myPet: MyPet, petImage: string) {
-    console.log(petImage)
     var body = {
       "PetName": myPet.PetName,
       "BreedName": myPet.BreedName,
@@ -97,8 +96,8 @@ export class PetserviceService {
       "Taken": myPet.Taken,
       "Latitude": myPet.Latitude,
       "Longitude": myPet.Longitude,
-      "Description": myPet.Description
-
+      "Description": myPet.Description,
+      "WillingToSell": myPet.WillingToSell
     }
 
     return this.http.post(this.apiUrl + environment.apiEndPoints.savePet, body);
@@ -136,7 +135,8 @@ export class PetserviceService {
       "Parenting": myPet.Parenting,
       "Taken": myPet.Taken,
       "Latitude": myPet.Latitude,
-      "Longitude": myPet.Longitude
+      "Longitude": myPet.Longitude,
+      "WillingToSell": myPet.WillingToSell
 
     }
 
