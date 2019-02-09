@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { Requests } from 'src/app/shared/models/Requests.model';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { PetserviceService } from 'src/app/services/petservice.service';
 
@@ -19,20 +18,19 @@ export class MyrequestsComponent implements OnInit {
   withdrawRequestId: number;
   show: boolean;
 
-  // @ViewChild('searchInput') searchValue: ElementRef;
+  /*Boarding*/
+  public isBoarding: Boolean = false;
+  public displayBoardingModal = 'none';
+  public boardingRequestInfo: any;
 
   constructor(
     private sharedService: PetserviceService,
-
-    private router: Router
+    private router: Router,
+    private petService: PetserviceService
   ) {
-
-
   }
 
-
   ngOnInit() {
-
     this.securityToken = localStorage.getItem('token');
     this.show = false;
     this.sharedService.getAllRequest()
@@ -44,9 +42,10 @@ export class MyrequestsComponent implements OnInit {
           console.log(this.dataHasOrNot);
         }
       })
-
   }
 
+  ngAfterViewInit() {
+  }
 
   onFindPetLoveClick() {
     this.router.navigate(['/petlove']);
@@ -59,8 +58,6 @@ export class MyrequestsComponent implements OnInit {
   onAdoptionClick() {
     this.router.navigate(['/adoption']);
   }
-
-
 
   onDetailsClick(petId: number) {
     //this.router.navigate(['/own-a-pet-details/' + petId]);
@@ -94,4 +91,20 @@ export class MyrequestsComponent implements OnInit {
       })
   }
 
+  diableAnchorLink() {
+    return false;
+  }
+  onModalOpen(requestedData: any) {
+    this.boardingRequestInfo=requestedData;
+    this.isBoarding = true;
+    this.displayBoardingModal = 'block';
+    document.body.style.overflow = 'hidden'
+    // this.petService.myBoardingDetails(requestId).subscribe((result: any) => {
+     
+    // });
+  }
+  closeModal() {
+    this.displayBoardingModal = 'none';
+    document.body.removeAttribute('style')
+  }
 }

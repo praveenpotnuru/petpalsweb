@@ -12,23 +12,39 @@
           <div class="col-xs-5 l-text">
             {{requestData.Message}}
           </div>
-          <div class="col-md-7 l-text"> {{requestData.RequestedDateTime}}
+          <div class="col-md-7 l-text">
+            <div class="row">
+              <div class="col-md-4">
+                {{requestData.RequestedDateTime}}
+              </div>
+              <div class="col-md-8">
+                <div class="row">
+                  <div class="col-md-5" *ngIf="requestData.MsgStatus=='Under Screening'">
+                    <a href="#" class="btn btn-info btn-sm btn-block">
+                      <span class="glyphicon glyphicon-send"></span> In Screening
+                    </a></div>
+                  <div class="col-md-5"
+                    *ngIf="requestData.MsgStatus!='Approved' && requestData.MsgStatus!='Under Screening'">
+                    <a href="#" class="btn btn-info btn-sm btn-block">
+                      <span class="glyphicon glyphicon-send"></span> In Screening
+                    </a></div>
+                  <div class="col-md-4" *ngIf="requestData.MsgStatus=='Approved'">
+                    <a href="#" (click)="diableAnchorLink()" class="btn btn-success btn-sm btn-block">
+                      <span class="glyphicon glyphicon-ok"></span> Approved
+                    </a></div>
+                  <div class="col-md-4" *ngIf="requestData.MsgStatus!='Approved'">
+                    <a href="#" (click)="onContactRequest(requestData.PetMatingRequestId)" data-toggle="modal"
+                      data-target="#withdrawRequestModal" class="btn btn-danger btn-sm btn-block">
+                      <span class="glyphicon glyphicon-remove"></span> withdraw
+                    </a></div>
+                  <div class="col-md-3" *ngIf="requestData.ServiceType=='Boarding'">
+                    <a (click)="onModalOpen(requestData)" class="btn btn-primary btn-sm btn-block">
+                      <span class="glyphicon glyphicon-eye-open"></span> View
+                    </a></div>
+                </div>
+              </div>
+            </div>
 
-            <a href="#" *ngIf="requestData.MsgStatus=='Under Screening'" class="btn btn-info btn-sm">
-              <span class="glyphicon glyphicon-send"></span> In Screening
-            </a>
-            <a href="#" *ngIf="requestData.MsgStatus!='Approved' && requestData.MsgStatus!='Under Screening'" class="btn btn-info btn-sm">
-              <span class="glyphicon glyphicon-send"></span> In Screening
-            </a>
-            &nbsp;
-            <a href="#" *ngIf="requestData.MsgStatus=='Approved'" class="btn btn-success btn-sm">
-              <span class="glyphicon glyphicon-ok"></span> Approved
-            </a>
-            &nbsp;
-            <a href="#" (click)="onContactRequest(requestData.PetMatingRequestId)" data-toggle="modal" data-target="#withdrawRequestModal"
-              *ngIf="requestData.MsgStatus!='Approved'" class="btn btn-danger btn-sm">
-              <span class="glyphicon glyphicon-remove"></span> withdraw
-            </a>
           </div>
         </div>
 
@@ -113,6 +129,12 @@
         </div>
       </div>
     </div>
+  </div>
+</div>
+<div class="modal" id="boardingModal" [ngStyle]="{'display':displayBoardingModal}">
+  <div class="modal-dialog" *ngIf='boardingRequestInfo'>
+    <app-boarding [petData]="boardingRequestInfo" [isEditView]="true" [isBoardingClicked]="isBoarding"
+      (closeModalPopup)="closeModal()"></app-boarding>
   </div>
 </div>
 <app-mast-footer>

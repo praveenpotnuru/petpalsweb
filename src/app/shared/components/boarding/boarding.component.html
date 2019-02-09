@@ -1,0 +1,63 @@
+<div class="modal-content">
+
+  <!-- Modal Header -->
+  <div class="modal-header">
+    <h4 class="modal-title">Boarding Request Details
+    </h4>
+    <button type="button" class="close" (click)="closeModal()">&times;</button>
+  </div>
+
+  <!-- Modal body -->
+  <div class="modal-body" >
+    <div class="form-group" >
+      <label>Start Date<sup style="color: red">*</sup></label>
+      <input type="date" [disabled]="isEditView" class="form-control" [(ngModel)]="boardingStartDate">
+    </div>
+    <div class="form-group">
+      <label>End Date<sup style="color: red">*</sup></label>
+      <input type="date" [disabled]="isEditView" class="form-control" [(ngModel)]="boardingEndDate">
+    </div>
+    <div class="form-group">
+      <label>Select Breed<sup style="color: red">*</sup></label>
+      <select class="form-control" [disabled]="isEditView" [(ngModel)]="selectedBreed" name="BreedName">
+        <option *ngFor="let breed of breedList" value="{{breed.BreedId}}">{{breed.BreedName}}
+        </option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>No of Days</label>
+      <input type="number" [disabled]="isEditView" class="form-control" [(ngModel)]="selectedNumberOfDays">
+    </div>
+    <div class="form-group">
+      <label>Food Type</label>
+      <select class="form-control" [disabled]="isEditView" [(ngModel)]="selectedFoodOption">
+        <option value="Non Veg">
+          Non Veg
+        </option>
+        <option value="Veg">
+          Veg
+        </option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Pickup Drop Needed</label>
+      <select class="form-control" [disabled]="isEditView" [(ngModel)]="selectedPickupDrop">
+        <option value="1">
+          Yes
+        </option>
+        <option value="0">
+          No
+        </option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Other Requirements</label>
+      <input type="text" class="form-control" [disabled]="isEditView" [(ngModel)]="otherRequirements">
+    </div>
+  </div>
+
+  <!-- Modal footer -->
+  <div class="modal-footer">
+    <button type="button" *ngIf="!isEditView" class="btn btn-info" (click)="petBoardingRequest()">Send</button>
+    <button type="button" class="btn btn-danger" (click)="closeModal()">Close</button>
+  </div>

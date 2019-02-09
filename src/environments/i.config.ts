@@ -36,6 +36,7 @@ export interface EnvironmentConfig {
         updateprofile:string;
         getMyProfile:string;
         getPetNews:string;
+        getBoardingRequestDetails:string;
     }
 
 }

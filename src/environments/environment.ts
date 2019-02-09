@@ -41,10 +41,8 @@ export const environment: EnvironmentConfig = {
         contactus:"Utils/ContactUs",
         updateprofile:"MobileAccount/SaveMyProfile",
         getMyProfile:"MobileAccount/GetMyProfile",
-        getPetNews:"Utils/Petnews"
-
-
-
+        getPetNews:"Utils/Petnews",
+        getBoardingRequestDetails:"Utils/GetBoardingRequestDetails?RequestId=",
     }
 
 };

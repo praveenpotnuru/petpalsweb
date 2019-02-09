@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewContainerRef } from '@angular/core';
+import { Component, OnInit, ViewContainerRef, OnChanges } from '@angular/core';
 import { User } from 'src/app/shared/models/user.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { MasterService } from 'src/app/services/master.service';
@@ -16,7 +16,7 @@ import { PetserviceService } from 'src/app/services/petservice.service';
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.less']
 })
-export class SignupComponent implements OnInit {
+export class SignupComponent implements OnInit, OnChanges {
   isEditProfile: boolean = false;
   user: User = {
     UserName: '',
@@ -81,17 +81,6 @@ export class SignupComponent implements OnInit {
           console.log("you denied me :-(");
         this.isNavigationEnabled = false;
       });
-
-    if (localStorage.getItem('currentUser')) {
-      this.isEditProfile = true;
-      this.user = JSON.parse(localStorage.getItem('currentUser')) as User;
-      this.imagePath = this.user.UserProfilePicture;
-      this.buttonName = "Save";
-
-    } else {
-      this.isEditProfile = false;
-    }
-
     this.searchService.getUserTypeList()
       .subscribe((UserTypeList: any) => {
         this.UserTypeList = UserTypeList.Data;
@@ -100,9 +89,21 @@ export class SignupComponent implements OnInit {
       .subscribe((countryList: any) => {
         this.countryList = countryList.Data;
       })
-
+    if (localStorage.getItem('currentUser')) {
+      this.isEditProfile = true;
+      this.getMyProfile();
+      this.buttonName = "Save";
+    } else {
+      this.isEditProfile = false;
+    }
   }
 
+  ngOnChanges() {
+    debugger;
+    if (this.countryList && this.user) {
+      debugger;
+    }
+  }
   onCountryChange(selectedCountry: Country) {
     this.searchService.getCityList(selectedCountry.CountryId)
       .subscribe((cityList: any) => {
@@ -279,6 +280,9 @@ export class SignupComponent implements OnInit {
   getMyProfile() {
     this.authService.getMyProfile().subscribe((result: any) => {
       let userData = result.Data;
+      this.user = userData;
+      this.imagePath = this.user.UserProfilePicture;
+      this.user.CountryId=userData.CountryId;
       localStorage.setItem('currentUser', JSON.stringify(userData));
     });
   }

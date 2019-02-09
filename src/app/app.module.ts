@@ -37,6 +37,7 @@ import { ProductsComponent } from './modules/products/products.component';
 import { ContactusComponent } from './modules/contactus/contactus.component';
 import { HowitworksComponent } from './modules/howitworks/howitworks.component';
 import { PetnewsComponent } from './modules/petnews/petnews.component';
+import { BoardingComponent } from './shared/components/boarding/boarding.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -62,6 +63,7 @@ import { PetnewsComponent } from './modules/petnews/petnews.component';
     ContactusComponent,
     HowitworksComponent,
     PetnewsComponent,
+    BoardingComponent,
   ],
   imports: [
     BrowserModule,

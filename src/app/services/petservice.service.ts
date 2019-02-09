@@ -1,7 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { map } from 'rxjs/operators';
-import { environment } from '../../environments/environment'
+import { environment } from '../../environments/environment';
 import { MyPet } from '../shared/models/MyPet.model';
 
 @Injectable({
@@ -24,7 +23,6 @@ export class PetserviceService {
 
   getPetDetails(petId) {
     return this.http.get(this.apiUrl + environment.apiEndPoints.petDetails + '?petId=' + petId);
-
   }
 
   getLatitude() {
@@ -42,7 +40,6 @@ export class PetserviceService {
     }
     return longitude ? longitude : "0";
   }
-
 
   getAllRequest() {
     return this.http.get(this.apiUrl + environment.apiEndPoints.myrequests);
@@ -103,7 +100,6 @@ export class PetserviceService {
     return this.http.post(this.apiUrl + environment.apiEndPoints.savePet, body);
 
   }
-
 
   updateMypet(myPet: MyPet, petImage: string) {
     var body = {
@@ -191,8 +187,13 @@ export class PetserviceService {
   contactUsLogin(subject: string, message: string) {
     return this.http.get(this.apiUrl + environment.apiEndPoints.contactus + `?Subject=${subject}&Message=${message}`);
   }
+
   contactUs(name: string, mobile: string, email: string, message: string) {
     return this.http.get(this.apiUrl + environment.apiEndPoints.contactus +
       `?email=${email}&Message=${message}&name=${name}&mobileno=${mobile}`);
+  }
+
+  myBoardingDetails(requestId: number) {
+    return this.http.post(this.apiUrl + environment.apiEndPoints.getBoardingRequestDetails + requestId, {});
   }
 }

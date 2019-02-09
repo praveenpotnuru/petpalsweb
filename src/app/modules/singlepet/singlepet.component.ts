@@ -1,10 +1,9 @@
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AuthService } from 'src/app/services/auth.service';
-import { PetserviceService } from '../../services/petservice.service';
-import { MasterService } from 'src/app/services/master.service';
 import { ToastaService } from 'projects/ngx-toasta/src/public_api';
-import { Breed } from 'src/app/shared/models/breed.model';
+import { AuthService } from 'src/app/services/auth.service';
+import { MasterService } from 'src/app/services/master.service';
+import { PetserviceService } from '../../services/petservice.service';
 
 @Component({
   selector: 'app-singlepet',
@@ -23,20 +22,11 @@ export class SinglepetComponent implements OnInit {
   public displayModal = 'none';
 
   /*Boarding*/
+  public isBoarding: Boolean = false;
   public displayBoardingModal = 'none';
-  breedList: Breed[] = [];
-  public selectedBreed = '';
-  public selectedFoodOption = 'Non Veg';
-  public selectedPickupDrop = 1;
-  public selectedNumberOfDays = 1;
-  public otherRequirements = "";
-  public boardingStartDate = "";
-  public boardingEndDate = "";
 
   /*Walker, Tariner, Rescuer */
   public displayCommonModal = 'none';
-
-
 
   @ViewChild('fileInput') fileInput: ElementRef;
 
@@ -53,21 +43,12 @@ export class SinglepetComponent implements OnInit {
 
   ngOnInit() {
     this.getPetData();
-
   }
 
   ngAfterViewInit() {
     this.fileInput.nativeElement.addEventListener('click', this.onModalOpen.bind(this));
   }
-
-  getCurrentDate() {
-    let todayDate = new Date();
-    let currentMonth = (todayDate.getMonth() + 1).toString();
-    let currentDate = todayDate.getDate().toString();
-    currentMonth = currentMonth.length == 2 ? currentMonth : "0" + currentMonth;
-    currentDate = currentDate.length == 2 ? currentDate : "0" + currentDate;
-    return todayDate.getFullYear() + "-" + currentMonth + "-" + currentDate;
-  }
+ 
   onModalOpen(event) {
     if (this.authService.isAuthenticated()) {
       this.handleModalPopups();
@@ -82,6 +63,7 @@ export class SinglepetComponent implements OnInit {
   }
 
   handleModalPopups() {
+    this.isBoarding = false;
     if (!this.petType) {
       this.displayModal = 'block';
       document.body.style.overflow = 'hidden'
@@ -101,17 +83,10 @@ export class SinglepetComponent implements OnInit {
         })
     }
     else if (this.petType == "Boarding") {
+      this.isBoarding = true;
       this.displayBoardingModal = 'block';
       document.body.style.overflow = 'hidden'
-      this.boardingStartDate = this.getCurrentDate();
-      this.boardingEndDate = this.getCurrentDate();
-
-      if (this.breedList.length == 0) {
-        this.masterService.getBreedList()
-          .subscribe((breedList: any) => {
-            this.breedList = breedList.Data;
-          });
-      }
+   
     }
     else if (this.petType == "Walker" || this.petType == "Trainer"
       || this.petType == "Rescuer"
@@ -128,7 +103,6 @@ export class SinglepetComponent implements OnInit {
   getPetData() {
     this.petService.getPetDetails(this.petId).subscribe((data: any) => {
       this.petData = data.Data[0];
-      console.log(this.petData);
     }, error => {
       console.log(error);
     })
@@ -184,43 +158,7 @@ export class SinglepetComponent implements OnInit {
     this.displayModal = 'none';
     this.displayBoardingModal = 'none';
     this.displayCommonModal = 'none';
-
     document.body.removeAttribute('style')
-  }
-  petBoardingRequest() {
-    let body =
-    {
-      "PetId": this.petData.PetId,
-      "PetOwnerId": this.petData.PetOwnerId,
-      "RequesterOwnerId": this.authService.getRequesterOwnerId(),
-      "RequesterPetId": "",
-      "BoardingRequestDetails":
-        [{
-          "StartDate": this.boardingStartDate,
-          "EndDate": this.boardingEndDate,
-          "BreedId": this.selectedBreed,
-          "BoardingAgencyId": this.petData.PetOwnerId,
-          "NumberOfDays": this.selectedNumberOfDays,
-          "TypeOfFood": this.selectedFoodOption,
-          "PickUpDropNeeded": this.selectedPickupDrop,
-          "OtherRequirements": this.otherRequirements
-        }]
-    }
-    this.petService.petBoardingRequest(body).subscribe((result: any) => {
-      var status = result.Status;
-      var errorMessage = result.ErrorMessage;
-      if (status != 'Errored') {
-        var toastOptions = this.masterService.setToastOptions('Pet Boarding Request', 'Pet Boarding Rquest Placed Successfully', '')
-        this.toastaService.success(toastOptions);
-        this.closeModal();
-        this.router.navigate(['/myrequests']);
-      }
-      else {
-        var toastOptions = this.masterService.setToastOptions('Pet Boarding Request', errorMessage, '')
-        this.toastaService.error(toastOptions);
-      }
-
-    });
   }
 
   petCommonModalRequest() {
@@ -390,7 +328,7 @@ export class SinglepetComponent implements OnInit {
 
     });
   }
-
+  
   petVolutneersRequest() {
     let body =
     {
