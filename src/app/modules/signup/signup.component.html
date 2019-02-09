@@ -23,7 +23,8 @@
               <img id="blah" [src]="imagePath" style="height:50%;width:50%;" alt="" />
             </div>
             <div class="form-group" *ngIf="!isEditProfile">
-              <p><label class="checkbox-inline"><input type="checkbox" name="vendorLogin" [(ngModel)]="vendorLogin">Vendor
+              <p><label class="checkbox-inline"><input type="checkbox" name="vendorLogin"
+                    [(ngModel)]="vendorLogin">Vendor
                   Login
                 </label></p>
             </div>
@@ -61,8 +62,8 @@
             </div>
             <div class="form-group">
               <label>Contact Number<sup style="color: red">*</sup></label>
-              <input type="text" numbersOnly maxlength="10" minlength="10" class="form-control" [(ngModel)]="user.MobilePhone"
-                name="MobilePhone">
+              <input type="text" numbersOnly maxlength="10" minlength="10" class="form-control"
+                [(ngModel)]="user.MobilePhone" name="MobilePhone">
             </div>
             <!-- <div class="form-group">
               <label>Date od birth<sup style="color: red">*</sup></label>
@@ -77,24 +78,28 @@
             </div> -->
             <div class="form-group" *ngIf="!isNavigationEnabled">
               <label>Select Country<sup style="color: red">*</sup></label>
-              <select name="Country" [(ngModel)]="user.CountryName" class="form-control" (change)="onCountryChange(user.CountryName)">
-                <option *ngFor="let country of countryList" [ngValue]="country">{{country.CountryName}}</option>
+              <select name="Country" [(ngModel)]="user.CountryId" class="form-control"
+                (change)="onCountryChange(user.CountryId)">
+                <option *ngFor="let country of countryList" [ngValue]="country.CountryId">{{country.CountryName}}
+                </option>
               </select>
             </div>
             <div class="form-group" *ngIf="!isNavigationEnabled">
               <label>Select City<sup style="color: red">*</sup></label>
-              <select name="City" [(ngModel)]="user.CityName" class="form-control" (change)="onCityChange(user.CityName)">
-                <option *ngFor="let city of cityList" [ngValue]="city">{{city.CityName}}</option>
+              <select name="City" [(ngModel)]="user.CityId" class="form-control"
+                (change)="onCityChange(user.CityId,true)">
+                <option *ngFor="let city of cityList" [ngValue]="city.CityId">{{city.CityName}}</option>
               </select>
             </div>
             <div class="form-group" *ngIf="!isNavigationEnabled">
               <label>Select Area<sup style="color: red">*</sup></label>
-              <select name="Area" [(ngModel)]="user.AreaName" class="form-control" (change)="onAreaChange(user.AreaName)">
-                <option value=""></option>
-                <option *ngFor="let area of areaList" [ngValue]="area">{{area.AreaName}}</option>
+              <select name="Area" [(ngModel)]="user.AreaId" class="form-control">
+                <option [ngValue]=""></option>
+                <option *ngFor="let area of areaList" [ngValue]="area.Areaid">{{area.AreaName}}</option>
               </select>
             </div>
-            <button type="submit" [disabled]="submitDisabled" class="btn" style="background-color: #A50F2D;color: white;">{{buttonName}}</button>
+            <button type="submit" [disabled]="submitDisabled" class="btn"
+              style="background-color: #A50F2D;color: white;">{{buttonName}}</button>
           </form>
         </div>
       </div>

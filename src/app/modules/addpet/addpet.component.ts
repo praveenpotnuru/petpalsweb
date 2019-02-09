@@ -109,7 +109,6 @@ export class AddpetComponent implements OnInit {
           this.showloadingImage = false;
         }
       })
-    debugger;
     if (this.isEditPet) {
       this.myPetService.mypetByPetId(this.petId)
         .subscribe((result: any) => {
@@ -324,7 +323,6 @@ export class AddpetComponent implements OnInit {
     this.myPet.HeatingCycleTo = myPetForm.value.HeatingCycleTo == "NaN-NaN-NaN" ? "" : myPetForm.value.HeatingCycleTo;
     this.myPet.KCIRegistered = myPetForm.value.KCIRegistered;
     this.myPet.Description = myPetForm.value.Description;
-    debugger;
     this.myPetService.saveMypet(this.myPet, this.myPet.PictrueName)
       .subscribe((result: any) => {
         let status = result.Status;
@@ -342,7 +340,6 @@ export class AddpetComponent implements OnInit {
   }
 
   updatePet(myPetForm: NgForm) {
-    debugger;
     this.myPet.PetId = this.petId;
     this.myPet.PetName = myPetForm.value.PetName;
     this.myPet.PetType = myPetForm.value.PetType;

@@ -16,7 +16,7 @@ import { PetserviceService } from 'src/app/services/petservice.service';
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.less']
 })
-export class SignupComponent implements OnInit, OnChanges {
+export class SignupComponent implements OnInit {
   isEditProfile: boolean = false;
   user: User = {
     UserName: '',
@@ -51,6 +51,7 @@ export class SignupComponent implements OnInit, OnChanges {
   areaList: any = [];
   selectedCityName = '';
   selectedCountryName = '';
+  selectedCountryId: number;
   selectedAreaName = '';
   ConfirmPassword: string;
   files: FileList;
@@ -98,34 +99,29 @@ export class SignupComponent implements OnInit, OnChanges {
     }
   }
 
-  ngOnChanges() {
-    debugger;
-    if (this.countryList && this.user) {
-      debugger;
-    }
-  }
-  onCountryChange(selectedCountry: Country) {
-    this.searchService.getCityList(selectedCountry.CountryId)
+
+  onCountryChange(countryId: number) {
+    this.searchService.getCityList(countryId)
       .subscribe((cityList: any) => {
         this.cityList = cityList.Data;
       });
-
-    this.selectedCountryName = selectedCountry.CountryName;
   }
 
 
-  onCityChange(selectedCity: City) {
-    this.searchService.getAreaList(selectedCity.CityId)
+  onCityChange(cityId: number, isManual: boolean) {
+    this.searchService.getAreaList(cityId)
       .subscribe((areaList: any) => {
         this.areaList = areaList.Data;
       });
-
-    this.selectedCityName = selectedCity.CityName;
+    if (isManual) {
+      this.user.AreaId = 0;
+    }
+    //this.selectedCityName = selectedCity.CityName;
   }
 
-  onAreaChange(selectedArea: Area) {
-    this.selectedAreaName = selectedArea.AreaName;
-  }
+  // onAreaChange(selectedArea: Area) {
+  //   this.selectedAreaName = selectedArea.AreaName;
+  // }
 
   fileChangeEvent(fileInput: any) {
     this.files = fileInput.target.files;
@@ -233,12 +229,16 @@ export class SignupComponent implements OnInit, OnChanges {
       this.user.UserType = "PetParent";
     }
     if (!this.isNavigationEnabled) {
-      this.user.CountryId = userForm.value.Country.CountryId;
-      this.user.CountryName = userForm.value.Country.CountryName;
-      this.user.CityId = userForm.value.City.CityId;
-      this.user.CityName = userForm.value.City.CityName;
-      this.user.AreaId = userForm.value.Area.Areaid;
-      this.user.AreaName = userForm.value.Area.AreaName;
+      this.user.CountryId = userForm.value.Country;
+      let filteredCountry = this.countryList.filter(x => x.CountryId == this.user.CountryId);
+      this.user.CountryName = filteredCountry[0].CountryName;
+      this.user.CityId = userForm.value.City;
+      let filteredCity = this.cityList.filter(x => x.CityId == this.user.CityId);
+      this.user.CityName = filteredCity[0].CityName;
+      this.user.AreaId = userForm.value.Area;
+      let filteredArea = this.areaList.filter(x => x.Areaid == this.user.AreaId);
+      this.user.AreaName = filteredArea[0].AreaName;
+
     } else {
       this.user.Latitude = this.petService.getLatitude();
       this.user.Longitude = this.petService.getLongitude();
@@ -282,7 +282,10 @@ export class SignupComponent implements OnInit, OnChanges {
       let userData = result.Data;
       this.user = userData;
       this.imagePath = this.user.UserProfilePicture;
-      this.user.CountryId=userData.CountryId;
+      this.user.CountryId = userData.CountryId;
+      this.user.AreaId = parseInt(userData.AreaId);
+      this.onCountryChange(this.user.CountryId);
+      this.onCityChange(this.user.CityId, false);
       localStorage.setItem('currentUser', JSON.stringify(userData));
     });
   }

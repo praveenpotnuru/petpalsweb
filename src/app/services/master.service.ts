@@ -76,7 +76,6 @@ export class MasterService {
   getPetNews() {
     return this.http.post(this.baseUrl + environment.apiEndPoints.getPetNews, {})
       .pipe(map(data => {
-        debugger;
         return data;
       }));
   }
