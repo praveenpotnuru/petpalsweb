@@ -4,67 +4,67 @@
 <div class="container-fluid" style="background-color:#e0dddf">
 
 
-	<div class="row">
+	<div class="row" style="margin-right:0px;">
 		<h2 *ngIf="!searchService" class="theme-color text-center bold">Pet Love</h2>
 		<h2 *ngIf="searchService" class="theme-color text-center bold">{{searchService}}</h2>
 		<div class="row">
 
 			<div class="col-md-3"></div>
 			<div *ngIf="!searchService" class="col-md-6 white-bg-color container-text">
-				<p>We help people find a mate for their pet
-					· Being single is not appreciated by humans. Having love is one of the basics for humans, why would that not be
-					the
-					case with our pets. Feelings are same across all. We are here to help Find Pet Love. Give us a chance and we will
-					be
-					able to help you with it.
+				<p>We help people find a mate for their pet, being single is not appreciated by humans. Having love is
+					one of the basics for humans, why would that not be the case for our pets. Feelings are same across
+					all. We are here to help Find Pet Love. Give us a chance and we will be able to help you with it.
 				</p>
 			</div>
 			<div *ngIf="searchService&&searchService=='Boarding'" class="col-md-6 white-bg-color container-text">
 				<p>We have the best of the boarding agencies registered with us
-					· It is not possible to be home all the time with pets and it is not practical to leave our pets home alone too.
+					· It is not possible to be home all the time with pets and it is not practical to leave our pets
+					home alone too.
 					We have the choice to let your pets have the pampering with our boarding services.
 				</p>
 			</div>
 			<div *ngIf="searchService&&searchService=='Spa'" class="col-md-6 white-bg-color container-text">
-				<p>Pet Spa and Grooming agencies who have very good services have joined hands with us
-					· If you are under the assumption that pets don't have SPA, you are mistaken. We understand the need for Pet Spa.
-					All it requires is to pay a visit to one of our Spas and you will understand the transformation that we can bring
-					in for your pet.
+				<p>Pet Spa and Grooming agencies who have very good services have joined hands with us, if you are under
+					the assumption that pets don't have SPA, you have mistaken. We understand the need for Pet Spa. All
+					it requires is to pay a visit to one of our Spa's and you will see the transformation that we can
+					bring in for your pets.
 				</p>
 			</div>
 			<div *ngIf="searchService&&searchService=='Adoption'" class="col-md-6 white-bg-color container-text">
-				<p>Fluffly Nut will be joining hands with us soon. We support adoptions and help pets get a new, loving and a
+				<p>Fluffly Nut will be joining hands with us soon. We support adoptions and help pets get a new, loving
+					and a
 					comfortable home.
-					· Do you need a black one or a white one or a dotted one or some other choice. No worries, we have all covered. If
+					· Do you need a black one or a white one or a dotted one or some other choice. No worries, we have
+					all covered. If
 					there is a pet in town available for adoption, you are guaranteed to have it as your pet.
 				</p>
 			</div>
 			<div *ngIf="searchService&&searchService=='Trainer'" class="col-md-6 white-bg-color container-text">
-				<p>We have dog trainers who have joined us, who provide basic and customized training for dogs.
-					· Who doesn't like the behaved pets. Want to show off few extra tricks from your pet, no worries. We have a crew
-					of trainers to help you make your pet learn to behave and listen to you. You don't need to start from ground, our
-					trainers trained enough pets so far. You are open to choose the trainer, rate, location, and what not.</p>
+				<p>We have dog trainers who have joined us, who provide basic and customized training for dogs. Who
+					doesn't like well-behaved pets? Would you like to showcase a few stunts that your dog can perform?
+					We have trainers who can help you with basic and advanced training for your pets, all you have to do
+					is go through the list and choose what suits you the best.</p>
 			</div>
 			<div *ngIf="searchService&&searchService=='Cab'" class="col-md-6 white-bg-color container-text">
-				<p>We have pet cabs available too
-					· History taught us that all do not welcome the pets in their cabs. Reasons may be different but result remains
-					safe. We did tie up with the service, who will never say no for a pet to board in their cab. All it needs is a
+				<p>We have pet cabs available too. History taught us that all do not welcome the pets in their cabs.
+					Reasons may be different but the result remains the same. We have tied up with the cab service
+					providers, who will never say no, in terms of accommodating pets in their cabs. All it needs is a
 					click to book a cab.</p>
 			</div>
 			<div *ngIf="searchService&&searchService=='Rescuer'" class="col-md-6 white-bg-color container-text">
-				<p>Domlur Dog Park and PFA has joined hands with us for rescues
-					· We feel the social responsibility to save animals. Did you find an animal that requires attention and you feel
-					that you can't help much in that situation. No worries, call the rescuer near you, they are open to serve any
-					time.</p>
+				<p>Domlur Dog Park and PFA have joined hands with us for rescues. We understand the social
+					responsibility in terms of saving animals, if you find animals that are in a bad state and need
+					help, reach out to our rescuers and they will try their level best to help the animal.</p>
 			</div>
 			<div *ngIf="searchService&&searchService=='Walker'" class="col-md-6 white-bg-color container-text">
-				<p> We have pet walkers, who are good at taking dogs for their regular walks.
-					· Are you in a hurry or you feel that you are not giving enough walk to your pet, no worries. We are here to help
-					you with it. Have a professional walker handle it for you. All you need to let the walker know is your
-					requirement. They will ensure it is executed. We can hear you online as well as over a phone.</p>
+				<p> We have pet walkers, who are good at taking dogs for their regular walks. Has time become a
+					constraint to take your dog for walks? no worries, we are here to help you with it. We can have the
+					professional walkers handle it for you. All you need to do is. let the walker know is your
+					requirements. They will ensure it is executed.</p>
 			</div>
 			<div *ngIf="searchService&&searchService=='Volunteers'" class="col-md-6 white-bg-color container-text">
-				<p> We have volunteers who love pets, who are ready to help pets in absence of their owners, be it feeding them or
+				<p> We have volunteers who love pets, who are ready to help pets in absence of their owners, be it
+					feeding them or
 					looking after them for a certain period of time</p>
 			</div>
 			<div class="col-md-3 "></div>
@@ -78,7 +78,8 @@
 
 			<div class="input-group inner-addon left-addon">
 				<i class="glyphicon glyphicon-search" (click)="searchTextFilter()"></i>
-				<input type="text" class="form-control" [(ngModel)]="filterText" style="height: 43px;" (keyup)="$event.keyCode == 13 ? searchTextFilter() : null">
+				<input type="text" class="form-control" [(ngModel)]="filterText" style="height: 43px;"
+					(keyup)="$event.keyCode == 13 ? searchTextFilter() : null">
 				<span class="input-group-btn" style="padding-left:1%;">
 					<button class="btn btn-default filter" type="button" (click)="showHideFilter()">FILTER</button>
 				</span>
@@ -93,8 +94,9 @@
 
 						<h5>PET TYPE</h5>
 						<div *ngFor="let petType of petTypes">
-							<p><label class="checkbox-inline"><input type="checkbox" (click)="petTypeChecked($event)" [checked]="selectedPetTypes.indexOf(petType)>-1"
-									 value="{{petType}}">{{petType}} </label></p>
+							<p><label class="checkbox-inline"><input type="checkbox" (click)="petTypeChecked($event)"
+										[checked]="selectedPetTypes.indexOf(petType)>-1" value="{{petType}}">{{petType}}
+								</label></p>
 						</div>
 					</div>
 
@@ -102,10 +104,10 @@
 					<div class="block">
 
 						<h5>GENDER</h5>
-						<p><label class="checkbox-inline"><input type="checkbox" (click)="clickGender($event)" [checked]="selectedGender.indexOf('Male')>-1"
-								 value="Male">Male </label></p>
-						<p><label class="checkbox-inline"><input type="checkbox" (click)="clickGender($event)" [checked]="selectedGender.indexOf('Female')>-1"
-								 value="Female">Female </label></p>
+						<p><label class="checkbox-inline"><input type="checkbox" (click)="clickGender($event)"
+									[checked]="selectedGender.indexOf('Male')>-1" value="Male">Male </label></p>
+						<p><label class="checkbox-inline"><input type="checkbox" (click)="clickGender($event)"
+									[checked]="selectedGender.indexOf('Female')>-1" value="Female">Female </label></p>
 
 					</div>
 
@@ -116,7 +118,8 @@
 							<!-- <p><input type="text" class="location form-control" value="" placeholder="City"> </p>
 						<p><input type="text" class="location form-control" value="" placeholder="Area"> </p> -->
 
-							<select name="City" [(ngModel)]="selectedCity" class="form-control" (change)="onCityChange()">
+							<select name="City" [(ngModel)]="selectedCity" class="form-control"
+								(change)="onCityChange()">
 								<!-- <option selected>City </option> -->
 								<option *ngFor="let city of cityList" [ngValue]="city">{{city.CityName}}</option>
 							</select>
@@ -132,14 +135,16 @@
 					<div class="block">
 
 						<h5>GENERAL</h5>
-						<p><label class="checkbox-inline"><input type="checkbox" [(ngModel)]="selectedKCI" value="1">KCI Registered
+						<p><label class="checkbox-inline"><input type="checkbox" [(ngModel)]="selectedKCI" value="1">KCI
+								Registered
 							</label></p>
 					</div>
 
 					<div class="block">
 
 						<h5>AGE</h5>
-						<p><input type="text" class="location form-control" numbersOnly [(ngModel)]="enteredAge" placeholder="Age in months">
+						<p><input type="text" class="location form-control" numbersOnly [(ngModel)]="enteredAge"
+								placeholder="Age in months">
 						</p>
 						<!-- <p><label class="checkbox-inline"><input type="checkbox" value="">
 							<1 Month </label> </p> <p><label class="checkbox-inline"><input type="checkbox" value="">
@@ -158,13 +163,16 @@
 						<span *ngFor="let breed of breeds;index as i">
 							<div [ngSwitch]="i % 3">
 								<div class="col-md-4" *ngSwitchCase="0">
-									<p><label class="checkbox-inline"><input type="checkbox" [(ngModel)]="breed.checked" value="{{breed.BreedId}}">{{breed.BreedName}}</label></p>
+									<p><label class="checkbox-inline"><input type="checkbox" [(ngModel)]="breed.checked"
+												value="{{breed.BreedId}}">{{breed.BreedName}}</label></p>
 								</div>
 								<div class="col-md-4" *ngSwitchCase="1">
-									<p><label class="checkbox-inline"><input type="checkbox" [(ngModel)]="breed.checked" value="{{breed.BreedId}}">{{breed.BreedName}}</label></p>
+									<p><label class="checkbox-inline"><input type="checkbox" [(ngModel)]="breed.checked"
+												value="{{breed.BreedId}}">{{breed.BreedName}}</label></p>
 								</div>
 								<div class="col-md-4" *ngSwitchCase="2">
-									<p><label class="checkbox-inline"><input type="checkbox" [(ngModel)]="breed.checked" value="{{breed.BreedId}}">{{breed.BreedName}}</label></p>
+									<p><label class="checkbox-inline"><input type="checkbox" [(ngModel)]="breed.checked"
+												value="{{breed.BreedId}}">{{breed.BreedName}}</label></p>
 								</div>
 							</div>
 						</span>
@@ -184,7 +192,8 @@
 							<!-- <p><input type="text" class="location form-control" value="" placeholder="City"> </p>
 						<p><input type="text" class="location form-control" value="" placeholder="Area"> </p> -->
 
-							<select name="City" [(ngModel)]="selectedCity" class="form-control" (change)="onCityChange()">
+							<select name="City" [(ngModel)]="selectedCity" class="form-control"
+								(change)="onCityChange()">
 								<!-- <option selected>City </option> -->
 								<option *ngFor="let city of cityList" [ngValue]="city">{{city.CityName}}</option>
 							</select>
@@ -212,16 +221,19 @@
 			<div class="row listing">
 				<div class="col-md-4 col-xs-12 " *ngIf="searchService">
 					<center>
-						<img src={{pet.PictrueName}} style="height: 110px; width: 120px;" class="img-responsive img-rounded listing-mobile" />
-						<a [routerLink]="['/petdetails',searchService,pet.PetId]" class="btn btn-danger contact-button"><i class="fa fa-address-book"
-							 aria-hidden="true"></i> &nbsp;contact </a>
+						<img src={{pet.PictrueName}} style="height: 110px; width: 120px;"
+							class="img-responsive img-rounded listing-mobile" />
+						<a [routerLink]="['/petdetails',searchService,pet.PetId]"
+							class="btn btn-danger contact-button"><i class="fa fa-address-book" aria-hidden="true"></i>
+							&nbsp;contact </a>
 					</center>
 				</div>
 				<div class="col-md-4 col-xs-12 " *ngIf="!searchService">
 					<center>
-						<img src={{pet.PictrueName}} style="height: 110px; width: 120px;" class="img-responsive img-rounded listing-mobile" />
-						<a [routerLink]="['/petdetails',pet.PetId]" class="btn btn-danger contact-button"><i class="fa fa-address-book"
-							 aria-hidden="true"></i> &nbsp;contact </a>
+						<img src={{pet.PictrueName}} style="height: 110px; width: 120px;"
+							class="img-responsive img-rounded listing-mobile" />
+						<a [routerLink]="['/petdetails',pet.PetId]" class="btn btn-danger contact-button"><i
+								class="fa fa-address-book" aria-hidden="true"></i> &nbsp;contact </a>
 					</center>
 				</div>
 

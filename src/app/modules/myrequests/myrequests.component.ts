@@ -1,6 +1,8 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { PetserviceService } from 'src/app/services/petservice.service';
+import { MasterService } from 'src/app/services/master.service';
+import { ToastaService } from 'projects/ngx-toasta/src/public_api';
 
 @Component({
   selector: 'app-myrequests',
@@ -26,7 +28,8 @@ export class MyrequestsComponent implements OnInit {
   constructor(
     private sharedService: PetserviceService,
     private router: Router,
-    private petService: PetserviceService
+    private masterService: MasterService,
+    private toastaService: ToastaService
   ) {
   }
 
@@ -95,16 +98,23 @@ export class MyrequestsComponent implements OnInit {
     return false;
   }
   onModalOpen(requestedData: any) {
-    this.boardingRequestInfo=requestedData;
+    this.boardingRequestInfo = requestedData;
     this.isBoarding = true;
     this.displayBoardingModal = 'block';
     document.body.style.overflow = 'hidden'
     // this.petService.myBoardingDetails(requestId).subscribe((result: any) => {
-     
+
     // });
   }
   closeModal() {
     this.displayBoardingModal = 'none';
     document.body.removeAttribute('style')
   }
+
+  clickOnPay() {
+    var toastOptions = this.masterService.setToastOptions('Payment', 'Please use mobile application for payments.', '')
+    this.toastaService.info(toastOptions);
+    return false;
+  }
+
 }

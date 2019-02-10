@@ -13,9 +13,14 @@
             <a href="#" class="btn btn-info btn-sm btn-block">
               <span class="glyphicon glyphicon-send"></span> In Screening
             </a></div>
-          <div class="col-md-3" style="padding:5px;" *ngIf="requestData.MsgStatus!='Approved' && requestData.MsgStatus!='Under Screening'">
+          <div class="col-md-3" style="padding:5px;"
+            *ngIf="requestData.MsgStatus!='Approved' && requestData.MsgStatus!='Under Screening'&& requestData.MsgStatus!='To Be Paid'">
             <a href="#" class="btn btn-info btn-sm btn-block">
               <span class="glyphicon glyphicon-send"></span> In Screening
+            </a></div>
+          <div class="col-md-3" style="padding:5px;" *ngIf="requestData.MsgStatus=='To Be Paid'">
+            <a (click)="onModalOpen(requestData)" class="btn btn-primary btn-sm btn-block">
+              <span> <i class="fa fa-inr"></i></span> To Be Paid
             </a></div>
           <div class="col-md-3" style="padding:5px;" *ngIf="requestData.MsgStatus=='Approved'">
             <a href="#" (click)="diableAnchorLink()" class="btn btn-success btn-sm btn-block">
@@ -34,15 +39,16 @@
         <div class="row">
           <div class="col-xs-12 l-text">
             {{requestData.Message}}
+            <a style="cursor:pointer" (click)="clickOnPay()" *ngIf="requestData.MsgStatus=='To Be Paid'">Pay</a>
           </div>
         </div>
         <div class="row">
           <div class="col-md-7 l-text">
             {{requestData.RequestedDateTime}}
           </div>
-      </div>
+        </div>
 
-    <!-- <div class="col-md-4 col-xs-12 ">
+        <!-- <div class="col-md-4 col-xs-12 ">
           <center>
             <img src={{requestData.RequestedPetImageName}} style="height: 110px; width: 120px;" class="img-responsive img-rounded listing-mobile" />
             <a [routerLink]="['/petdetails',requestData.ReuestedPetId]" class="btn btn-danger contact-button"><i class="fa fa-eye"
@@ -50,51 +56,51 @@
           </center>
         </div> -->
 
-    <div class="col-md-12 col-xs-12">
-      <div class="row">
-        <div class="col-xs-5">Service Type</div>
-        <div class="col-xs-7 l-text">{{requestData.ServiceType}}</div>
-      </div>
-      <div class="row">
-        <div class="col-xs-5">Requester Contact Details</div>
-        <div class="col-xs-7 l-text">{{requestData.RequestedMobile}},{{requestData.RequestedMailId}}</div>
-      </div>
-      <div class="row">
-        <div class="col-xs-5">Area</div>
-        <div class="col-xs-7 l-text">{{requestData.RequestersAreaName}}</div>
-      </div>
-      <div class="row">
-        <div class="col-xs-5">City</div>
-        <div class="col-xs-7 l-text">{{requestData.RequestersCityName}}</div>
+        <div class="col-md-12 col-xs-12">
+          <div class="row">
+            <div class="col-xs-5">Service Type</div>
+            <div class="col-xs-7 l-text">{{requestData.ServiceType}}</div>
+          </div>
+          <div class="row">
+            <div class="col-xs-5">Requester Contact Details</div>
+            <div class="col-xs-7 l-text">{{requestData.RequestedMobile}},{{requestData.RequestedMailId}}</div>
+          </div>
+          <div class="row">
+            <div class="col-xs-5">Area</div>
+            <div class="col-xs-7 l-text">{{requestData.RequestersAreaName}}</div>
+          </div>
+          <div class="row">
+            <div class="col-xs-5">City</div>
+            <div class="col-xs-7 l-text">{{requestData.RequestersCityName}}</div>
+          </div>
+
+          <div class="row">
+            <div class="col-xs-5">Receiver Contact Details</div>
+            <div class="col-xs-7 l-text">{{requestData.OwnerMobile}},{{requestData.OwnerMailId}}</div>
+          </div>
+          <div class="row">
+            <div class="col-xs-5">Area</div>
+            <div class="col-xs-7 l-text">{{requestData.OwnerAreaName}}</div>
+          </div>
+          <div class="row">
+            <div class="col-xs-5">City</div>
+            <div class="col-xs-7 l-text">{{requestData.OwnerCityName}}</div>
+          </div>
+        </div>
+
       </div>
 
+    </div>
+    <div class="col-md-12" *ngIf="loadedRequestList.length==0">
       <div class="row">
-        <div class="col-xs-5">Receiver Contact Details</div>
-        <div class="col-xs-7 l-text">{{requestData.OwnerMobile}},{{requestData.OwnerMailId}}</div>
-      </div>
-      <div class="row">
-        <div class="col-xs-5">Area</div>
-        <div class="col-xs-7 l-text">{{requestData.OwnerAreaName}}</div>
-      </div>
-      <div class="row">
-        <div class="col-xs-5">City</div>
-        <div class="col-xs-7 l-text">{{requestData.OwnerCityName}}</div>
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+          <img width="100%" src="assets/images/noresult.png">
+        </div>
+        <div class="col-md-4"></div>
       </div>
     </div>
-
   </div>
-
-</div>
-<div class="col-md-12" *ngIf="loadedRequestList.length==0">
-  <div class="row">
-    <div class="col-md-4"></div>
-    <div class="col-md-4">
-      <img width="100%" src="assets/images/noresult.png">
-    </div>
-    <div class="col-md-4"></div>
-  </div>
-</div>
-</div>
 </div>
 <div class="row">
   <div class="col-sm-2">
